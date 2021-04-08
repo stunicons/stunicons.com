@@ -13,8 +13,11 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.3",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.3",
