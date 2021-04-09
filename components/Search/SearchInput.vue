@@ -10,6 +10,8 @@
 </template>
 
 <script>
+//TODO making test for this component
+
 export default {
   name: "SearchInput",
   data(){
