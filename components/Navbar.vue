@@ -43,7 +43,7 @@ export default {
         height: fit-content;
         h6{
           font-size:1.25rem;
-          font-weight: 600;
+          font-weight: 700;
           text-transform: capitalize;
         }
       }
@@ -57,7 +57,7 @@ export default {
         &--request-icon{
           @apply mx-10;
           button{
-            @apply py-4 px-10 rounded-md;
+            @apply py-4 px-8 rounded-md;
             color:$bg;
             background-color: $clr-primary;
           }
@@ -66,7 +66,7 @@ export default {
         &--go-to-github{
 
           a{
-            @apply py-4 px-10 rounded-md flex;
+            @apply py-4 px-8 rounded-md flex;
 
             &:hover{
               background-color: $clr-primary-lighten;
