@@ -84,11 +84,15 @@ export default {
     }
 
     &--list-to-select{
-        @include filter-selector;
-        @apply mt-2;
+      @include filter-selector;
+      position: absolute;
+      height: fit-content;
+      @apply mt-2;
+      z-index: 1;
+
+      ul{
         max-height: 20rem;
         overflow-y: auto;
-        position: absolute;
 
         &::-webkit-scrollbar{
           @apply rounded-md;
@@ -107,8 +111,6 @@ export default {
           }
 
         }
-
-      ul{
 
         li{
           @apply py-2 px-3 rounded-sm;
