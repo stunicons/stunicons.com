@@ -3,7 +3,7 @@
     <nav class="navbar--wrapper">
       <div class="navbar--logo">
         <div class="logo">
-          <h6>Stun Icons</h6>
+          <h6 id="logo">Stun Icons</h6>
         </div>
         <!--        version component-->
         <version />
