@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div class="page">
-     <Navbar />
+     <!-- navbar -->
+      <Navbar />
+
+      <!-- welcome world -->
+      <WelcomingText />
     </div>
 
   </div>
@@ -9,9 +13,10 @@
 
 <script>
 import Navbar from '~/components/Navbar.vue'
+import WelcomingText from "../components/WelcomingText";
 
 export default {
-  components:{Navbar}
+  components:{WelcomingText, Navbar}
 }
 </script>
 
