@@ -7,7 +7,7 @@
 <style lang="scss"      >
 
 .container   {
-  @apply w-full flex justify-center;
+  @apply w-full flex flex-col items-center;
 
   .page{
     max-width: 80rem !important;
