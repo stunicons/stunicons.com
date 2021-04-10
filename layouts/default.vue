@@ -4,13 +4,13 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss"      >
 
-.container{
-  @apply w-full flex justify-center;
+.container   {
+  @apply w-full flex flex-col items-center;
 
   .page{
-    max-width: 72rem !important;
+    max-width: 80rem !important;
     width:100%;
   }
 }
