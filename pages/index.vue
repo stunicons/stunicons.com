@@ -727,7 +727,10 @@
 
         </div>
       </section>
+
     </div>
+    <!-- footer -->
+    <app-footer/>
 
   </div>
 </template>
@@ -739,9 +742,10 @@ import Search from "../components/Search/Search";
 import IconPackHeader from "../components/IconPack/IconPackHeader";
 import Icon from "../components/IconPack/Icon";
 import IconBodySelector from "../components/IconBodySelector";
+import appFooter from "../components/Footer";
 
 export default {
-  components:{IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar}
+  components:{appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar}
 }
 </script>
 
