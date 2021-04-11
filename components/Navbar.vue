@@ -55,7 +55,7 @@ export default {
 
       .action-btn{
         &--request-icon{
-          @apply mx-10;
+          @apply mx-5;
           button{
             @apply py-4 px-8 rounded-md;
             color:$bg;
