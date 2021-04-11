@@ -6,11 +6,12 @@
 
 <style lang="scss"      >
 
-.container   {
+.page-container   {
   @apply w-full flex flex-col items-center;
 
   .page{
-    max-width: 80rem !important;
+    @apply px-5;
+    max-width: 76rem !important;
     width:100%;
   }
 }
