@@ -28,9 +28,9 @@ export default {
     @apply flex justify-center items-center;
 
     span{
-      @apply rounded-full px-3;
+      @apply rounded-full px-2;
       top:-1rem;
-      right:-.1rem;
+      right:.2rem;
       text-align: center;
       font-size: .75rem;
       position: absolute;
