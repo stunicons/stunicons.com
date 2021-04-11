@@ -15,7 +15,8 @@
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.3",
+    "stunicons": "^1.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-module": "^3.0.2",
