@@ -21,3 +21,4 @@ describe('Mounted Navbar', () => {
     expect(wrapper.find('button')).toBeTruthy()
   })
 })
+
