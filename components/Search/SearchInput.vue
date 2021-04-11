@@ -21,12 +21,12 @@ export default {
   },
 
   methods:{
-    //emit event on search
+    //emit event on Search
     search(){
       this.$emit('search',this.searchKey)
     },
 
-    //act on search key change
+    //act on Search key change
     searchKeyChanged(){
       const icon = this.$refs['icon'];
 

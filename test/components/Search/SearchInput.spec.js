@@ -14,7 +14,7 @@ describe('Mounted SearchFilter', () => {
   })
 
   //first input on  element
-  input.element.value = 'search mwana'
+  input.element.value = 'Search mwana'
 
 
   wrapper.vm.$nextTick( () => {

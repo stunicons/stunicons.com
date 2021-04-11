@@ -7,7 +7,7 @@
       <!-- welcome world -->
       <WelcomingText />
 
-      <!-- search bar -->
+      <!-- Search bar -->
       <Search />
 
       <!--      icon body selector-->
