@@ -12,6 +12,7 @@
 
       <!--      icon body selector-->
       <icon-body-selector />
+
       <!-- icon pack list-->
       <section class="icon-pack" v-for="iconGroup in icons" :key="iconGroup.categoryName">
         <div class="icon-pack--header">
