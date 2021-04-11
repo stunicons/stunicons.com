@@ -19,7 +19,7 @@
           <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
         </div>
         <div class="icon-pack--icons" >
-          <icon v-for="icon in iconGroup.icons">
+          <icon v-for="icon in iconGroup.icons" :key="icon.id">
             <template #svg >
               <i :class="`si-${icon.id}`"></i>
             </template>
