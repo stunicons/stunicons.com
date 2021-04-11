@@ -28,7 +28,8 @@ export default {
     @apply flex justify-center items-center;
 
     span{
-      @apply rounded-full px-2;
+      @apply rounded-full;
+      padding:0 .6rem;
       top:-1rem;
       right:.2rem;
       text-align: center;
