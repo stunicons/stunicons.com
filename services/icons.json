@@ -1,0 +1,13 @@
+{
+  "icons": [
+    {
+      "categoryName": "arrows",
+      "icons": [
+        {
+          "id":"arrow-bottom-left-o",
+          "name": "arrow-bottom-left"
+        }
+      ]
+    }
+  ]
+}

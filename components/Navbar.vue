@@ -3,7 +3,7 @@
     <nav class="navbar--wrapper">
       <div class="navbar--logo">
         <div class="logo">
-          <h6 id="logo">Stun Icons</h6>
+          <h6 id="logo">StunIcons</h6>
         </div>
         <!--        version component-->
         <version />
@@ -55,7 +55,7 @@ export default {
 
       .action-btn{
         &--request-icon{
-          @apply mx-10;
+          @apply mx-5;
           button{
             @apply py-4 px-8 rounded-md;
             color:$bg;
