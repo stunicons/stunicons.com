@@ -30,8 +30,8 @@ export default {
     span{
       @apply rounded-full;
       padding:0 .6rem;
-      top:-1rem;
-      right:.2rem;
+      top:-.8rem;
+      right:.4rem;
       text-align: center;
       font-size: .75rem;
       position: absolute;
