@@ -108,15 +108,28 @@ export default {
     padding:3rem;
   }
 
+  h5{
+    font-weight: 500;
+  }
   .row{
     &--1{
       .icon{
+        &--title{
+          h5{
+            font-weight: 600;
+            font-size: 1.2rem;
+          }
+        }
+
+        &--svg{
+          @apply my-5;
+        }
+
         &--download{
           @apply flex;
 
-          &--svg,
           &--png{
-            @apply mx-3;
+            @apply ml-6;
           }
 
         }
