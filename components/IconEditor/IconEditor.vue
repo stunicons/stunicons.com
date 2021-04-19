@@ -57,7 +57,7 @@
           <h5>Copy css</h5>
         </div>
         <div class="icon-class--copy">
-          copy class
+          <icon-class-copy icon-class="arrow-left"/>
         </div>
       </div>
     </div>
@@ -95,9 +95,10 @@
 
 <script>
 import Copy from "../Reusable/Copy";
+import IconClassCopy from "./IconClassCopy";
 export default {
   name: "IconEditor",
-  components: {Copy}
+  components: {IconClassCopy, Copy}
 }
 </script>
 
