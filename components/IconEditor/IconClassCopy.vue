@@ -22,6 +22,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.icon-class-cpy{
+  @include fit-content;
 
+  &--wrapper{
+    @apply flex justify-between py-3 px-4 rounded;
+    width: 22rem;
+
+    background-color: $bg-tertiary;
+
+    .tag{
+
+    }
+    .copy-icon{
+      @apply pl-5 pr-2;
+      border-left:2px solid $clr-lighten;
+    }
+  }
+}
 </style>
