@@ -1,6 +1,6 @@
 <template>
 <div class="copy">
-  <div class="copy--wrapper">
+  <div class="copy--wrapper" @click="clicked">
     <div class="copy--icon">
       <slot name="icon"></slot>
     </div>
@@ -13,7 +13,12 @@
 
 <script>
 export default {
-  name: "Copy"
+  name: "Copy",
+  methods:{
+    clicked(e){
+      this.$emit('copy')
+    }
+  }
 }
 </script>
 
