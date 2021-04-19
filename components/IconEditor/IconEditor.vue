@@ -14,12 +14,28 @@
           </svg>
         </div>
       </div>
-      <div class="icon--actions">
-        <div class="icon--actions--copy">
-          copy
+      <div class="icon--download">
+        <div class="icon--download--svg">
+          <copy>
+            <template #icon>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 1C7 0.447716 7.44772 0 8 0C8.55228 0 9 0.447715 9 1V8.15777L12.2428 4.91501L13.657 6.32922L8.00012 11.9861L2.34326 6.32922L3.75748 4.91501L7 8.15753V1Z" fill="#FE4E00"/>
+                <path d="M0 10H2V14H14V10H16V14C16 15.1046 15.1046 16 14 16H2C0.895431 16 0 15.1046 0 14V10Z" fill="#FE4E00"/>
+              </svg>
+            </template>
+            <template #title>SVG</template>
+          </copy>
         </div>
-        <div class="icon--actions--download">
-          download
+        <div class="icon--download--png">
+          <copy>
+            <template #icon>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 1C7 0.447716 7.44772 0 8 0C8.55228 0 9 0.447715 9 1V8.15777L12.2428 4.91501L13.657 6.32922L8.00012 11.9861L2.34326 6.32922L3.75748 4.91501L7 8.15753V1Z" fill="#FE4E00"/>
+                <path d="M0 10H2V14H14V10H16V14C16 15.1046 15.1046 16 14 16H2C0.895431 16 0 15.1046 0 14V10Z" fill="#FE4E00"/>
+              </svg>
+            </template>
+            <template #title>PNG</template>
+          </copy>
         </div>
       </div>
     </div>
@@ -63,7 +79,12 @@
           </ul>
         </div>
         <div class="code-copy">
-          copy
+          <copy>
+            <template #icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z"/></svg>
+            </template>
+            <template #title>Copy</template>
+          </copy>
         </div>
       </div>
     </div>
@@ -73,8 +94,10 @@
 </template>
 
 <script>
+import Copy from "../Reusable/Copy";
 export default {
-  name: "IconEditor"
+  name: "IconEditor",
+  components: {Copy}
 }
 </script>
 
