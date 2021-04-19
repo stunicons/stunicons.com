@@ -13,10 +13,6 @@
       <!--      icon body selector-->
       <icon-body-selector />
 
-<!--      icon editor preview-->
-
-      <icon-editor />
-
       <!-- icon pack list-->
       <section class="icon-pack" v-for="iconGroup in icons" :key="iconGroup.categoryName">
         <div class="icon-pack--header">
@@ -48,11 +44,10 @@ import Icon from "../components/IconPack/Icon";
 import IconBodySelector from "../components/IconBodySelector";
 import appFooter from "../components/Footer";
 import {icons} from "~/services/icons.json"
-import IconEditor from "../components/IconEditor/IconEditor";
 
 
 export default {
-  components:{IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
+  components:{appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
   data(){
     return {
       icons: icons
