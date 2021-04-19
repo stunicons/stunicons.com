@@ -107,5 +107,21 @@ export default {
     border: 2px red solid;
     padding:3rem;
   }
+
+  .row{
+    &--1{
+      .icon{
+        &--download{
+          @apply flex;
+
+          &--svg,
+          &--png{
+            @apply mx-3;
+          }
+
+        }
+      }
+    }
+  }
 }
 </style>
