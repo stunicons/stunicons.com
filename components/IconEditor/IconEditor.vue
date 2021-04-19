@@ -108,11 +108,12 @@ export default {
     padding:3rem;
   }
 
-  h5{
-    font-weight: 500;
-  }
+
   .row{
+
     &--1{
+      @apply flex justify-between;
+
       .icon{
         &--title{
           h5{
@@ -133,6 +134,21 @@ export default {
           }
 
         }
+      }
+    }
+
+    &--2{
+      .icon-class{
+        @apply mt-6;
+
+        &--title{
+          @apply my-2;
+          h5{
+            font-size: 1.1rem;
+            font-weight: 500;
+          }
+        }
+        &--copy{}
       }
     }
   }
