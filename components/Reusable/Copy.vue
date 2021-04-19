@@ -23,9 +23,9 @@ export default {
   width: fit-content;
 
   &--wrapper{
-   @apply px-10 py-5 rounded-md;
+   @apply px-6 py-4 rounded-md flex;
     background-color: $clr-primary-lighten;
-
+    cursor: pointer;
   }
 
   &--icon{
@@ -37,6 +37,8 @@ export default {
   &--title{
    @apply px-2;
     color:$clr-primary;
+    font-size: .9rem;
+    font-weight: 500;
   }
 }
 </style>
