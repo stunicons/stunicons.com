@@ -4,9 +4,9 @@
     <div class="copy--icon">
       <slot name="icon"></slot>
     </div>
-    <h4 class="copy--title">
+    <span class="copy--title">
       <slot name="title"></slot>
-    </h4>
+    </span>
   </div>
 </div>
 </template>
