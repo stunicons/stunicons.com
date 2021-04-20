@@ -10,6 +10,10 @@
       <!-- Search bar -->
       <Search />
 
+
+      <!-- icon editor -->
+      <icon-editor/>
+
       <!--      icon body selector-->
       <icon-body-selector />
 
@@ -44,10 +48,11 @@ import Icon from "../components/IconPack/Icon";
 import IconBodySelector from "../components/IconBodySelector";
 import appFooter from "../components/Footer";
 import {icons} from "~/services/icons.json"
+import IconEditor from "../components/IconEditor/IconEditor";
 
 
 export default {
-  components:{appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
+  components:{IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
   data(){
     return {
       icons: icons
