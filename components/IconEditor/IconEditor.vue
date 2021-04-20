@@ -70,16 +70,16 @@
         </div>
         <div class="code--tab">
           <ul>
-            <li>SVG</li>
-            <li class="active">Data URI</li>
+            <li :class="{active:activeTab ==='svg'}" @click="activeTab = 'svg'">SVG</li>
+            <li :class="{active:activeTab ==='dataUrl'}" @click="activeTab = 'dataUrl'">Data URI</li>
           </ul>
         </div>
-        <div class="code--codes">
+        <div class="code--codes" >
           <ul>
-            <li>
+            <li v-if="activeTab ==='svg'">
               <code-highlight :code="codes.svg" lang="html" />
             </li>
-            <li>
+            <li v-if="activeTab ==='dataUrl'">
               <code-highlight :code="codes.css" lang="css"/>
             </li>
           </ul>
@@ -111,7 +111,8 @@ export default {
       codes:{
         svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 21H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9a1 1 0 0 1-1 1zm-6-2h5V9.157l-6-5.454-6 5.454V19h5v-6h2v6z"/></svg>`,
         css:`background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M13 19h6V9.978l-7-5.444-7 5.444V19h6v-6h2v6zm8 1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.49a1 1 0 0 1 .386-.79l8-6.222a1 1 0 0 1 1.228 0l8 6.222a1 1 0 0 1 .386.79V20z'/%3E%3C/svg%3E");`
-      }
+      },
+      activeTab:'svg'
     }
   }
 }
@@ -199,7 +200,7 @@ export default {
         }
 
         &--codes{
-          @apply my-4;
+          @apply my-5;
 
           ul{
 
