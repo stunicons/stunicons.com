@@ -17,11 +17,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'stunicons/fonts/style.css'
+    'stunicons/fonts/style.css',
+    'highlight.js/styles/atom-one-light.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/highlight.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
