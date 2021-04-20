@@ -77,10 +77,10 @@
         <div class="code--codes">
           <ul>
             <li>
-              {{codes.svg}}
+              <code-highlight :code="codes.svg" />
             </li>
             <li>
-              {{codes.css}}
+              <code-highlight :code="codes.css" />
             </li>
           </ul>
         </div>
@@ -102,9 +102,10 @@
 <script>
 import Copy from "../Reusable/Copy";
 import IconClassCopy from "./IconClassCopy";
+import CodeHighlight from "./CodeHighlight";
 export default {
   name: "IconEditor",
-  components: {IconClassCopy, Copy},
+  components: {CodeHighlight, IconClassCopy, Copy},
   data(){
     return{
       codes:{
@@ -198,8 +199,6 @@ export default {
           @apply my-4;
 
           ul{
-            @apply py-3 px-6 rounded;
-            background-color:$bg-secondary;
 
           }
         }
