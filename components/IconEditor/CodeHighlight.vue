@@ -1,20 +1,36 @@
 <template>
 <div class="code-highlight">
   <div class="code-highlight--wrapper">
-    {{formattedCode}}
+    <pre><code >{{formattedCode}}</code></pre>
   </div>
 </div>
 </template>
 
 <script>
+import {html,css} from 'js-beautify'
+
 export default {
   name: "CodeHighlight",
   props:{
-    code:{required:true,type:String}
+    code:{required:true,type:String},
+    lang:{type:String,default:'html'}
   },
   computed:{
     formattedCode(){
-      return this.code
+      let formattedCode;
+      const l = this.lang;
+      const c = this.code
+
+
+      if(l === 'html')
+        formattedCode = html(c,{ indent_size: 2, space_in_empty_paren: true })
+
+      if(l === 'css')
+        formattedCode = css(c, { indent_size: 2, space_in_empty_paren: true })
+
+      console.log(formattedCode)
+
+      return formattedCode
     }
   }
 
