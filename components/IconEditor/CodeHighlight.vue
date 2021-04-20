@@ -1,7 +1,7 @@
 <template>
 <div class="code-highlight">
   <div class="code-highlight--wrapper">
-    <pre><code >{{formattedCode}}</code></pre>
+    <highlightjs :language='lang' :code="formattedCode" />
   </div>
 </div>
 </template>
@@ -23,7 +23,6 @@ export default {
       const options = {
         indent_size: 2,
         space_in_empty_paren: true,
-        // wrap_line_length:100
       }
 
 
@@ -33,8 +32,6 @@ export default {
       if(l === 'css')
         formattedCode = css(c, options)
 
-      console.log(formattedCode)
-
       return formattedCode
     }
   }
@@ -42,38 +39,40 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .code-highlight{
   @include fit-content;
 
   &--wrapper{
-    @apply py-3 px-6 rounded;
     width: 45rem;
-    background-color:$bg-secondary;
+    //background-color:$bg-secondary;
     overflow-x: auto;
 
 
-    &::-webkit-scrollbar{
-      @apply rounded-md;
-      height:.5rem;
-    }
-    &::-webkit-scrollbar-track{
-      background-color: darken($bg-tertiary,5);
-    }
-
-    &::-webkit-scrollbar-thumb{
-      border-radius: 2.5px;
-      cursor: pointer;
-      background-color: darken($bg-tertiary,30);
-
-      &:hover{
-        background-color: darken($bg-tertiary,40);
-      }
-
-    }
 
     code{
+      @apply py-3 px-6 rounded;
       font-family: $firaCode;
+
+      &::-webkit-scrollbar{
+        @apply rounded-md;
+        height:.5rem;
+      }
+      &::-webkit-scrollbar-track{
+        @apply rounded-md;
+        background-color: darken($bg-tertiary,5);
+      }
+
+      &::-webkit-scrollbar-thumb{
+        border-radius: 2.5px;
+        cursor: pointer;
+        background-color: darken($bg-tertiary,30);
+
+        &:hover{
+          background-color: darken($bg-tertiary,40);
+        }
+
+      }
     }
   }
 }
