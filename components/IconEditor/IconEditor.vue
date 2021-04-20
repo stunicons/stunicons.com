@@ -51,6 +51,7 @@
       </div>
     </div>
     </div>
+
     <div class="rows row--2">
       <div class="icon-class">
         <div class="icon-class--title">
@@ -61,6 +62,7 @@
         </div>
       </div>
     </div>
+
     <div class="rows row--3">
       <div class="code">
         <div class="code--title">
@@ -69,16 +71,20 @@
         <div class="code--tab">
           <ul>
             <li>SVG</li>
-            <li>Data URI</li>
+            <li class="active">Data URI</li>
           </ul>
         </div>
-        <div class="code-codes">
+        <div class="code--codes">
           <ul>
-            <li>svg code</li>
-            <li>css codes</li>
+            <li>
+              {{codes.svg}}
+            </li>
+            <li>
+              {{codes.css}}
+            </li>
           </ul>
         </div>
-        <div class="code-copy">
+        <div class="code--copy">
           <copy>
             <template #icon>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z"/></svg>
@@ -98,7 +104,15 @@ import Copy from "../Reusable/Copy";
 import IconClassCopy from "./IconClassCopy";
 export default {
   name: "IconEditor",
-  components: {IconClassCopy, Copy}
+  components: {IconClassCopy, Copy},
+  data(){
+    return{
+      codes:{
+        svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 21H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9a1 1 0 0 1-1 1zm-6-2h5V9.157l-6-5.454-6 5.454V19h5v-6h2v6z"/></svg>`,
+        css:`background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M13 19h6V9.978l-7-5.444-7 5.444V19h6v-6h2v6zm8 1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.49a1 1 0 0 1 .386-.79l8-6.222a1 1 0 0 1 1.228 0l8 6.222a1 1 0 0 1 .386.79V20z'/%3E%3C/svg%3E");`
+      }
+    }
+  }
 }
 </script>
 
@@ -150,6 +164,46 @@ export default {
           }
         }
         &--copy{}
+      }
+    }
+
+    &--3{
+      .code{
+        &--title{
+          @apply my-4;
+
+          h5{
+            font-weight: 500;
+            font-size: 1.1rem;
+          }
+        }
+
+        &--tab{
+          ul{
+            @apply flex;
+
+            li{
+              @apply mx-5 py-1;
+              font-weight: 600;
+            }
+
+            .active{
+              color:$clr-primary;
+              border-bottom: 2px solid $clr-primary;
+            }
+          }
+        }
+
+        &--codes{
+          @apply my-4;
+
+          ul{
+            @apply py-3 px-6 rounded;
+            background-color:$bg-secondary;
+
+          }
+        }
+
       }
     }
   }
