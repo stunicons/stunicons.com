@@ -77,10 +77,10 @@
         <div class="code--codes">
           <ul>
             <li>
-              <code-highlight :code="codes.svg" />
+              <code-highlight :code="codes.svg" lang="html" />
             </li>
             <li>
-              <code-highlight :code="codes.css" />
+              <code-highlight :code="codes.css" lang="css"/>
             </li>
           </ul>
         </div>
