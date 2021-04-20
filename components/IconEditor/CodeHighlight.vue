@@ -21,6 +21,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.code-highlight{
+  @include fit-content;
 
+  &--wrapper{
+    @apply py-3 px-6 rounded;
+    background-color:$bg-secondary;
+  }
+}
 </style>
