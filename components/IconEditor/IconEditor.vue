@@ -119,9 +119,12 @@ export default {
 
 <style lang="scss" scoped>
 .icon-editor{
+  @include fit-content;
+
   &--wrapper{
     border: 2px red solid;
     padding:3rem;
+    width: 50rem;
   }
 
 
