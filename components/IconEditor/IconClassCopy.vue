@@ -24,10 +24,15 @@ export default {
   computed:{
     classIcon(){
       return `<i class="${this.iconClass}"></i>`
-    }
+    },
   },
   mounted(){
     clipboard = new ClipboardJS('.copy-icon')
+    const self = this
+
+    clipboard.on('success',function(e){
+      self.$emit('classCopy',e)
+    })
 
   }
 }
@@ -41,7 +46,7 @@ export default {
     @apply flex justify-between py-3 px-4 rounded;
     width: 22rem;
 
-    background-color: $bg-tertiary;
+    background-color: $bg-secondary;
 
     .tag{
 
@@ -49,6 +54,7 @@ export default {
     .copy-icon{
       @apply pl-5 pr-2;
       border-left:2px solid $clr-lighten;
+      cursor: pointer;
     }
   }
 }
