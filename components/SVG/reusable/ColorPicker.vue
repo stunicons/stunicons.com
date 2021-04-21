@@ -3,11 +3,11 @@
   <div class="color-picker--wrapper">
     <p>Color: </p>
     <ul>
-      <li @click="clicked('black')" :class="{active: activeColor === 'black'}" class="black" ></li>
-      <li @click="clicked('orange')" :class="{active: activeColor === 'orange'}" class="orange" ></li>
-      <li @click="clicked('blue')" :class="{active: activeColor === 'blue'}" class="blue" ></li>
-      <li @click="clicked('red')" :class="{active: activeColor === 'red'}" class="red" ></li>
-      <li @click="clicked('green')" :class="{active: activeColor === 'green'}" class="green" ></li>
+      <li @click="clicked('#000000')" :class="{active: activeColor === '#000000'}" class="black" ></li>
+      <li @click="clicked('#FE4E00')" :class="{active: activeColor === '#FE4E00'}" class="orange" ></li>
+      <li @click="clicked('#164AFF')" :class="{active: activeColor === '#164AFF'}" class="blue" ></li>
+      <li @click="clicked('#FE0000')" :class="{active: activeColor === '#FE0000'}" class="red" ></li>
+      <li @click="clicked('#48C37A')" :class="{active: activeColor === '#48C37A'}" class="green" ></li>
     </ul>
     <div class="add-color"></div>
   </div>
@@ -19,12 +19,14 @@ export default {
   name: "ColorPicker",
   data(){
     return{
-      activeColor:'black'
+      activeColor:'#000000'
     }
   },
   methods:{
     clicked(clr){
       this.activeColor = clr
+
+      this.$emit('picked',clr)
     }
   }
 }
