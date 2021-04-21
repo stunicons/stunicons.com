@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
+    "@simonwep/pickr": "^1.8.0",
     "clipboard": "^2.0.8",
     "core-js": "^3.9.1",
     "highlight.js": "^10.7.2",
