@@ -1,7 +1,7 @@
 <template>
 <div class="color-picker">
   <div class="color-picker--wrapper">
-    <p>Color:</p>
+    <p>Color: </p>
     <ul>
       <li class="black active"></li>
       <li class="orange"></li>
@@ -9,6 +9,7 @@
       <li class="red"></li>
       <li class="green"></li>
     </ul>
+    <div class="add-color"></div>
   </div>
 </div>
 </template>
@@ -22,8 +23,14 @@ name: "ColorPicker"
 <style lang="scss" scoped>
 .color-picker{
   &--wrapper{
+    @apply flex;
+
+    p{
+      font-weight: 500 ;
+    }
+
     ul{
-      @apply flex;
+      @apply flex items-center;
 
       li{
         @apply mx-2;
@@ -31,6 +38,7 @@ name: "ColorPicker"
         width:18px;
         height: 18px;
         border-radius: 50%;
+        cursor: pointer;
 
         &.active{
           border:3px solid $bg;
