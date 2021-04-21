@@ -60,27 +60,38 @@ export default {
       ],
 
       components: {
-
         // Main components
         preview: true,
         opacity: true,
         hue: true,
-
         // Input / output Options
         interaction: {
           hex: true,
           rgba: true,
-          // hsla: true,
-          // hsva: true,
-          // cmyk: true,
           input: true,
           clear: true,
           save: true
         }
       }
     }
-
+    const self = this;
     pickr = PickrInstance.create(options)
+
+    pickr.on('save',function(color){
+      const hexaColor  = colorToHexa(color);
+      self.$emit('picked',hexaColor)
+      self.activeColor = hexaColor
+    })
+
+    pickr.on('show',function(color){
+      const hexaColor  = colorToHexa(color);
+      self.activeColor = hexaColor
+    })
+
+
+    function colorToHexa(clr){
+      return '#' + clr.toHEXA().join('')
+    }
   }
 }
 </script>
