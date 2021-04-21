@@ -47,7 +47,7 @@
         font adjuster
       </div>
       <div class="customize--color">
-        color picker
+        <color-picker />
       </div>
     </div>
     </div>
@@ -105,11 +105,12 @@ import IconClassCopy from "./IconClassCopy";
 import CodeHighlight from "./CodeHighlight";
 import svgIcon from "stunicons/icons/folder.svg"
 import dataUriToSvg from "../../utils/svgToElement";
+import ColorPicker from "../SVG/reusable/ColorPicker";
 
 
 export default {
   name: "IconEditor",
-  components: {CodeHighlight, IconClassCopy, Copy},
+  components: {ColorPicker, CodeHighlight, IconClassCopy, Copy},
   data(){
     return{
       codes:{
