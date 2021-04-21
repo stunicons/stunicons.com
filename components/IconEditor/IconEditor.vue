@@ -113,11 +113,14 @@ export default {
   data(){
     return{
       codes:{
-        svg:dataUriToSvg(svgIcon),
+        svg:'',
         css:`background-image: url("${svgIcon}");`
       },
       activeTab:'svg'
     }
+  },
+  mounted(){
+    this.codes.svg = dataUriToSvg(svgIcon)
   }
 }
 </script>
