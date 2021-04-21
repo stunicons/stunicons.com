@@ -3,11 +3,11 @@
   <div class="color-picker--wrapper">
     <p>Color: </p>
     <ul>
-      <li @click="clicked('black')" :class="{active: activeColor = 'black'}" class="black" ></li>
-      <li @click="clicked('orange')" :class="{active: activeColor = 'orange'}" class="orange" ></li>
-      <li @click="clicked('blue')" :class="{active: activeColor = 'blue'}" class="blue" ></li>
-      <li @click="clicked('red')" :class="{active: activeColor = 'red'}" class="red" ></li>
-      <li @click="clicked('green')" :class="{active: activeColor = 'green'}" class="green" ></li>
+      <li @click="clicked('black')" :class="{active: activeColor === 'black'}" class="black" ></li>
+      <li @click="clicked('orange')" :class="{active: activeColor === 'orange'}" class="orange" ></li>
+      <li @click="clicked('blue')" :class="{active: activeColor === 'blue'}" class="blue" ></li>
+      <li @click="clicked('red')" :class="{active: activeColor === 'red'}" class="red" ></li>
+      <li @click="clicked('green')" :class="{active: activeColor === 'green'}" class="green" ></li>
     </ul>
     <div class="add-color"></div>
   </div>
