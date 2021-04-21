@@ -15,6 +15,14 @@
 </template>
 
 <script>
+let PickrInstance;
+
+if(process.browser){
+  PickrInstance = require('@simonwep/pickr/dist/pickr.min.js');
+}
+
+let pickr;
+
 export default {
   name: "ColorPicker",
   data(){
@@ -28,16 +36,62 @@ export default {
 
       this.$emit('picked',clr)
     }
+  },
+  mounted(){
+    const options = {
+      el: '.add-color',
+      theme: 'classic', // or 'monolith', or 'nano'
+
+      swatches: [
+        'rgba(244, 67, 54, 1)',
+        'rgba(233, 30, 99, 0.95)',
+        'rgba(156, 39, 176, 0.9)',
+        'rgba(103, 58, 183, 0.85)',
+        'rgba(63, 81, 181, 0.8)',
+        'rgba(33, 150, 243, 0.75)',
+        'rgba(3, 169, 244, 0.7)',
+        'rgba(0, 188, 212, 0.7)',
+        'rgba(0, 150, 136, 0.75)',
+        'rgba(76, 175, 80, 0.8)',
+        'rgba(139, 195, 74, 0.85)',
+        'rgba(205, 220, 57, 0.9)',
+        'rgba(255, 235, 59, 0.95)',
+        'rgba(255, 193, 7, 1)'
+      ],
+
+      components: {
+
+        // Main components
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        // Input / output Options
+        interaction: {
+          hex: true,
+          rgba: true,
+          // hsla: true,
+          // hsva: true,
+          // cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      }
+    }
+
+    pickr = PickrInstance.create(options)
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .color-picker{
   &--wrapper{
-    @apply flex;
+    @apply flex items-center;
 
     p{
+      @apply mr-4;
       font-weight: 500 ;
     }
 
@@ -45,7 +99,7 @@ export default {
       @apply flex items-center;
 
       li{
-        @apply mx-2;
+        @apply mx-1;
         box-sizing: content-box;
         width:18px;
         height: 18px;
@@ -68,6 +122,16 @@ export default {
 
       }
 
+    }
+
+    .pickr{
+      @include fit-content;
+      @apply ml-4 grid items-center;
+
+      button{
+        width:15px;
+        height: 15px;
+      }
     }
   }
 }
