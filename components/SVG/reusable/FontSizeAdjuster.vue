@@ -3,7 +3,7 @@
   <div class="fontsize-adjuster--wrapper">
     <label for="font-adjuster">Size: </label>
     <div class="input">
-      <input type="range" min="24" v-model="currentFont" max="240" id="font-adjuster">
+      <input type="range" @input="handleInput" :min="this.min" :max="this.max" v-model="currentFont"  id="font-adjuster">
     </div>
     <p>{{currentFont}} px</p>
   </div>
@@ -13,10 +13,20 @@
 <script>
 export default {
   name: "FontSizeAdjuster",
+  prop:{
+    'value':{},
+    min:{type:Number,default:24},
+    max:{type:Number,default:240},
+  },
   data() {
     return {
-      currentFont:24,
+      currentFont:this.min,
 
+    }
+  },
+  methods:{
+    handleInput(e){
+      this.$emit('input',this.currentFont)
     }
   }
 }
