@@ -3,7 +3,7 @@
   <div class="fontsize-adjuster--wrapper">
     <label for="font-adjuster">Size: </label>
     <div class="input">
-      <input type="range" id="font-adjuster">
+      <input type="range" min="24" v-model="currentFont" max="240" id="font-adjuster">
     </div>
     <p>{{currentFont}} px</p>
   </div>
