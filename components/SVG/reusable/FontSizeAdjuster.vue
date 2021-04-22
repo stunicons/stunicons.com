@@ -1,11 +1,8 @@
 <template>
 <div class="fontsize-adjuster">
   <div class="fontsize-adjuster--wrapper">
-    <p>size:</p>
-    <div class="adjuster">
-      <div class="line"></div>
-      <div class="ball"></div>
-    </div>
+    <label for="font-adjuster">size: </label>
+    <input type="range" id="font-adjuster">
     <p>{{currentFont}}px</p>
   </div>
 </div>
