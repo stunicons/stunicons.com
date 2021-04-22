@@ -13,14 +13,14 @@
 <script>
 export default {
   name: "FontSizeAdjuster",
-  prop:{
+  props:{
     'value':{},
     min:{type:Number,default:24},
     max:{type:Number,default:240},
   },
   data() {
     return {
-      currentFont:this.min,
+      currentFont:this.value,
 
     }
   },

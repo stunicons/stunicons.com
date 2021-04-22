@@ -44,7 +44,7 @@
         <h5>Customisation</h5>
       </div>
       <div class="customize--font">
-        <font-size-adjuster />
+        <font-size-adjuster v-model="fontSize" />
       </div>
       <div class="customize--color">
         <color-picker />
@@ -118,6 +118,7 @@ export default {
         svg:'',
         css:`background-image: url("${svgIcon}");`
       },
+      fontSize:24,
       activeTab:'svg'
     }
   },
