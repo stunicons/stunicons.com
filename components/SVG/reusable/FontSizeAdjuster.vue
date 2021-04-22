@@ -1,9 +1,9 @@
 <template>
 <div class="fontsize-adjuster">
   <div class="fontsize-adjuster--wrapper">
-    <label for="font-adjuster">size: </label>
+    <label for="font-adjuster">Size: </label>
     <input type="range" id="font-adjuster">
-    <p>{{currentFont}}px</p>
+    <p>{{currentFont}} px</p>
   </div>
 </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: "FontSizeAdjuster",
   data() {
     return {
-      currentFont:"24px",
+      currentFont:24,
 
     }
   }
@@ -23,6 +23,10 @@ export default {
 <style lang="scss" scoped>
 .fontsize-adjuster{
   &--wrapper{
+
+    label{
+      font-weight: 500;
+    }
 
     input{
       // RANGE
