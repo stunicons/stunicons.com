@@ -39,12 +39,12 @@
         </div>
       </div>
     </div>
-      <div class="customize">
+    <div class="customize">
       <div class="customize--title">
         <h5>Customisation</h5>
       </div>
       <div class="customize--font">
-        font adjuster
+        <font-size-adjuster />
       </div>
       <div class="customize--color">
         <color-picker />
@@ -106,11 +106,12 @@ import CodeHighlight from "./CodeHighlight";
 import svgIcon from "stunicons/icons/folder.svg"
 import dataUriToSvg from "../../utils/svgToElement";
 import ColorPicker from "../SVG/reusable/ColorPicker";
+import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
 
 
 export default {
   name: "IconEditor",
-  components: {ColorPicker, CodeHighlight, IconClassCopy, Copy},
+  components: {FontSizeAdjuster, ColorPicker, CodeHighlight, IconClassCopy, Copy},
   data(){
     return{
       codes:{
@@ -161,6 +162,17 @@ export default {
             @apply ml-6;
           }
 
+        }
+      }
+
+      .customize{
+        &--title{
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+
+        &--font{
+          @apply my-6;
         }
       }
     }
