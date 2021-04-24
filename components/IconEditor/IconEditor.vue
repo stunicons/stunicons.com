@@ -111,10 +111,6 @@ export default {
   components: {FontSizeAdjuster, ColorPicker, CodeHighlight, IconClassCopy, Copy},
   data(){
     return{
-      // codes:{
-      //   svg:'',
-      //   css:`background-image: url("${svgIcon}");`
-      // },
       baseSvg:'',
       fontSize:24,
       color:"",
@@ -166,7 +162,6 @@ export default {
 
   &--wrapper{
     @apply rounded-lg;
-    border: 2px red solid;
     background-color: $bg;
     padding:3rem;
     width: 50rem;
