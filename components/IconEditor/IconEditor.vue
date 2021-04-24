@@ -6,12 +6,9 @@
       <div class="icon--title">
         <h5>Arrow left</h5>
       </div>
-      <div class="icon--svg">
-        <div class="svg">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 18.0734L14 18.0733L14 30.0734L26.0001 30.0733L26 26.0734L20.8285 26.0733L31.4876 15.4142L28.6592 12.5858L18.0001 23.2449L18 18.0734Z" fill="black"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M44 22C44 34.1503 34.1503 44 22 44C9.84974 44 0 34.1503 0 22C0 9.84974 9.84974 0 22 0C34.1503 0 44 9.84974 44 22ZM40 22C40 31.9411 31.9411 40 22 40C12.0589 40 4 31.9411 4 22C4 12.0589 12.0589 4 22 4C31.9411 4 40 12.0589 40 22Z" fill="black"/>
-          </svg>
+      <div class="icon--svg" v-if="formattedSvg">
+        <div class="svg" v-html="formattedSvg">
+
         </div>
       </div>
       <div class="icon--download">
@@ -123,8 +120,25 @@ export default {
       activeTab:'svg'
     }
   },
+  computed:{
+    formattedSvg(){
+
+      const dom = new DOMParser().parseFromString(this.codes.svg, "text/html")
+      let svg = dom.getElementsByTagName('svg')[0]
+
+      if(svg){
+        svg.setAttribute('width',this.fontSize)
+        svg.setAttribute('height',this.fontSize)
+        // svg.setAttribute('color','red')
+
+        svg = svg.outerHTML // to html element
+        return svg.toString()
+      }
+    }
+  },
   mounted(){
     this.codes.svg = dataUriToSvg(svgIcon)
+    console.log(this.formattedSvg)
   }
 }
 </script>
