@@ -70,7 +70,7 @@ export default {
           hex: true,
           rgba: true,
           input: true,
-          clear: true,
+          // clear: true,
           save: true
         }
       }
@@ -80,7 +80,7 @@ export default {
 
     pickr.on('save',function(color){
       const hexaColor  = colorToHexa(color);
-      self.$emit('picked',hexaColor)
+      self.$emit('input',hexaColor)
       self.activeColor = hexaColor
     })
 
