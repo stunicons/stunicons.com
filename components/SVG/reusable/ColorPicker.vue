@@ -33,11 +33,12 @@ export default {
   methods:{
     clicked(clr){
       this.activeColor = clr
-
-      this.$emit('picked',clr)
+      this.$emit('input',clr)
     }
   },
   mounted(){
+    this.clicked(this.activeColor) // to emit default value on the component mount
+
     const options = {
       el: '.add-color',
       theme: 'classic', // or 'monolith', or 'nano'
@@ -69,7 +70,7 @@ export default {
           hex: true,
           rgba: true,
           input: true,
-          clear: true,
+          // clear: true,
           save: true
         }
       }
@@ -79,7 +80,7 @@ export default {
 
     pickr.on('save',function(color){
       const hexaColor  = colorToHexa(color);
-      self.$emit('picked',hexaColor)
+      self.$emit('input',hexaColor)
       self.activeColor = hexaColor
     })
 

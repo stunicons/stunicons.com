@@ -1,17 +1,14 @@
 <template>
 <div class="icon-editor">
-  <div class="icon-editor--wrapper">
+  <div class="icon-editor--wrapper" v-if="formattedSvg">
     <div class="rows row--1">
       <div class="icon">
       <div class="icon--title">
         <h5>Arrow left</h5>
       </div>
-      <div class="icon--svg">
-        <div class="svg">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 18.0734L14 18.0733L14 30.0734L26.0001 30.0733L26 26.0734L20.8285 26.0733L31.4876 15.4142L28.6592 12.5858L18.0001 23.2449L18 18.0734Z" fill="black"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M44 22C44 34.1503 34.1503 44 22 44C9.84974 44 0 34.1503 0 22C0 9.84974 9.84974 0 22 0C34.1503 0 44 9.84974 44 22ZM40 22C40 31.9411 31.9411 40 22 40C12.0589 40 4 31.9411 4 22C4 12.0589 12.0589 4 22 4C31.9411 4 40 12.0589 40 22Z" fill="black"/>
-          </svg>
+      <div class="icon--svg" v-if="formattedSvg">
+        <div class="svg" v-html="formattedSvg">
+
         </div>
       </div>
       <div class="icon--download">
@@ -39,15 +36,15 @@
         </div>
       </div>
     </div>
-      <div class="customize">
+    <div class="customize">
       <div class="customize--title">
         <h5>Customisation</h5>
       </div>
       <div class="customize--font">
-        font adjuster
+        <font-size-adjuster v-model="fontSize" />
       </div>
       <div class="customize--color">
-        <color-picker />
+        <color-picker v-model="color"/>
       </div>
     </div>
     </div>
@@ -58,7 +55,7 @@
           <h5>Copy css</h5>
         </div>
         <div class="icon-class--copy">
-          <icon-class-copy icon-class="arrow-left"/>
+          <icon-class-copy :icon-class="icon.id"/>
         </div>
       </div>
     </div>
@@ -103,35 +100,75 @@
 import Copy from "../Reusable/Copy";
 import IconClassCopy from "./IconClassCopy";
 import CodeHighlight from "./CodeHighlight";
-import svgIcon from "stunicons/icons/folder.svg"
 import dataUriToSvg from "../../utils/svgToElement";
 import ColorPicker from "../SVG/reusable/ColorPicker";
+import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
+
+let svgIcon;
 
 
 export default {
   name: "IconEditor",
-  components: {ColorPicker, CodeHighlight, IconClassCopy, Copy},
+  components: {FontSizeAdjuster, ColorPicker, CodeHighlight, IconClassCopy, Copy},
+  props:{
+    icon:{required:true,type:Object}
+  },
   data(){
     return{
-      codes:{
-        svg:'',
-        css:`background-image: url("${svgIcon}");`
-      },
+      baseSvg:'',
+      fontSize:24,
+      color:"",
       activeTab:'svg'
     }
   },
+  computed:{
+    //return svg codes that are edited based on preference of the user
+    formattedSvg(){
+      const dom = new DOMParser().parseFromString(this.baseSvg, "text/html")
+      let svg = dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
+
+      // run bellow code when svg is loaded
+      if(svg){
+
+        let paths = svg.getElementsByTagName('path')
+
+        svg.setAttribute('width',this.fontSize)
+        svg.setAttribute('height',this.fontSize)
+
+        //transform all path els
+        paths.forEach(pathEl => {
+          pathEl.setAttribute('fill',this.color)
+        })
+
+        svg = svg.outerHTML // to html element codes
+        return svg.toString()
+      }
+    },
+
+    //returns css and html svg codes based on formatted svg
+    codes(){
+      const svg = this.formattedSvg;
+      const uri = encodeURIComponent(svg)
+
+      return {svg:svg,css:`background-image: url("${uri}");`}
+    }
+
+  },
   mounted(){
-    this.codes.svg = dataUriToSvg(svgIcon)
+    console.log(this.icon)
+    svgIcon = require(`stunicons/icons/${this.icon.src}`)
+    this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .icon-editor{
   @include fit-content;
 
   &--wrapper{
-    border: 2px red solid;
+    @apply rounded-lg;
+    background-color: $bg;
     padding:3rem;
     width: 50rem;
   }
@@ -152,6 +189,15 @@ export default {
 
         &--svg{
           @apply my-5;
+          .svg{
+            svg{
+              transition: 1s all ease;
+
+              path{
+                transition: 1s all ease;
+              }
+            }
+          }
         }
 
         &--download{
@@ -161,6 +207,17 @@ export default {
             @apply ml-6;
           }
 
+        }
+      }
+
+      .customize{
+        &--title{
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+
+        &--font{
+          @apply my-6;
         }
       }
     }

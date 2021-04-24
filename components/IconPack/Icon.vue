@@ -1,5 +1,5 @@
 <template>
-<div class="icon-card">
+<div class="icon-card" @click="$emit('click')">
   <div class="add-to-collection">
     <div class="icon">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
