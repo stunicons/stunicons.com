@@ -96,7 +96,7 @@ export default {
     left:0;
     width: 100vw;
     height: 100%;
-    background-color: transparentize(#000,.3);
+    background-color: transparentize(#000,.8);
     position: absolute;
     display: grid;
     place-items: center;
