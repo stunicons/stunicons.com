@@ -9,17 +9,21 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter&display=swap' }
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Fira+Code&display=swap' }
       ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'stunicons/fonts/style.css'
+    'stunicons/fonts/style.css',
+    'highlight.js/styles/atom-one-light.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/highlight.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
