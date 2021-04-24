@@ -145,7 +145,7 @@ export default {
       }
     },
 
-    //returns css and html svg codes based on formated svg
+    //returns css and html svg codes based on formatted svg
     codes(){
       const svg = this.formattedSvg;
       const uri = encodeURIComponent(svg)
