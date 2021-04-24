@@ -18,7 +18,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'stunicons/fonts/style.css',
-    'highlight.js/styles/atom-one-light.css'
+    'highlight.js/styles/atom-one-light.css',
+    '@simonwep/pickr/dist/themes/classic.min.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
