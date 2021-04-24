@@ -1,11 +1,11 @@
 {
   "icons": [
     {
-      "categoryName": "arrows",
+      "categoryName": "general",
       "icons": [
         {
-          "id":"arrow-bottom-left-o",
-          "name": "arrow-bottom-left"
+          "id":"si-arrow-down",
+          "name": "arrow-down"
         }
       ]
     }
