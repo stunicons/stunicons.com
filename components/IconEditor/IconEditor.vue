@@ -165,7 +165,9 @@ export default {
   @include fit-content;
 
   &--wrapper{
+    @apply rounded-lg;
     border: 2px red solid;
+    background-color: $bg;
     padding:3rem;
     width: 50rem;
   }
