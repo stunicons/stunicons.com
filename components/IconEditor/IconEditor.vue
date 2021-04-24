@@ -122,11 +122,12 @@ export default {
     }
   },
   computed:{
+    //return svg codes that are edited based on preference of the user
     formattedSvg(){
       const dom = new DOMParser().parseFromString(this.baseSvg, "text/html")
-      let svg = dom.getElementsByTagName('svg')[0]
+      let svg = dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
 
-
+      // run bellow code when svg is loaded
       if(svg){
 
         let paths = svg.getElementsByTagName('path')
@@ -134,15 +135,17 @@ export default {
         svg.setAttribute('width',this.fontSize)
         svg.setAttribute('height',this.fontSize)
 
+        //transform all path els
         paths.forEach(pathEl => {
           pathEl.setAttribute('fill',this.color)
         })
 
-        svg = svg.outerHTML // to html element
+        svg = svg.outerHTML // to html element codes
         return svg.toString()
       }
     },
 
+    //returns css and html svg codes based on formated svg
     codes(){
       const svg = this.formattedSvg;
       const uri = encodeURIComponent(svg)
@@ -152,7 +155,7 @@ export default {
 
   },
   mounted(){
-    this.baseSvg = dataUriToSvg(svgIcon)
+    this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
   }
 }
 </script>
