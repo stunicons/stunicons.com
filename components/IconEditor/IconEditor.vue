@@ -156,7 +156,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .icon-editor{
   @include fit-content;
 
@@ -183,6 +183,15 @@ export default {
 
         &--svg{
           @apply my-5;
+          .svg{
+            svg{
+              transition: 1s all ease;
+
+              path{
+                transition: 1s all ease;
+              }
+            }
+          }
         }
 
         &--download{
