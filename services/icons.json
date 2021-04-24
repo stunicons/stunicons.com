@@ -3,10 +3,14 @@
     {
       "categoryName": "general",
       "icons": [
-        {
-          "id":"si-arrow-down",
-          "name": "arrow-down"
-        }
+        {"id":"si-arrow-bottom-left-o", "name": "arrow-bottom-left-o"},
+        {"id":"si-arrow-down", "name": "arrow-down"},
+        {"id":"si-chevron-down", "name": "chevron-down"},
+        {"id":"si-folder", "name": "folder"},
+        {"id":"si-home", "name": "home"},
+        {"id":"si-notification", "name": "notification"},
+        {"id":"si-plus", "name": "plus"},
+        {"id":"si-vector", "name": "vector"}
       ]
     }
   ]
