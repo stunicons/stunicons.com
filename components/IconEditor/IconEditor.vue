@@ -1,6 +1,6 @@
 <template>
 <div class="icon-editor">
-  <div class="icon-editor--wrapper">
+  <div class="icon-editor--wrapper" v-if="formattedSvg">
     <div class="rows row--1">
       <div class="icon">
       <div class="icon--title">
@@ -111,10 +111,11 @@ export default {
   components: {FontSizeAdjuster, ColorPicker, CodeHighlight, IconClassCopy, Copy},
   data(){
     return{
-      codes:{
-        svg:'',
-        css:`background-image: url("${svgIcon}");`
-      },
+      // codes:{
+      //   svg:'',
+      //   css:`background-image: url("${svgIcon}");`
+      // },
+      baseSvg:'',
       fontSize:24,
       color:"",
       activeTab:'svg'
@@ -122,8 +123,7 @@ export default {
   },
   computed:{
     formattedSvg(){
-
-      const dom = new DOMParser().parseFromString(this.codes.svg, "text/html")
+      const dom = new DOMParser().parseFromString(this.baseSvg, "text/html")
       let svg = dom.getElementsByTagName('svg')[0]
 
 
@@ -141,11 +141,18 @@ export default {
         svg = svg.outerHTML // to html element
         return svg.toString()
       }
+    },
+
+    codes(){
+      const svg = this.formattedSvg;
+      const uri = encodeURIComponent(svg)
+
+      return {svg:svg,css:`background-image: url("${uri}");`}
     }
+
   },
   mounted(){
-    this.codes.svg = dataUriToSvg(svgIcon)
-    console.log(this.formattedSvg)
+    this.baseSvg = dataUriToSvg(svgIcon)
   }
 }
 </script>
