@@ -32,8 +32,8 @@
     </div>
 
     <!-- icon editor -->
-    <div class="icon-editor-holder">
-      <div class="icon-editor-holder--wrapper">
+    <div class="icon-editor-holder" ref="icon-editor-holder" @click="iconEditorHolderClicked" v-if="editorVisible">
+      <div class="icon-editor-holder--wrapper ">
         <client-only>
           <icon-editor/>
         </client-only>
@@ -63,6 +63,7 @@ export default {
   data(){
     return {
       icons: icons,
+      editorVisible:false,
       icon:{
         name:"",
         id:"",
@@ -75,9 +76,15 @@ export default {
       this.icon.src = `${category}/${icon.id}.svg`
       this.icon.name = icon.name;
       this.icon.id = icon.id;
-      console.log(this.icon)
+      this.editorVisible = true
+    },
+    iconEditorHolderClicked(e){
+      const targetToClick = this.$refs['icon-editor-holder']
+
+      if(e.target === targetToClick)
+        this.editorVisible = false;
     }
-  }
+  },
 }
 </script>
 
