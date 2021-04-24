@@ -34,9 +34,7 @@
     <!-- icon editor -->
     <div class="icon-editor-holder" ref="icon-editor-holder" @click="iconEditorHolderClicked" v-if="editorVisible">
       <div class="icon-editor-holder--wrapper ">
-        <client-only>
           <icon-editor/>
-        </client-only>
       </div>
     </div>
 
@@ -59,6 +57,7 @@ import IconEditor from "../components/IconEditor/IconEditor";
 
 
 export default {
+  name:"Home",
   components:{IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
   data(){
     return {
