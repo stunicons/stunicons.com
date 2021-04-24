@@ -11,13 +11,6 @@
       <Search />
 
 
-      <!-- icon editor -->
-      <div class="icon-editor">
-        <client-only>
-          <icon-editor/>
-        </client-only>
-      </div>
-
       <!--      icon body selector-->
       <icon-body-selector />
 
@@ -37,6 +30,16 @@
       </section>
 
     </div>
+
+    <!-- icon editor -->
+    <div class="icon-editor-holder">
+      <div class="icon-editor-holder--wrapper">
+        <client-only>
+          <icon-editor/>
+        </client-only>
+      </div>
+    </div>
+
     <!-- footer -->
     <app-footer/>
 
@@ -80,6 +83,24 @@ export default {
 
 <style lang="scss" scoped>
 .page-container{
+  position: relative;
+  .icon-editor-holder{
+    z-index: 1;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100%;
+    background-color: transparentize(#000,.3);
+    position: absolute;
+    display: grid;
+    place-items: center;
+
+    &--wrapper{
+
+    }
+
+  }
+
   .page{
 
     .icon-pack{
@@ -101,8 +122,6 @@ export default {
           color:red;
         }
       }
-    }
-    .icon-editor{
     }
   }
 }
