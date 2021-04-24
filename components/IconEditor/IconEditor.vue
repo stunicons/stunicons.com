@@ -55,7 +55,7 @@
           <h5>Copy css</h5>
         </div>
         <div class="icon-class--copy">
-          <icon-class-copy icon-class="arrow-left"/>
+          <icon-class-copy :icon-class="icon.id"/>
         </div>
       </div>
     </div>
@@ -100,15 +100,19 @@
 import Copy from "../Reusable/Copy";
 import IconClassCopy from "./IconClassCopy";
 import CodeHighlight from "./CodeHighlight";
-import svgIcon from "stunicons/icons/general/si-folder.svg"
 import dataUriToSvg from "../../utils/svgToElement";
 import ColorPicker from "../SVG/reusable/ColorPicker";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
+
+let svgIcon;
 
 
 export default {
   name: "IconEditor",
   components: {FontSizeAdjuster, ColorPicker, CodeHighlight, IconClassCopy, Copy},
+  props:{
+    icon:{required:true,type:Object}
+  },
   data(){
     return{
       baseSvg:'',
@@ -151,6 +155,8 @@ export default {
 
   },
   mounted(){
+    console.log(this.icon)
+    svgIcon = require(`stunicons/icons/${this.icon.src}`)
     this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
   }
 }

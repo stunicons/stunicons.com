@@ -34,7 +34,7 @@
     <!-- icon editor -->
     <div class="icon-editor-holder" ref="icon-editor-holder" @click="iconEditorHolderClicked" v-if="editorVisible">
       <div class="icon-editor-holder--wrapper ">
-          <icon-editor/>
+          <icon-editor :icon="icon"/>
       </div>
     </div>
 
