@@ -12,7 +12,11 @@
 
 
       <!-- icon editor -->
-      <icon-editor/>
+      <div class="icon-editor">
+        <client-only>
+          <icon-editor/>
+        </client-only>
+      </div>
 
       <!--      icon body selector-->
       <icon-body-selector />
@@ -23,9 +27,9 @@
           <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
         </div>
         <div class="icon-pack--icons" >
-          <icon v-for="icon in iconGroup.icons" :key="icon.id">
+          <icon v-for="icon in iconGroup.icons" :key="icon.id" @click="clickIcon(icon,iconGroup.categoryName)">
             <template #svg >
-              <i :class="`si-${icon.id}`"></i>
+              <i :class="`${icon.id}`"></i>
             </template>
             <template #name> {{icon.name}} </template>
           </icon>
@@ -55,7 +59,20 @@ export default {
   components:{IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
   data(){
     return {
-      icons: icons
+      icons: icons,
+      icon:{
+        name:"",
+        id:"",
+        src:""
+      }
+    }
+  },
+  methods:{
+    clickIcon(icon, category){
+      this.icon.src = `${category}/${icon.id}.svg`
+      this.icon.name = icon.name;
+      this.icon.id = icon.id;
+      console.log(this.icon)
     }
   }
 }
@@ -64,6 +81,7 @@ export default {
 <style lang="scss" scoped>
 .page-container{
   .page{
+
     .icon-pack{
       @apply mb-24 ;
 
@@ -83,6 +101,8 @@ export default {
           color:red;
         }
       }
+    }
+    .icon-editor{
     }
   }
 }
