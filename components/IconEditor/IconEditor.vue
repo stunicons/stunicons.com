@@ -126,10 +126,17 @@ export default {
       const dom = new DOMParser().parseFromString(this.codes.svg, "text/html")
       let svg = dom.getElementsByTagName('svg')[0]
 
+
       if(svg){
+
+        let paths = svg.getElementsByTagName('path')
+
         svg.setAttribute('width',this.fontSize)
         svg.setAttribute('height',this.fontSize)
-        // svg.setAttribute('color','red')
+
+        paths.forEach(pathEl => {
+          pathEl.setAttribute('fill',this.color)
+        })
 
         svg = svg.outerHTML // to html element
         return svg.toString()
