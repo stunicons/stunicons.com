@@ -7,7 +7,7 @@ describe('Mounted Navbar', () => {
   const wrapper = mount(Navbar);
 
   test('is logo found', () => {
-    expect(wrapper.get('#logo').text()).toBe('Stun Icons')
+    expect(wrapper.get('#logo').text()).toBe('StunIcons')
   })
 
   test('is a Vue instance', () => {
