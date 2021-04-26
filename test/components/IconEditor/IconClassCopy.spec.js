@@ -2,6 +2,7 @@
 import { mount} from '@vue/test-utils'
 import CodeHighlight from "~/components/IconEditor/CodeHighlight";
 import {describe, test} from "@jest/globals";
+const clipboardy = require('clipboardy');
 
 const iconClass = "si-arrow-bottom-left-o"
 const expectedCopyText = "<i class=\"si-arrow-bottom-left-o\"></i>"
@@ -37,7 +38,7 @@ describe('Mounted IconClassCopy', ()=> {
   })
 
   test('test text copied on copy click', async ()=> {
-    const text = await navigator.clipboard.readText();
+    const text = clipboardy.readSync()
     expect(text).toBe(expectedCopyText)
   })
 })
