@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="icon--download">
-        <div class="icon--download--svg">
+        <div class="icon--download--svg" >
           <copy>
             <template #icon>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,8 +124,7 @@ export default {
   computed:{
     //return svg codes that are edited based on preference of the user
     formattedSvg(){
-      const dom = new DOMParser().parseFromString(this.baseSvg, "text/html")
-      let svg = dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
+      let svg = this.svgToEl(this.baseSvg)
 
       // run bellow code when svg is loaded
       if(svg){
@@ -152,6 +151,15 @@ export default {
 
       return {svg:svg,css:`background-image: url("${uri}");`}
     }
+
+  },
+  methods:{
+    // convert svg to dom element
+    svgToEl(svg){
+      const dom = new DOMParser().parseFromString(svg, "text/html")
+      return  dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
+    },
+
 
   },
   mounted(){
