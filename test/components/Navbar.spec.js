@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import Navbar from "~/components/Navbar";
 import Version from "~/components/Version";
+import {describe, test} from "@jest/globals";
 
 
 describe('Mounted Navbar', () => {
