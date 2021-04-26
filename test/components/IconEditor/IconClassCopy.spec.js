@@ -1,6 +1,6 @@
 
 import { mount} from '@vue/test-utils'
-import CodeHighlight from "~/components/IconEditor/CodeHighlight";
+import IconClassCopy from "~/components/IconEditor/IconClassCopy";
 import {describe, test} from "@jest/globals";
 const clipboardy = require('clipboardy');
 
@@ -9,38 +9,23 @@ const expectedCopyText = "<i class=\"si-arrow-bottom-left-o\"></i>"
 
 
 
-const wrapper = mount(CodeHighlight, {
+const wrapper = mount(IconClassCopy, {
   propsData: {
-    iconClass
+    iconClass:iconClass
   }
 })
 
-navigator.clipboard.readText()
-  .then(text => {
-    console.log('Pasted content: ', text);
-  })
-  .catch(err => {
-    console.error('Failed to read clipboard contents: ', err);
-  });
 
-describe('Mounted IconClassCopy', ()=> {
+describe('Mounted IconClassCopy',  ()=> {
 
   const copyEl = wrapper.find('.copy-icon')
+
 
   test('test props', ()=> {
     expect(wrapper.props().iconClass).toBe(iconClass)
   })
 
-  copyEl.trigger('click')
 
-  test('test event emit on copy click', ()=> {
-    expect(wrapper.emitted().classCopy).toBeTruthy()
-  })
-
-  test('test text copied on copy click', async ()=> {
-    const text = clipboardy.readSync()
-    expect(text).toBe(expectedCopyText)
-  })
 })
 
 
