@@ -184,14 +184,6 @@ export default {
 
     savePng(){
       const name = this.icon.id + '.png'
-      // svgImage(outerHTML(svgEl))
-      //
-      // function outerHTML(el) {
-      //   const outer = document.createElement('div');
-      //   outer.appendChild(el.cloneNode(true));
-      //   return outer.innerHTML;
-      // }
-
 
       const image = new Image();
       image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
@@ -203,12 +195,6 @@ export default {
         const context = canvas.getContext('2d');
         context.drawImage(image, 0, 0);
 
-        // const a = document.createElement('a');
-        // a.download = name+".png";
-        // a.href = canvas.toDataURL('image/png');
-        // document.body.appendChild(a);
-        // a.click();
-        // document.body.removeChild(a)
 
         this.download(canvas.toDataURL(),name)
       }
