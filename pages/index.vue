@@ -80,6 +80,13 @@ export default {
       }
     }
   },
+  computed:{
+    storedIcons(){
+      const storedIcons = localStorage.getItem('storedIcons')
+      return storedIcons ? JSON.parse(storedIcons) : []
+    }
+  },
+
   methods:{
     clickIcon(icon, category){
       this.icon.src = `${category}/${icon.id}.svg`
@@ -94,8 +101,7 @@ export default {
         this.editorVisible = false;
     },
     addToCollection(icon){
-      const storedIcons = localStorage.getItem('storedIcons')
-      const jsonStoredIcons = storedIcons ? JSON.parse(storedIcons) : []
+      const jsonStoredIcons = this.storedIcons
 
       //check if icon was not already added to the storage
       for(const storedIcon of jsonStoredIcons)
