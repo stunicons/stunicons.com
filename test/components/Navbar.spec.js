@@ -1,13 +1,14 @@
 import { mount } from '@vue/test-utils'
 import Navbar from "~/components/Navbar";
 import Version from "~/components/Version";
+import {describe, test} from "@jest/globals";
 
 
 describe('Mounted Navbar', () => {
   const wrapper = mount(Navbar);
 
   test('is logo found', () => {
-    expect(wrapper.get('#logo').text()).toBe('Stun Icons')
+    expect(wrapper.get('#logo').text()).toBe('StunIcons')
   })
 
   test('is a Vue instance', () => {

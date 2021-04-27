@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="icon--download">
-        <div class="icon--download--svg">
+        <div class="icon--download--svg" @click="saveSvg">
           <copy>
             <template #icon>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
             <template #title>SVG</template>
           </copy>
         </div>
-        <div class="icon--download--png">
+        <div class="icon--download--png" @click="savePng">
           <copy>
             <template #icon>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,8 +124,7 @@ export default {
   computed:{
     //return svg codes that are edited based on preference of the user
     formattedSvg(){
-      const dom = new DOMParser().parseFromString(this.baseSvg, "text/html")
-      let svg = dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
+      let svg = this.svgToEl(this.baseSvg)
 
       // run bellow code when svg is loaded
       if(svg){
@@ -134,6 +133,8 @@ export default {
 
         svg.setAttribute('width',this.fontSize)
         svg.setAttribute('height',this.fontSize)
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
 
         //transform all path els
         paths.forEach(pathEl => {
@@ -154,8 +155,50 @@ export default {
     }
 
   },
+  methods:{
+    // convert svg to dom element
+    svgToEl(svg){
+      const dom = new DOMParser().parseFromString(svg, "text/html")
+      return  dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
+    },
+
+    saveSvg(){
+      const name = this.icon.id
+
+      const svgData = this.formattedSvg;
+      const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+      const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+      const svgUrl = URL.createObjectURL(svgBlob);
+
+      this.download(svgUrl, name);
+    },
+
+    savePng(){
+      const name = this.icon.id + '.png'
+
+      const image = new Image();
+      image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
+
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        const context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0);
+
+        this.download(canvas.toDataURL(),name)
+      }
+    },
+    download(url,name){
+      const downloadLink = document.createElement("a");
+      downloadLink.href = url;
+      downloadLink.download = name;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    },
+  },
   mounted(){
-    console.log(this.icon)
     svgIcon = require(`stunicons/icons/${this.icon.src}`)
     this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
   }
@@ -278,3 +321,17 @@ export default {
   }
 }
 </style>
+
+
+
+<!--MO = 4*pi*10^(-7);-->
+<!--I = 5;-->
+<!--N=500;-->
+<!--R=0.5;-->
+<!--X=-4:0.05:4;-->
+<!--BX = MO*I*N*R^2./( 2*(X.^2+R^2).^(3/2));-->
+<!--plot(X,BX)-->
+<!--xlabel("x(m)");-->
+<!--ylabel("B(T)");-->
+<!-- grid;-->
+<!-- title("B as a function of distance");-->
