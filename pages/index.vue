@@ -23,7 +23,11 @@
           <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
         </div>
         <div class="icon-pack--icons" >
-          <icon v-for="icon in iconGroup.icons" :key="icon.id" @click="clickIcon(icon,iconGroup.categoryName)">
+          <icon
+            v-for="icon in iconGroup.icons"
+            :key="icon.id"
+            @add="addToCollection(icon)"
+            @click="clickIcon(icon,iconGroup.categoryName)">
             <template #svg >
               <i :class="`${icon.id}`"></i>
             </template>
@@ -88,6 +92,20 @@ export default {
 
       if(e.target === targetToClick)
         this.editorVisible = false;
+    },
+    addToCollection(icon){
+      const storedIcons = localStorage.getItem('storedIcons')
+      const jsonStoredIcons = storedIcons ? JSON.parse(storedIcons) : []
+
+      //check if icon was not already added to the storage
+      for(const storedIcon of jsonStoredIcons)
+        if(storedIcon.id === icon.id )
+          return
+
+      jsonStoredIcons.push(icon)
+
+      localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
+
     }
   },
 }
