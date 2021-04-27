@@ -23,7 +23,7 @@
             <template #title>SVG</template>
           </copy>
         </div>
-        <div class="icon--download--png">
+        <div class="icon--download--png" @click="savePng">
           <copy>
             <template #icon>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,6 +133,8 @@ export default {
 
         svg.setAttribute('width',this.fontSize)
         svg.setAttribute('height',this.fontSize)
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
 
         //transform all path els
         paths.forEach(pathEl => {
@@ -164,17 +166,51 @@ export default {
       const svgEl = this.svgToEl(this.formattedSvg)
       const name = this.icon.id
 
-      svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-      const svgData = svgEl.outerHTML;
+      const svgData = this.formattedSvg;
       const preface = '<?xml version="1.0" standalone="no"?>\r\n';
       const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
       const svgUrl = URL.createObjectURL(svgBlob);
+
       const downloadLink = document.createElement("a");
       downloadLink.href = svgUrl;
       downloadLink.download = name;
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
+    },
+
+    savePng(){
+      const svgEl = this.svgToEl(this.formattedSvg)
+      const name = this.icon.id
+
+      svgImage(this.formattedSvg)
+      // svgImage(outerHTML(svgEl))
+      //
+      // function outerHTML(el) {
+      //   const outer = document.createElement('div');
+      //   outer.appendChild(el.cloneNode(true));
+      //   return outer.innerHTML;
+      // }
+
+      function svgImage(xml) {
+        const image = new Image();
+        image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(xml)));
+
+        image.onload = function() {
+          const canvas = document.createElement('canvas');
+          canvas.width = image.width;
+          canvas.height = image.height;
+          const context = canvas.getContext('2d');
+          context.drawImage(image, 0, 0);
+
+          const a = document.createElement('a');
+          a.download = name+".png";
+          a.href = canvas.toDataURL('image/png');
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a)
+        }
+      }
     }
   },
   mounted(){
@@ -301,3 +337,17 @@ export default {
   }
 }
 </style>
+
+
+
+<!--MO = 4*pi*10^(-7);-->
+<!--I = 5;-->
+<!--N=500;-->
+<!--R=0.5;-->
+<!--X=-4:0.05:4;-->
+<!--BX = MO*I*N*R^2./( 2*(X.^2+R^2).^(3/2));-->
+<!--plot(X,BX)-->
+<!--xlabel("x(m)");-->
+<!--ylabel("B(T)");-->
+<!-- grid;-->
+<!-- title("B as a function of distance");-->
