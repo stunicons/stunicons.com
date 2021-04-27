@@ -21,7 +21,7 @@
     "highlight.js": "^10.7.2",
     "js-beautify": "^1.13.13",
     "nuxt": "^2.15.3",
-    "stunicons": "^1.0.3"
+    "stunicons": "^1.0.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-module": "^3.0.2",
