@@ -1,5 +1,5 @@
 <template>
-<div class="icon-card" @click="$emit('click')">
+<div class="icon-card" :class="{hoverEffect:hoverEffect}" @click="$emit('click')">
   <div class="add-to-collection">
     <div class="icon">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,6 +22,9 @@
 <script>
 export default {
   name: "Icon",
+  props:{
+    hoverEffect:{default:true}
+  }
 
 }
 </script>
@@ -34,7 +37,7 @@ export default {
   height:9rem;
   position: relative;
 
-  &:hover{
+  &.hoverEffect:hover{
     .add-to-collection{
       display: block;
     }
