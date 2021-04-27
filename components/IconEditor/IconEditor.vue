@@ -163,7 +163,6 @@ export default {
     },
 
     saveSvg(){
-      const svgEl = this.svgToEl(this.formattedSvg)
       const name = this.icon.id
 
       const svgData = this.formattedSvg;
@@ -172,14 +171,6 @@ export default {
       const svgUrl = URL.createObjectURL(svgBlob);
 
       this.download(svgUrl, name);
-    },
-    download(url,name){
-      const downloadLink = document.createElement("a");
-      downloadLink.href = url;
-      downloadLink.download = name;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
     },
 
     savePng(){
@@ -195,13 +186,19 @@ export default {
         const context = canvas.getContext('2d');
         context.drawImage(image, 0, 0);
 
-
         this.download(canvas.toDataURL(),name)
       }
-    }
+    },
+    download(url,name){
+      const downloadLink = document.createElement("a");
+      downloadLink.href = url;
+      downloadLink.download = name;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    },
   },
   mounted(){
-    console.log(this.icon)
     svgIcon = require(`stunicons/icons/${this.icon.src}`)
     this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
   }
