@@ -171,8 +171,11 @@ export default {
       const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
       const svgUrl = URL.createObjectURL(svgBlob);
 
+      this.download(svgUrl, name);
+    },
+    download(url,name){
       const downloadLink = document.createElement("a");
-      downloadLink.href = svgUrl;
+      downloadLink.href = url;
       downloadLink.download = name;
       document.body.appendChild(downloadLink);
       downloadLink.click();
@@ -180,10 +183,7 @@ export default {
     },
 
     savePng(){
-      const svgEl = this.svgToEl(this.formattedSvg)
-      const name = this.icon.id
-
-      svgImage(this.formattedSvg)
+      const name = this.icon.id + '.png'
       // svgImage(outerHTML(svgEl))
       //
       // function outerHTML(el) {
@@ -192,24 +192,25 @@ export default {
       //   return outer.innerHTML;
       // }
 
-      function svgImage(xml) {
-        const image = new Image();
-        image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(xml)));
 
-        image.onload = function() {
-          const canvas = document.createElement('canvas');
-          canvas.width = image.width;
-          canvas.height = image.height;
-          const context = canvas.getContext('2d');
-          context.drawImage(image, 0, 0);
+      const image = new Image();
+      image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
 
-          const a = document.createElement('a');
-          a.download = name+".png";
-          a.href = canvas.toDataURL('image/png');
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a)
-        }
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        const context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0);
+
+        // const a = document.createElement('a');
+        // a.download = name+".png";
+        // a.href = canvas.toDataURL('image/png');
+        // document.body.appendChild(a);
+        // a.click();
+        // document.body.removeChild(a)
+
+        this.download(canvas.toDataURL(),name)
       }
     }
   },
