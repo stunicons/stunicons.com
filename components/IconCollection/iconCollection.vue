@@ -5,25 +5,25 @@
       <h4>Collection <span class="number">4</span></h4>
     </div>
     <div class="icons">
-      <icon >
+      <icon :hoverEffect="false">
         <template #svg >
           <i class="si-arrow-down"></i>
         </template>
         <template #name> arrow-down </template>
       </icon>
-      <icon >
+      <icon :hoverEffect="false">
         <template #svg >
           <i class="si-arrow-down"></i>
         </template>
         <template #name> arrow-down </template>
       </icon>
-      <icon >
+      <icon :hoverEffect="false">
         <template #svg >
           <i class="si-arrow-down"></i>
         </template>
         <template #name> arrow-down </template>
       </icon>
-      <icon >
+      <icon :hoverEffect="false">
         <template #svg >
           <i class="si-arrow-down"></i>
         </template>
