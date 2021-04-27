@@ -8,7 +8,7 @@
       <WelcomingText />
 
       <!-- Search bar -->
-      <Search />
+      <Search :number-of-stored-icons="storedIcons.length"/>
 
 
       <!--      icon body selector-->
@@ -108,7 +108,7 @@ export default {
         if(storedIcon.id === icon.id )
           return
 
-      jsonStoredIcons.push(icon)
+      jsonStoredIcons.push(icon) // add icon
 
       localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
 
