@@ -33,10 +33,10 @@
     <div class="customize">
       <h4>customize</h4>
       <div class="customize-font">
-        <font-size-adjuster />
+        <font-size-adjuster v-model="fontSize"/>
       </div>
       <div class="customize-color">
-        <color-picker />
+        <color-picker v-model="color"/>
       </div>
     </div>
     <div class="download">
@@ -74,7 +74,13 @@ import ColorPicker from "../SVG/reusable/ColorPicker";
 import Copy from "../Reusable/Copy";
 export default {
 name: "iconCollection",
-  components: {Copy, ColorPicker, FontSizeAdjuster, Icon}
+  components: {Copy, ColorPicker, FontSizeAdjuster, Icon},
+  data(){
+    return{
+      fontSize:24,
+      color:"",
+    }
+  }
 }
 </script>
 
