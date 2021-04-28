@@ -82,8 +82,11 @@ export default {
   },
   computed:{
     storedIcons(){
-      const storedIcons = localStorage.getItem('storedIcons')
-      return storedIcons ? JSON.parse(storedIcons) : []
+      if(process.browser){
+        const storedIcons = localStorage.getItem('storedIcons')
+        return storedIcons ? JSON.parse(storedIcons) : []
+      }
+      return []
     }
   },
 
