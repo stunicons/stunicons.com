@@ -16,6 +16,7 @@
 
 <script>
 import hasClass from '~/utils/hasClass'
+import {icons} from "~/services/icons.json"
 
 //TODO write test for component
 //TODO real source of data
@@ -25,7 +26,7 @@ export default {
   data() {
     return {
       listActive:false,
-      selectionList:['Arrows','Alerts','Brands','Buttons','Arrows','Alerts','Brands','Buttons','Arrows','Alerts','Brands','Buttons','Arrows','Alerts','Brands','Buttons','Arrows','Alerts','Brands','Buttons' ],
+      selectionList:['all'],
     }
   },
 
@@ -50,6 +51,9 @@ export default {
     selectCategory(i) {
         this.$emit('selected',{index:i,value:this.selectionList[i]})
     }
+  },
+  mounted(){
+    icons.map(icon => this.selectionList.push(icon.categoryName))
   }
 }
 </script>
