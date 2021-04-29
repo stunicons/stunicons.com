@@ -181,6 +181,11 @@ export default {
   mounted(){
     this.numberOfStoredIcons = this.svgIcons.length
     console.log(this.svgIcons)
+
+    this.$bus.$on('filterSelected',(category) => {
+      this.icons = icons.filter(iconGroup => iconGroup.categoryName === category)
+    })
+
   }
 
 }
