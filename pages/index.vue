@@ -105,6 +105,10 @@ export default {
           if(storedIcon.id === icon.id )
             return
 
+      // if there is not group created in the storage
+      // we will first create it with empty array to avoid bugs
+      if(!jsonStoredIcons[category])
+        jsonStoredIcons[category] = []
 
       jsonStoredIcons[category].push(icon) // add icon
 
