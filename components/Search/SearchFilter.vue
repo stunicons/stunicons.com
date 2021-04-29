@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <div class="filter--selector" @click="selectorClicked">
-      <span class="name"> All </span>
+      <span class="name"> {{selectedCategory}} </span>
       <span ref="icon" class="icon "> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 11.828l-2.828 2.829-1.415-1.414L12 9l4.243 4.243-1.415 1.414L12 11.828z"/></svg> </span>
     </div>
     <transition name="slide-down-fade">
@@ -26,13 +26,14 @@ export default {
   data() {
     return {
       listActive:false,
+      indexOfSelectedCategory:0,
       selectionList:['all'],
     }
   },
 
   computed: {
     selectedCategory(){
-      return this.selectionList[0];
+      return this.selectionList[this.indexOfSelectedCategory];
     }
   },
   methods:{
@@ -50,6 +51,7 @@ export default {
     //listen on category click
     selectCategory(i) {
       this.listActive = false
+      this.indexOfSelectedCategory = i
       this.$emit('selected',{index:i,value:this.selectionList[i]})
     }
   },
