@@ -72,14 +72,63 @@ import Icon from "../IconPack/Icon";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
 import ColorPicker from "../SVG/reusable/ColorPicker";
 import Copy from "../Reusable/Copy";
+import iconCollectionMixin from "../../mixins/iconCollection";
+import svgToEl from "../../mixins/svgToEl";
+
+
 export default {
 name: "iconCollection",
+  mixins:[iconCollectionMixin, svgToEl],
   components: {Copy, ColorPicker, FontSizeAdjuster, Icon},
   data(){
     return{
       fontSize:24,
       color:"",
     }
+  },
+  computed:{
+    svgIcons(){
+      const svgIcons = []
+      const iconCategories = Object.keys(this.storedIcons)
+
+
+      iconCategories.forEach(category => {
+          this.storedIcons[category].forEach(icon => {
+            svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`), ...icon})
+          })
+
+        })
+
+      return svgIcons;
+    },
+    editedIcons(){
+      const formatedIcons = []
+
+      this.svgIcons.forEach(icon => {
+
+
+         let svg =  this.svgToEl(icon.svg)
+
+        let paths = svg.getElementsByTagName('path')
+
+        svg.setAttribute('width',this.fontSize)
+        svg.setAttribute('height',this.fontSize)
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+
+        //transform all path els
+        paths.forEach(pathEl => {
+          pathEl.setAttribute('fill',this.color)
+        })
+
+        formatedIcons.push(svg.outerHTML)
+
+      })
+
+    }
+  },
+  mounted() {
+    console.log(this.editedIcons)
   }
 }
 </script>
