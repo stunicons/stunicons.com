@@ -13,7 +13,9 @@
         {"id":"si-vector", "name": "vector"},
         {"id":"si-logo-github", "name": "logo-github"},
         {"id":"si-logo-github15stroke-18", "name": "logo-github15stroke-18"},
-        {"id":"si-message-01", "name": "message-01"}
+        {"id":"si-message-01", "name": "message-01"},
+        {"id":"si-message-test-01", "name": "message-test-01"},
+        {"id":"si-home-test-02", "name": "si-home-test-02"}
       ]
     }
   ]
