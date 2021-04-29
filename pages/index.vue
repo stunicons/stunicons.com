@@ -8,7 +8,7 @@
       <WelcomingText />
 
       <!-- Search bar -->
-      <Search @openCollection="openCollection" :number-of-stored-icons="numberOfStoredIcons"/>
+      <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="numberOfStoredIcons"/>
 
 
       <!--      icon body selector-->
@@ -98,6 +98,15 @@ export default {
       this.icon.name = icon.name;
       this.icon.id = icon.id;
       this.editorVisible = true
+    },
+    search(value){
+       import('~/services/icons.json')
+        .then(d => {
+          console.log(d)
+        })
+        .catch(er => {
+          console.log(er)
+        })
     },
     openCollection(){
       this.collectionVisible = true

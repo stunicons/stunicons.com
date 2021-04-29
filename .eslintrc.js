@@ -10,5 +10,11 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {},
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  }
 }
