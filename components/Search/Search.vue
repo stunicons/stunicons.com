@@ -5,7 +5,7 @@
       <search-filter />
     </div>
     <div class="search--input">
-      <SearchInput />
+      <SearchInput @input="search" v-model="searchKey"/>
     </div>
     <div class="search--collection">
       <collection-accessor @openCollection="$emit('openCollection')" :number-of-icons="numberOfStoredIcons"/>
@@ -22,7 +22,18 @@ export default {
 name: "Search",
   components: {SearchFilter, CollectionAccessor, SearchInput},
   props:{
-    numberOfStoredIcons:{default:0}
+    numberOfStoredIcons:{default:0},
+    value:{type:String}
+  },
+  data(){
+    return{
+      searchKey:this.value
+    }
+  },
+  methods:{
+    search(){
+      this.$emit('input',this.searchKey)
+    }
   }
 }
 </script>
