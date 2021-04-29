@@ -15,7 +15,6 @@ export default {
   props:{
     numberOfIcons:{default:0}
   }
-
 }
 </script>
 

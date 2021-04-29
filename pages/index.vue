@@ -8,7 +8,7 @@
       <WelcomingText />
 
       <!-- Search bar -->
-      <Search @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
+      <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="numberOfStoredIcons"/>
 
 
       <!--      icon body selector-->
@@ -86,7 +86,8 @@ export default {
         name:"",
         id:"",
         src:""
-      }
+      },
+      numberOfStoredIcons: 0
     }
   },
 
@@ -97,6 +98,48 @@ export default {
       this.icon.name = icon.name;
       this.icon.id = icon.id;
       this.editorVisible = true
+    },
+    search(value){
+      const foundIcons = []
+      const {icons} = require('~/services/icons.json')
+
+      //  if there is no search keyword
+      //  show all icons
+      if(value.trim().length <=0){
+        this.icons = icons;
+        return ;
+      }
+
+      //search
+
+      icons.map(icon => { // loop in all icons categories
+
+        icon.icons.map(singleIcon => { //loop into icons into single icon category
+
+          //find icons that may have tags which contains search key
+          const possibleSearches = singleIcon.tags.filter(tag => tag.indexOf(value) !== -1)
+
+          if(possibleSearches.length > 0){ // if there are some icons , it is time to add them to search results
+            let iconGroupIndex;
+
+            // know if the icon category exists in searched icon results
+            const existenceOfCategoryGroup = foundIcons.filter((iconGroup,index) => {
+              iconGroupIndex = index;
+              return iconGroup.categoryName === icon.categoryName
+            })
+
+            if(existenceOfCategoryGroup.length > 0) // if icon group exists push new icons to the category
+              foundIcons[iconGroupIndex].icons.push(singleIcon)
+            else    //if category does not exist add it with new found icon
+              foundIcons.push({categoryName:icon.categoryName,icons:[singleIcon]})
+          }
+
+
+        })
+      })
+
+      this.icons = foundIcons
+
     },
     openCollection(){
       this.collectionVisible = true
@@ -131,8 +174,15 @@ export default {
 
       localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
 
+      this.numberOfStoredIcons = this.numberOfStoredIcons+1
+
     }
   },
+  mounted(){
+    this.numberOfStoredIcons = this.svgIcons.length
+    console.log(this.svgIcons)
+  }
+
 }
 </script>
 
@@ -144,11 +194,13 @@ export default {
     top:0;
     left:0;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     background-color: transparentize(#000,.8);
-    position: absolute;
+    position: fixed;
     display: grid;
     place-items: center;
+    overflow: auto;
+    padding:1rem;
 
     &--wrapper{
 

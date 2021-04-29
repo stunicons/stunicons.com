@@ -66,6 +66,9 @@ export default {
     .icon, .name{
       @apply  py-3 ;
     }
+    .name{
+      font-size: .7rem;
+    }
   }
 }
 </style>

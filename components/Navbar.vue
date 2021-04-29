@@ -57,7 +57,7 @@ export default {
         &--request-icon{
           @apply mx-5;
           button{
-            @apply py-4 px-8 rounded-md;
+            @apply py-3 px-6 rounded-md;
             color:$bg;
             background-color: $clr-primary;
           }
@@ -66,7 +66,7 @@ export default {
         &--go-to-github{
 
           a{
-            @apply py-4 px-8 rounded-md flex;
+            @apply py-3 px-6 rounded-md flex;
 
             &:hover{
               background-color: $clr-primary-lighten;

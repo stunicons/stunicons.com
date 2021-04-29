@@ -3,17 +3,71 @@
     {
       "categoryName": "general",
       "icons": [
-        {"id":"si-arrow-bottom-left-o", "name": "arrow-bottom-left-o"},
-        {"id":"si-arrow-down", "name": "arrow-down"},
-        {"id":"si-chevron-down", "name": "chevron-down"},
-        {"id":"si-folder", "name": "folder"},
-        {"id":"si-home", "name": "home"},
-        {"id":"si-notification", "name": "notification"},
-        {"id":"si-plus", "name": "plus"},
-        {"id":"si-vector", "name": "vector"},
-        {"id":"si-logo-github", "name": "logo-github"},
-        {"id":"si-logo-github15stroke-18", "name": "logo-github15stroke-18"},
-        {"id":"si-message-01", "name": "message-01"}
+        {
+          "id": "si-arrow-bottom-left-o",
+          "name": "arrow-bottom-left-o",
+          "tags": ["arrow","bottom","left"]
+        },
+        {
+          "id": "si-arrow-down",
+          "name": "arrow-down",
+          "tags": ["arrow","down"]
+        },
+        {
+          "id": "si-chevron-down",
+          "name": "chevron-down",
+          "tags": ["chevron","down"]
+        },
+        {
+          "id": "si-folder",
+          "name": "folder",
+          "tags": ["folder"]
+        },
+        {
+          "id": "si-home",
+          "name": "home",
+          "tags": ["home","building"]
+        },
+        {
+          "id": "si-notification",
+          "name": "notification",
+          "tags": ["notify","notification"]
+        },
+        {
+          "id": "si-plus",
+          "name": "plus",
+          "tags": ["plus","add"]
+        },
+        {
+          "id": "si-vector",
+          "name": "vector",
+          "tags": []
+        },
+        {
+          "id": "si-logo-github",
+          "name": "logo-github",
+          "tags": ["logo","github"]
+        },
+        {
+          "id": "si-logo-github15stroke-18",
+          "name": "logo-github15stroke-18",
+          "tags": []
+        },
+        {
+          "id": "si-message-01",
+          "name": "message-01",
+          "tags": []
+        },
+        {
+          "id": "si-message-test-01",
+          "name": "message-test-01",
+          "tags": []
+        },
+        {
+          "id": "si-home-test-02",
+          "name": "si-home-test-02",
+          "tags": []
+        }
       ]
     }
   ]
