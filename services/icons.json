@@ -52,7 +52,12 @@
           "id": "si-logo-github15stroke-18",
           "name": "logo-github15stroke-18",
           "tags": []
-        },
+        }
+      ]
+    },
+    {
+      "categoryName": "Cool",
+      "icons": [
         {
           "id": "si-message-01",
           "name": "message-01",
