@@ -99,7 +99,7 @@ export default {
       this.editorVisible = true
     },
     openCollection(){
-      this.editorVisible = true
+      this.collectionVisible = true
     },
     iconEditorHolderClicked(e){
       const targetToClick = this.$refs['icon-editor-holder']
