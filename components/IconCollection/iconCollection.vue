@@ -5,29 +5,11 @@
       <h4>Collection <span class="number">4</span></h4>
     </div>
     <div class="icons">
-      <icon :hoverEffect="false">
+      <icon :hoverEffect="false" v-for="icon in svgIcons" :key="icon.id">
         <template #svg >
-          <i class="si-arrow-down"></i>
+          <i :class="icon.id"></i>
         </template>
-        <template #name> arrow-down </template>
-      </icon>
-      <icon :hoverEffect="false">
-        <template #svg >
-          <i class="si-arrow-down"></i>
-        </template>
-        <template #name> arrow-down </template>
-      </icon>
-      <icon :hoverEffect="false">
-        <template #svg >
-          <i class="si-arrow-down"></i>
-        </template>
-        <template #name> arrow-down </template>
-      </icon>
-      <icon :hoverEffect="false">
-        <template #svg >
-          <i class="si-arrow-down"></i>
-        </template>
-        <template #name> arrow-down </template>
+        <template #name> {{ icon.name }} </template>
       </icon>
     </div>
     <div class="customize">
