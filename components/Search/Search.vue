@@ -8,7 +8,7 @@
       <SearchInput />
     </div>
     <div class="search--collection">
-      <collection-accessor/>
+      <collection-accessor @openCollection="$emit('openCollection')" :number-of-icons="numberOfStoredIcons"/>
     </div>
   </div>
 </div>
@@ -20,7 +20,10 @@ import CollectionAccessor from "./Collection-accessor";
 import SearchFilter from "./SearchFilter";
 export default {
 name: "Search",
-  components: {SearchFilter, CollectionAccessor, SearchInput}
+  components: {SearchFilter, CollectionAccessor, SearchInput},
+  props:{
+    numberOfStoredIcons:{default:0}
+  }
 }
 </script>
 
