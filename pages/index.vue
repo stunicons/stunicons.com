@@ -102,12 +102,15 @@ export default {
     search(value){
       const foundIcons = []
       import('~/services/icons.json')
-        .then(({icons}) => {
-          icons.map(icon => {
-            icon.icons.map(singleIcon => {
-              singleIcon.tags.map(tag => {
-                if(tag.indexOf(value) !== -1){
-                  console.log(singleIcon)
+        .then(({icons}) => { //search
+          icons.map(icon => { // loop in all icons categories
+
+            icon.icons.map(singleIcon => { //loop into icons into single icon category
+
+              singleIcon.tags.map(tag => { //loop into tags since we want to search in tags
+
+                if(tag.indexOf(value) !== -1){ //check if we have matching word or piece of string
+
 
                 }
               })
