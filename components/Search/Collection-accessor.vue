@@ -1,5 +1,5 @@
 <template>
-<div class="collection-accessor">
+<div class="collection-accessor" @click="$emit('openCollection')">
   <div class="icon-holder">
     <span class="nr-of-el-in-collection" v-if="numberOfIcons > 0"> {{numberOfIcons}} </span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

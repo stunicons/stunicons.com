@@ -8,7 +8,7 @@
       <WelcomingText />
 
       <!-- Search bar -->
-      <Search :number-of-stored-icons="svgIcons.length"/>
+      <Search @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
 
 
       <!--      icon body selector-->
@@ -98,6 +98,9 @@ export default {
       this.icon.id = icon.id;
       this.editorVisible = true
     },
+    openCollection(){
+      this.editorVisible = true
+    },
     iconEditorHolderClicked(e){
       const targetToClick = this.$refs['icon-editor-holder']
 
@@ -136,7 +139,7 @@ export default {
 <style lang="scss" scoped>
 .page-container{
   position: relative;
-  .icon-editor-holder{
+  .icon-editor-holder, .icon-collection-holder{
     z-index: 1;
     top:0;
     left:0;

@@ -8,7 +8,7 @@
       <SearchInput />
     </div>
     <div class="search--collection">
-      <collection-accessor :number-of-icons="numberOfStoredIcons"/>
+      <collection-accessor @openCollection="$emit('openCollection')" :number-of-icons="numberOfStoredIcons"/>
     </div>
   </div>
 </div>
