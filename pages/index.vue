@@ -14,8 +14,7 @@
       <!--      icon body selector-->
       <icon-body-selector />
 
-<!--      collection-->
-      <icon-collection />
+
 
       <!-- icon pack list-->
       <section class="icon-pack" v-for="iconGroup in icons" :key="iconGroup.categoryName">
@@ -44,6 +43,14 @@
           <icon-editor :icon="icon"/>
       </div>
     </div>
+
+<!--    icon collection-->
+    <div class="icon-collection-holder" ref="icon-collection-holder" @click="iconCollectionHolderClicked"  v-if="collectionVisible">
+      <div class="icon-collection-holder--wrapper">
+        <icon-collection />
+      </div>
+    </div>
+
 
     <!-- footer -->
     <app-footer/>
@@ -74,6 +81,7 @@ export default {
     return {
       icons: icons,
       editorVisible:false,
+      collectionVisible:false,
       icon:{
         name:"",
         id:"",
@@ -95,6 +103,12 @@ export default {
 
       if(e.target === targetToClick)
         this.editorVisible = false;
+    },
+    iconCollectionHolderClicked(e){
+      const targetToClick = this.$refs['icon-collection-holder']
+
+      if(e.target === targetToClick)
+        this.collectionVisible = false;
     },
     addToCollection(icon,category){
       const jsonStoredIcons = this.storedIcons
