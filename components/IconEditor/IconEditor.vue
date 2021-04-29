@@ -103,12 +103,14 @@ import CodeHighlight from "./CodeHighlight";
 import dataUriToSvg from "../../utils/svgToElement";
 import ColorPicker from "../SVG/reusable/ColorPicker";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
+import svgToEl from "../../mixins/svgToEl";
 
 let svgIcon;
 
 
 export default {
   name: "IconEditor",
+  mixins:[svgToEl],
   components: {FontSizeAdjuster, ColorPicker, CodeHighlight, IconClassCopy, Copy},
   props:{
     icon:{required:true,type:Object}
@@ -156,12 +158,6 @@ export default {
 
   },
   methods:{
-    // convert svg to dom element
-    svgToEl(svg){
-      const dom = new DOMParser().parseFromString(svg, "text/html")
-      return  dom.getElementsByTagName('svg')[0] //use first svg el since this method returns array
-    },
-
     saveSvg(){
       const name = this.icon.id
 
