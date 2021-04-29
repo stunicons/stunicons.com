@@ -12,7 +12,8 @@
         {"id":"si-plus", "name": "plus"},
         {"id":"si-vector", "name": "vector"},
         {"id":"si-logo-github", "name": "logo-github"},
-        {"id":"si-logo-github15stroke-18", "name": "logo-github15stroke-18"}
+        {"id":"si-logo-github15stroke-18", "name": "logo-github15stroke-18"},
+        {"id":"si-message-01", "name": "message-01"}
       ]
     }
   ]
