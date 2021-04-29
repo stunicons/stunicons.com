@@ -2,7 +2,7 @@
 <div class="icon-collection">
   <div class="icon-collection--wrapper">
     <div class="head">
-      <h4>Collection <span class="number">4</span></h4>
+      <h4>Collection <span class="number">{{svgIcons.length}}</span></h4>
     </div>
     <div class="icons">
       <icon :hoverEffect="false" v-for="icon in svgIcons" :key="icon.id">
@@ -70,20 +70,6 @@ name: "iconCollection",
     }
   },
   computed:{
-    svgIcons(){
-      const svgIcons = []
-      const iconCategories = Object.keys(this.storedIcons)
-
-
-      iconCategories.forEach(category => {
-          this.storedIcons[category].forEach(icon => {
-            svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`), ...icon})
-          })
-
-        })
-
-      return svgIcons;
-    },
     editedIcons(){
       const formattedIcons = []
 
