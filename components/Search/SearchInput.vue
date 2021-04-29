@@ -14,20 +14,23 @@
 
 export default {
   name: "SearchInput",
+  props:['value'],
   data(){
     return{
-      searchKey:'name the king'
+      searchKey:this.value
     }
   },
 
   methods:{
     //emit event on Search
     search(){
-      this.$emit('search',this.searchKey)
+      this.$emit('input',this.searchKey)
     },
 
     //act on Search key change
     searchKeyChanged(){
+      this.search()
+
       const icon = this.$refs['icon'];
 
       if(this.searchKey.trim().length > 0) {
