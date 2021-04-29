@@ -100,9 +100,20 @@ export default {
       this.editorVisible = true
     },
     search(value){
-       import('~/services/icons.json')
-        .then(d => {
-          console.log(d)
+      const foundIcons = []
+      import('~/services/icons.json')
+        .then(({icons}) => {
+          icons.map(icon => {
+            icon.icons.map(singleIcon => {
+              singleIcon.tags.map(tag => {
+                if(tag.indexOf(value) !== -1){
+                  console.log(singleIcon)
+
+                }
+              })
+
+            })
+          })
         })
         .catch(er => {
           console.log(er)

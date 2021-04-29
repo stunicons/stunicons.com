@@ -5,15 +5,16 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:nuxt/recommended'
+    'plugin:nuxt/recommended',
+    'plugin:vue/base'
   ],
   plugins: [
   ],
   // add your custom rules here
   rules: {},
-  "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 11,
+    "parser": "babel-eslint",
+    "ecmaVersion": 6,
     "sourceType": "module",
     "allowImportExportEverywhere": true
   }
