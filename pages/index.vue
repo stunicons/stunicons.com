@@ -8,7 +8,7 @@
       <WelcomingText />
 
       <!-- Search bar -->
-      <Search @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
+      <Search @openCollection="openCollection" :number-of-stored-icons="numberOfStoredIcons"/>
 
 
       <!--      icon body selector-->
@@ -86,7 +86,8 @@ export default {
         name:"",
         id:"",
         src:""
-      }
+      },
+      numberOfStoredIcons: 0
     }
   },
 
@@ -131,8 +132,15 @@ export default {
 
       localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
 
+      this.numberOfStoredIcons = this.numberOfStoredIcons+1
+
     }
   },
+  mounted(){
+    this.numberOfStoredIcons = this.svgIcons.length
+    console.log(this.svgIcons)
+  }
+
 }
 </script>
 
