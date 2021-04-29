@@ -61,17 +61,21 @@
         {
           "id": "si-message-01",
           "name": "message-01",
-          "tags": []
+          "tags": ["message","chat"]
         },
         {
           "id": "si-message-test-01",
           "name": "message-test-01",
-          "tags": []
+          "tags": ["message","chat"]
         },
         {
           "id": "si-home-test-02",
           "name": "si-home-test-02",
-          "tags": []
+          "tags": [
+            "home",
+            "building",
+            "filled"
+          ]
         }
       ]
     }
