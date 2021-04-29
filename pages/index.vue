@@ -100,27 +100,52 @@ export default {
       this.editorVisible = true
     },
     search(value){
+
+      if(value.trim().length <=0){
+        this.icons = icons;
+        return ;
+      }
+
+
       const foundIcons = []
-      import('~/services/icons.json')
-        .then(({icons}) => { //search
-          icons.map(icon => { // loop in all icons categories
+      const {icons} = require('~/services/icons.json')
 
-            icon.icons.map(singleIcon => { //loop into icons into single icon category
+      //search
 
-              singleIcon.tags.map(tag => { //loop into tags since we want to search in tags
+      icons.map(icon => { // loop in all icons categories
 
-                if(tag.indexOf(value) !== -1){ //check if we have matching word or piece of string
+        icon.icons.map(singleIcon => { //loop into icons into single icon category
 
+          singleIcon.tags.map(tag => { //loop into tags since we want to search in tags
 
+            if(tag.indexOf(value) !== -1){ //check if we have matching word or piece of string
+              let iconGroupExists = false;
+
+              foundIcons.map((iconGroup,index) => { //loop into found icons categories
+
+                if(iconGroup.categoryName === icon.categoryName){  //check if category already exists
+                  if(!foundIcons[index].icons) //check if there were some existing icons in an icon category
+                    foundIcons[index].icons = [] //if not initiate array
+
+                  iconGroupExists = true
+
+                  foundIcons[index].icons.push(singleIcon) //add icons
                 }
               })
 
-            })
+              //if group does not exist add then and new found icon
+              if(!iconGroupExists){
+                foundIcons.push({categoryName:icon.categoryName,icons:[singleIcon]})
+              }
+
+            }
           })
+
         })
-        .catch(er => {
-          console.log(er)
-        })
+      })
+
+      this.icons = foundIcons
+
     },
     openCollection(){
       this.collectionVisible = true
