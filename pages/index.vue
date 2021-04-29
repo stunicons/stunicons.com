@@ -8,7 +8,7 @@
       <WelcomingText />
 
       <!-- Search bar -->
-      <Search :number-of-stored-icons="storedIcons.length"/>
+      <Search :number-of-stored-icons="svgIcons.length"/>
 
 
       <!--      icon body selector-->
