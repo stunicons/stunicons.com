@@ -52,7 +52,7 @@ export default {
     selectCategory(i) {
       this.listActive = false
       this.indexOfSelectedCategory = i
-      this.$emit('selected',this.selectedCategory)
+      this.$bus.$emit('filterSelected',this.selectedCategory)
     }
   },
   mounted(){
