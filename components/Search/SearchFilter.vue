@@ -49,7 +49,8 @@ export default {
 
     //listen on category click
     selectCategory(i) {
-        this.$emit('selected',{index:i,value:this.selectionList[i]})
+      this.listActive = false
+      this.$emit('selected',{index:i,value:this.selectionList[i]})
     }
   },
   mounted(){
