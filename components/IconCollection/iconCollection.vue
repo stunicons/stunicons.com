@@ -74,6 +74,7 @@ import ColorPicker from "../SVG/reusable/ColorPicker";
 import Copy from "../Reusable/Copy";
 import iconCollectionMixin from "../../mixins/iconCollection";
 import svgToEl from "../../mixins/svgToEl";
+import dataUriToSvg from "../../utils/svgToElement";
 
 
 export default {
@@ -102,12 +103,12 @@ name: "iconCollection",
       return svgIcons;
     },
     editedIcons(){
-      const formatedIcons = []
+      const formattedIcons = []
 
       this.svgIcons.forEach(icon => {
 
 
-         let svg =  this.svgToEl(icon.svg)
+         let svg =  this.svgToEl(dataUriToSvg(icon.svg))
 
         let paths = svg.getElementsByTagName('path')
 
@@ -121,10 +122,10 @@ name: "iconCollection",
           pathEl.setAttribute('fill',this.color)
         })
 
-        formatedIcons.push(svg.outerHTML)
+        formattedIcons.push(svg.outerHTML)
 
       })
-
+      return formattedIcons
     }
   },
   mounted() {
