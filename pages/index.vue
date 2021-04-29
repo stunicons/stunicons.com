@@ -100,15 +100,16 @@ export default {
       this.editorVisible = true
     },
     search(value){
+      const foundIcons = []
+      const {icons} = require('~/services/icons.json')
 
       if(value.trim().length <=0){
+        console.log('yee',icons)
         this.icons = icons;
         return ;
       }
 
 
-      const foundIcons = []
-      const {icons} = require('~/services/icons.json')
 
       //search
 
