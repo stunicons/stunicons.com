@@ -97,7 +97,7 @@ name: "iconCollection",
     }
   },
   mounted() {
-    console.log(this.editedIcons)
+    // console.log(this.editedIcons)
   }
 }
 </script>
@@ -105,7 +105,12 @@ name: "iconCollection",
 <style lang="scss" scoped>
 .icon-collection{
   &--wrapper{
-    padding:2.2rem;
+    @apply rounded-lg;
+    background-color: $bg;
+    padding:3rem;
+    width:fit-content;
+    max-width: 50rem;
+
     .head{
       h4{
         @apply mb-10;
