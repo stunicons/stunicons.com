@@ -26,7 +26,7 @@
           <icon
             v-for="icon in iconGroup.icons"
             :key="icon.id"
-            @add="addToCollection(icon)"
+            @add="addToCollection(icon,iconGroup.categoryName)"
             @click="clickIcon(icon,iconGroup.categoryName)">
             <template #svg >
               <i :class="`${icon.id}`"></i>
@@ -62,10 +62,11 @@ import appFooter from "../components/Footer";
 import {icons} from "~/services/icons.json"
 import IconEditor from "../components/IconEditor/IconEditor";
 import IconCollection from "../components/IconCollection/iconCollection";
-
+import iconCollectionMixin from "../mixins/iconCollection";
 
 export default {
   name:"Home",
+  mixins:[iconCollectionMixin],
   components:{
     IconCollection,
     IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
@@ -80,15 +81,7 @@ export default {
       }
     }
   },
-  computed:{
-    storedIcons(){
-      if(process.browser){
-        const storedIcons = localStorage.getItem('storedIcons')
-        return storedIcons ? JSON.parse(storedIcons) : []
-      }
-      return []
-    }
-  },
+
 
   methods:{
     clickIcon(icon, category){
@@ -103,15 +96,17 @@ export default {
       if(e.target === targetToClick)
         this.editorVisible = false;
     },
-    addToCollection(icon){
+    addToCollection(icon,category){
       const jsonStoredIcons = this.storedIcons
 
       //check if icon was not already added to the storage
-      for(const storedIcon of jsonStoredIcons)
-        if(storedIcon.id === icon.id )
-          return
+      if(jsonStoredIcons[category])
+        for(const storedIcon of jsonStoredIcons[category])
+          if(storedIcon.id === icon.id )
+            return
 
-      jsonStoredIcons.push(icon) // add icon
+
+      jsonStoredIcons[category].push(icon) // add icon
 
       localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
 
