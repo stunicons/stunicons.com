@@ -118,18 +118,20 @@ export default {
 
         icon.icons.map(singleIcon => { //loop into icons into single icon category
 
-          const filtered = singleIcon.tags.filter(tag => tag.indexOf(value) !== -1)
+          //find icons that may have tags which contains search key
+          const possibleSearches = singleIcon.tags.filter(tag => tag.indexOf(value) !== -1)
 
-          if(filtered.length > 0){
-            let iconGroupIndex  = null;
 
-            foundIcons.map((iconGroup,index) => { //loop into found icons categories
-              if(iconGroup.categoryName === icon.categoryName){  //check if category already exists
-                iconGroupIndex = index
-              }
+          if(possibleSearches.length > 0){ // if there are some icons , it is time to add them to search results
+            let iconGroupIndex;
+
+            const existenceOfCategoryGroup = foundIcons.filter((iconGroup,index) => {
+              iconGroupIndex = index;
+              return iconGroup.categoryName === icon.categoryName
             })
 
-            if(iconGroupIndex !== null)
+
+            if(existenceOfCategoryGroup.length > 0)
               foundIcons[iconGroupIndex].icons.push(singleIcon)
             else //if group does not exist add then and new found icon
               foundIcons.push({categoryName:icon.categoryName,icons:[singleIcon]})
@@ -138,7 +140,7 @@ export default {
 
         })
       })
-      console.log(foundIcons)
+
       this.icons = foundIcons
 
     },
