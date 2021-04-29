@@ -110,8 +110,6 @@ export default {
         return ;
       }
 
-
-
       //search
 
       icons.map(icon => { // loop in all icons categories
@@ -121,19 +119,18 @@ export default {
           //find icons that may have tags which contains search key
           const possibleSearches = singleIcon.tags.filter(tag => tag.indexOf(value) !== -1)
 
-
           if(possibleSearches.length > 0){ // if there are some icons , it is time to add them to search results
             let iconGroupIndex;
 
+            // know if the icon category exists in searched icon results
             const existenceOfCategoryGroup = foundIcons.filter((iconGroup,index) => {
               iconGroupIndex = index;
               return iconGroup.categoryName === icon.categoryName
             })
 
-
-            if(existenceOfCategoryGroup.length > 0)
+            if(existenceOfCategoryGroup.length > 0) // if icon group exists push new icons to the category
               foundIcons[iconGroupIndex].icons.push(singleIcon)
-            else //if group does not exist add then and new found icon
+            else    //if category does not exist add it with new found icon
               foundIcons.push({categoryName:icon.categoryName,icons:[singleIcon]})
           }
 
