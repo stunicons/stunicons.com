@@ -103,8 +103,9 @@ export default {
       const foundIcons = []
       const {icons} = require('~/services/icons.json')
 
+      //  if there is no search keyword
+      //  show all icons
       if(value.trim().length <=0){
-        console.log('yee',icons)
         this.icons = icons;
         return ;
       }
@@ -117,34 +118,27 @@ export default {
 
         icon.icons.map(singleIcon => { //loop into icons into single icon category
 
-          singleIcon.tags.map(tag => { //loop into tags since we want to search in tags
+          const filtered = singleIcon.tags.filter(tag => tag.indexOf(value) !== -1)
 
-            if(tag.indexOf(value) !== -1){ //check if we have matching word or piece of string
-              let iconGroupExists = false;
+          if(filtered.length > 0){
+            let iconGroupIndex  = null;
 
-              foundIcons.map((iconGroup,index) => { //loop into found icons categories
-
-                if(iconGroup.categoryName === icon.categoryName){  //check if category already exists
-                  if(!foundIcons[index].icons) //check if there were some existing icons in an icon category
-                    foundIcons[index].icons = [] //if not initiate array
-
-                  iconGroupExists = true
-
-                  foundIcons[index].icons.push(singleIcon) //add icons
-                }
-              })
-
-              //if group does not exist add then and new found icon
-              if(!iconGroupExists){
-                foundIcons.push({categoryName:icon.categoryName,icons:[singleIcon]})
+            foundIcons.map((iconGroup,index) => { //loop into found icons categories
+              if(iconGroup.categoryName === icon.categoryName){  //check if category already exists
+                iconGroupIndex = index
               }
+            })
 
-            }
-          })
+            if(iconGroupIndex !== null)
+              foundIcons[iconGroupIndex].icons.push(singleIcon)
+            else //if group does not exist add then and new found icon
+              foundIcons.push({categoryName:icon.categoryName,icons:[singleIcon]})
+          }
+
 
         })
       })
-
+      console.log(foundIcons)
       this.icons = foundIcons
 
     },
