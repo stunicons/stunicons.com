@@ -183,7 +183,10 @@ export default {
     console.log(this.svgIcons)
 
     this.$bus.$on('filterSelected',(category) => {
-      this.icons = icons.filter(iconGroup => iconGroup.categoryName === category)
+      if(category.toLowerCase() === 'all')
+        this.icons = icons;
+      else
+        this.icons = icons.filter(iconGroup => iconGroup.categoryName === category)
     })
 
   }
