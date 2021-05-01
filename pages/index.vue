@@ -232,10 +232,6 @@ export default {
       &--icons{
         @apply flex flex-row flex-wrap justify-between;
 
-        i{
-          //font-size: 2rem;
-          color:red;
-        }
       }
     }
   }
