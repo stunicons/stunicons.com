@@ -132,13 +132,6 @@ name: "iconCollection",
         }
       },
       download(zip,name){
-        // const downloadLink = document.createElement("a");
-        // downloadLink.href = url;
-        // downloadLink.download = name;
-        // document.body.appendChild(downloadLink);
-        // downloadLink.click();
-        // document.body.removeChild(downloadLink);
-
         zip.generateAsync({type:"blob"})
         .then(function (blob) {
             saveAs(blob, name);
