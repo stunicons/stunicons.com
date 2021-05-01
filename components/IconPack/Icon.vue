@@ -33,8 +33,8 @@ export default {
 .icon-card{
   @apply flex justify-center items-center rounded-md m-3;
   background-color: $bg-secondary;
-  width: 11rem;
-  height:9rem;
+  width: 7rem;
+  height:6rem;
   position: relative;
 
   &.hoverEffect:hover{
