@@ -1,5 +1,6 @@
 const mixin = {
   computed:{
+    //function that return icons which are stored in web storage
     storedIcons(){
       if(process.browser){
         const storedIcons = localStorage.getItem('storedIcons')
@@ -7,6 +8,7 @@ const mixin = {
       }
       return {}
     },
+    //return icons which are stored
     svgIcons(){
       const svgIcons = []
       const iconCategories = Object.keys(this.storedIcons)
@@ -14,7 +16,11 @@ const mixin = {
 
       iconCategories.forEach(category => {
           this.storedIcons[category].forEach(icon => {
-            svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`), ...icon})
+            try{
+              svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`), ...icon})
+            }catch (e) {
+              console.log(e)
+            }
           })
 
         })
