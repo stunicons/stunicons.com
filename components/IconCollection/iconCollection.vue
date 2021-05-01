@@ -33,7 +33,7 @@
           <template #title>SVGs</template>
         </copy>
       </div>
-      <div class="download--png">
+      <div class="download--png" @click="savePng">
         <copy>
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,23 +113,36 @@ name: "iconCollection",
             iconsFolder.file(name,svgBlob)
         })
 
-        this.download(svgZip,"stunicons-svg.zip")
+        this.download(svgZip,`stunicons-svg-${this.fontSize}.zip`)
       },
       savePng() {
-        const name = this.icon.id + '.png'
+        const pngZip = new JSZip();
+        const iconsFolder = pngZip.folder('icons')
 
-        const image = new Image();
-        image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
+        this.editedIcons.map((icon, i) => {
 
-        image.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = image.width;
-          canvas.height = image.height;
-          const context = canvas.getContext('2d');
-          context.drawImage(image, 0, 0);
+          const name = icon.name + '.png'
 
-          this.download(canvas.toDataURL(), name)
-        }
+          const image = new Image();
+          image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(icon.svg)));
+
+          image.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            const context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
+
+            canvas.toBlob(blob => {
+              iconsFolder.file(name,blob)
+
+
+              if((i+1) === this.editedIcons.length)
+                this.download(pngZip,`stunicons-png-${this.fontSize}.zip`)
+            })
+          }
+        })
+
       },
       download(zip,name){
         zip.generateAsync({type:"blob"})
