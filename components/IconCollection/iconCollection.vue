@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="download">
-      <div class="download--svg">
+      <div class="download--svg" @click="saveSvg">
         <copy>
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,10 +30,10 @@
               <path d="M0 10H2V14H14V10H16V14C16 15.1046 15.1046 16 14 16H2C0.895431 16 0 15.1046 0 14V10Z" fill="#FE4E00"/>
             </svg>
           </template>
-          <template #title>SVG</template>
+          <template #title>SVGs</template>
         </copy>
       </div>
-      <div class="download--png">
+      <div class="download--png" @click="savePng">
         <copy>
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,6 +57,9 @@ import Copy from "../Reusable/Copy";
 import iconCollectionMixin from "../../mixins/iconCollection";
 import svgToEl from "../../mixins/svgToEl";
 import dataUriToSvg from "../../utils/svgToElement";
+import JSZip from 'jszip'
+import {saveAs} from 'file-saver'
+
 
 
 export default {
@@ -90,11 +93,69 @@ name: "iconCollection",
           pathEl.setAttribute('fill',this.color)
         })
 
-        formattedIcons.push(svg.outerHTML)
+        formattedIcons.push({name:icon.id,svg:svg.outerHTML})
 
       })
       return formattedIcons
-    }
+    },
+  },
+  methods:{
+      // download svgs as zip file
+      saveSvg(){
+        const svgZip = new JSZip();
+        const iconsFolder = svgZip.folder('icons')
+
+        // loop into icons and add them to folder
+        this.editedIcons.map(icon => {
+          const name = icon.name+".svg"
+          const svgData = icon.svg;
+
+          const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+          const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+            iconsFolder.file(name,svgBlob) // add icon to folder
+        })
+
+        this.download(svgZip,`stunicons-svg-${this.fontSize}.zip`) // download icons
+      },
+    //download pngs files
+      savePng() {
+        const pngZip = new JSZip();
+        const iconsFolder = pngZip.folder('icons')
+
+        this.editedIcons.map((icon, i) => {
+
+          const name = icon.name + '.png'
+
+          const image = new Image();
+          image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(icon.svg)));
+
+          // when image src load convert image to canvas
+          image.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            const context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
+
+            //convert image to blob so that it can be saved as file
+            canvas.toBlob(blob => {
+              iconsFolder.file(name,blob) // save file to folder
+
+              if((i+1) === this.editedIcons.length) // if thi is the last element in array of icons download zip
+                this.download(pngZip,`stunicons-png-${this.fontSize}.zip`)
+            })
+          }
+        })
+
+      },
+    //download zip file
+      download(zip,name){
+        zip.generateAsync({type:"blob"})
+        .then( blob => {
+            saveAs(blob, name);
+        });
+      },
+
   },
   mounted() {
     // console.log(this.editedIcons)

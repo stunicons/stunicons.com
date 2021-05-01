@@ -183,7 +183,10 @@ export default {
     console.log(this.svgIcons)
 
     this.$bus.$on('filterSelected',(category) => {
-      this.icons = icons.filter(iconGroup => iconGroup.categoryName === category)
+      if(category.toLowerCase() === 'all')
+        this.icons = icons;
+      else
+        this.icons = icons.filter(iconGroup => iconGroup.categoryName === category)
     })
 
   }
@@ -227,12 +230,8 @@ export default {
       }
 
       &--icons{
-        @apply flex flex-row flex-wrap justify-between;
+        @apply flex flex-row flex-wrap justify-start;
 
-        i{
-          //font-size: 2rem;
-          color:red;
-        }
       }
     }
   }

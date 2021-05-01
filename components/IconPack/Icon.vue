@@ -33,8 +33,8 @@ export default {
 .icon-card{
   @apply flex justify-center items-center rounded-md m-3;
   background-color: $bg-secondary;
-  width: 11rem;
-  height:9rem;
+  width: 7rem;
+  height:6rem;
   position: relative;
 
   &.hoverEffect:hover{
@@ -53,7 +53,8 @@ export default {
     cursor: pointer;
 
     .icon{
-      padding: 6px;
+      padding: 4px;
+
     }
 
   }
@@ -64,7 +65,7 @@ export default {
     width: fit-content;
 
     .icon, .name{
-      @apply  py-3 ;
+      @apply  py-2 ;
     }
     .name{
       font-size: .7rem;
