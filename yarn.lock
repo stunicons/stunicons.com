@@ -10173,10 +10173,10 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-stunicons@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/stunicons/-/stunicons-1.0.7.tgz#e3d3abe30bb43684e0a9614bfdb2e6c011160fa4"
-  integrity sha512-iTx/fQRRHpyWuyIOFle8UMpR5CswTmG3Lhut671nmjAhNt0wq6JBU37hf8hQJJaedZtr2FmGtxJgQuLCCUVd7w==
+stunicons@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/stunicons/-/stunicons-1.0.8.tgz#f42d827cb3c74b1e713c3e18a1c7ff8dfd3b49ea"
+  integrity sha512-DtC/RwhtHIdu7xjSa/qWZQRvHdQ7IuTivYHL5ONwmlOajWJzVD8src3ibLIbjBVA2fxbeIMPjmtTEzhqCJDWPQ==
 
 style-resources-loader@^1.4.1:
   version "1.4.1"
