@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="download">
-      <div class="download--svg">
+      <div class="download--svg" @click="saveSvg">
         <copy>
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
               <path d="M0 10H2V14H14V10H16V14C16 15.1046 15.1046 16 14 16H2C0.895431 16 0 15.1046 0 14V10Z" fill="#FE4E00"/>
             </svg>
           </template>
-          <template #title>SVG</template>
+          <template #title>SVGs</template>
         </copy>
       </div>
       <div class="download--png">
@@ -57,6 +57,9 @@ import Copy from "../Reusable/Copy";
 import iconCollectionMixin from "../../mixins/iconCollection";
 import svgToEl from "../../mixins/svgToEl";
 import dataUriToSvg from "../../utils/svgToElement";
+import JSZip from 'jszip'
+import {saveAs} from 'file-saver'
+
 
 
 export default {
@@ -90,11 +93,58 @@ name: "iconCollection",
           pathEl.setAttribute('fill',this.color)
         })
 
-        formattedIcons.push(svg.outerHTML)
+        formattedIcons.push({name:icon.id,svg:svg.outerHTML})
 
       })
       return formattedIcons
-    }
+    },
+  },
+  methods:{
+      saveSvg(){
+        const svgZip = new JSZip();
+        const iconsFolder = svgZip.folder('icons')
+
+        this.editedIcons.map(icon => {
+          const name = icon.name+".svg"
+          const svgData = icon.svg;
+
+          const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+          const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+            iconsFolder.file(name,svgBlob)
+        })
+
+        this.download(svgZip,"stunicons-svg.zip")
+      },
+      savePng() {
+        const name = this.icon.id + '.png'
+
+        const image = new Image();
+        image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
+
+        image.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = image.width;
+          canvas.height = image.height;
+          const context = canvas.getContext('2d');
+          context.drawImage(image, 0, 0);
+
+          this.download(canvas.toDataURL(), name)
+        }
+      },
+      download(zip,name){
+        // const downloadLink = document.createElement("a");
+        // downloadLink.href = url;
+        // downloadLink.download = name;
+        // document.body.appendChild(downloadLink);
+        // downloadLink.click();
+        // document.body.removeChild(downloadLink);
+
+        zip.generateAsync({type:"blob"})
+        .then(function (blob) {
+            saveAs(blob, name);
+        });
+      },
+
   },
   mounted() {
     // console.log(this.editedIcons)
