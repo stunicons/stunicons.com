@@ -230,7 +230,7 @@ export default {
       }
 
       &--icons{
-        @apply flex flex-row flex-wrap justify-between;
+        @apply flex flex-row flex-wrap justify-start;
 
       }
     }
