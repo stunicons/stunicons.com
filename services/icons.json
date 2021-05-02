@@ -44,7 +44,37 @@
             "person",
             "profile"
           ]
-        }
+        },
+        {"id": "si-arrow-down", "name": "arrow down", "tags": ["arrow", "down", "fresh"]},
+        {"id": "si-arrow-left", "name": "arrow left", "tags": ["arrow", "left", "fresh"]},
+        {"id": "si-arrow-right", "name": "arrow right", "tags": ["arrow", "right", "fresh"]},
+        {"id": "si-arrow-up", "name": "arrow up", "tags": ["arrow", "up", "fresh"]},
+        {"id": "si-copyright", "name": "copyright", "tags": ["copyright"]},
+        {"id": "si-dashboard", "name": "dashboard", "tags": ["dashboard","admin"]},
+        {"id": "si-delete", "name": "delete", "tags": ["remove","delete","bin"]},
+        {"id": "si-document", "name": "document", "tags": ["document","file"]},
+        {"id": "si-download", "name": "download", "tags": ["download","fetch"]},
+        {"id": "si-exit", "name": "exit", "tags": ["cancel","exit","escape"]},
+        {"id": "si-eye", "name": "eye", "tags": ["eye","watching","see"]},
+        {"id": "si-gmail", "name": "gmail", "tags": ["gmail","email"]},
+        {"id": "si-heart", "name": "heart", "tags": ["heart","love"]},
+        {"id": "si-location-off", "name": "location off", "tags": ["location","off"]},
+        {"id": "si-location-on", "name": "location on", "tags": ["location","on"]},
+        {"id": "si-facebook", "name": "facebook", "tags": ["facebook","fb"]},
+        {"id": "si-github", "name": "github", "tags": ["github"]},
+        {"id": "si-instagram", "name": "instagram", "tags": ["instagram","ig"]},
+        {"id": "si-linkedin", "name": "linkedin", "tags": ["linkedin","ig"]},
+        {"id": "si-slack", "name": "slack", "tags": ["slack"]},
+        {"id": "si-twitter", "name": "twitter", "tags": ["twitter"]},
+        {"id": "si-youtube", "name": "youtube", "tags": ["youtube"]},
+        {"id": "si-more-horizontal", "name": "more", "tags": ["more", "horizontal", "options"]},
+        {"id": "si-more-vertical", "name": "more", "tags": ["more", "vertical", "options"]},
+        {"id": "si-movie", "name": "movie", "tags": ["movie","tv","film","video"]},
+        {"id": "si-settings", "name": "settings", "tags": ["settings","gear","preferences"]},
+        {"id": "si-share", "name": "share", "tags": ["share"]},
+        {"id": "si-thumbs-down", "name": "thumbs down", "tags": ["thumbs", "down"]},
+        {"id": "si-thumbs-up", "name": "thumbs up", "tags": ["thumbs", "up"]},
+        {"id": "si-video", "name": "video", "tags": ["movie","tv","film","video"]}
       ]
     }
   ]

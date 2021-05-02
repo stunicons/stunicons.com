@@ -24,6 +24,7 @@
         <div class="icon-pack--icons" >
           <icon
             v-for="icon in iconGroup.icons"
+            :stored="inStoredIcons(icon.id)"
             :key="icon.id"
             @add="addToCollection(icon,iconGroup.categoryName)"
             @click="clickIcon(icon,iconGroup.categoryName)">
@@ -38,18 +39,22 @@
     </div>
 
     <!-- icon editor -->
-    <div class="icon-editor-holder" ref="icon-editor-holder" @click="iconEditorHolderClicked" v-if="editorVisible">
-      <div class="icon-editor-holder--wrapper ">
-          <icon-editor :icon="icon"/>
+    <transition name="fade">
+      <div class="icon-editor-holder" ref="icon-editor-holder" @click="iconEditorHolderClicked" v-if="editorVisible">
+        <div class="icon-editor-holder--wrapper">
+            <icon-editor :icon="icon"/>
+        </div>
       </div>
-    </div>
+    </transition>
 
 <!--    icon collection-->
-    <div class="icon-collection-holder" ref="icon-collection-holder" @click="iconCollectionHolderClicked"  v-if="collectionVisible">
-      <div class="icon-collection-holder--wrapper">
+    <transition name="fade">
+      <div class="icon-collection-holder" ref="icon-collection-holder" @click="iconCollectionHolderClicked"  v-if="collectionVisible">
+        <div class="icon-collection-holder--wrapper">
         <icon-collection />
+        </div>
       </div>
-    </div>
+    </transition>
 
 
     <!-- footer -->
@@ -98,6 +103,10 @@ export default {
       this.icon.name = icon.name;
       this.icon.id = icon.id;
       this.editorVisible = true
+    },
+    // method to check if icon is stored
+    inStoredIcons(id){
+      return this.svgIcons.filter(icon => icon.id === id).length > 0
     },
     search(value){
       const foundIcons = []
@@ -180,7 +189,6 @@ export default {
   },
   mounted(){
     this.numberOfStoredIcons = this.svgIcons.length
-    console.log(this.svgIcons)
 
     this.$bus.$on('filterSelected',(category) => {
       if(category.toLowerCase() === 'all')
@@ -234,6 +242,22 @@ export default {
 
       }
     }
+  }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+  .icon-collection-holder--wrapper,
+  .icon-editor-holder--wrapper{
+    transition: .5s;
+    transition-property: opacity,transform;
+  }
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+
+  .icon-collection-holder--wrapper,
+  .icon-editor-holder--wrapper{
+    transform: translateY(70px);
   }
 }
 </style>

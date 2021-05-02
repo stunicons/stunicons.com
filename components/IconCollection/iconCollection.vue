@@ -1,6 +1,6 @@
 <template>
 <div class="icon-collection">
-  <div class="icon-collection--wrapper">
+  <div class="icon-collection--wrapper" v-if="svgIcons.length > 0">
     <div class="head">
       <h4>Collection <span class="number">{{svgIcons.length}}</span></h4>
     </div>
@@ -44,6 +44,17 @@
           <template #title>PNG</template>
         </copy>
       </div>
+    </div>
+  </div>
+  <div class="icon-collection--empty" v-else>
+    <div class="head">
+      <h4>Collection </h4>
+    </div>
+    <div class="empty-text">
+      <div class="center">
+        <p>Your collection is empty</p>
+          <button @click="close"><i class="si-plus"></i> <span>Add icons</span></button>
+        </div>
     </div>
   </div>
 </div>
@@ -156,6 +167,11 @@ name: "iconCollection",
         });
       },
 
+    close(){
+      // this.$destroy();
+      this.$parent.collectionVisible = false
+    }
+
   },
   mounted() {
     // console.log(this.editedIcons)
@@ -212,6 +228,46 @@ name: "iconCollection",
 
       &--png{
         @apply ml-6 ;
+      }
+    }
+  }
+  &--empty{
+    @apply rounded-lg;
+    background-color: $bg;
+    padding:3rem;
+    width:fit-content;
+    max-width: 50rem;
+
+    .head{
+      h4{
+        @apply mb-10;
+        font-weight: 600;
+      }
+    }
+
+    .empty-text{
+      width:25rem;
+      height: 10rem;
+      display: grid;
+      place-items: center;
+
+      .center{
+        @apply flex flex-col items-center;
+          p{
+            @apply mb-3;
+          }
+
+        button{
+          @apply py-2 px-4;
+          background-color: $clr-primary;
+          color:$bg;
+          border-radius: 4px;
+          outline: none;
+
+          i{
+            @apply mr-2;
+          }
+        }
       }
     }
   }
