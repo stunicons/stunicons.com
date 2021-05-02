@@ -53,7 +53,7 @@
     <div class="empty-text">
       <div class="center">
         <p>Your collection is empty</p>
-          <button><i class="si-plus"></i> <span>Add icons</span></button>
+          <button @click="close"><i class="si-plus"></i> <span>Add icons</span></button>
         </div>
     </div>
   </div>
@@ -166,6 +166,11 @@ name: "iconCollection",
             saveAs(blob, name);
         });
       },
+
+    close(){
+      // this.$destroy();
+      this.$parent.collectionVisible = false
+    }
 
   },
   mounted() {
