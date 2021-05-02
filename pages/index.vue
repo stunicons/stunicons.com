@@ -24,6 +24,7 @@
         <div class="icon-pack--icons" >
           <icon
             v-for="icon in iconGroup.icons"
+            :stored="inStoredIcons(icon.id)"
             :key="icon.id"
             @add="addToCollection(icon,iconGroup.categoryName)"
             @click="clickIcon(icon,iconGroup.categoryName)">
@@ -102,6 +103,10 @@ export default {
       this.icon.name = icon.name;
       this.icon.id = icon.id;
       this.editorVisible = true
+    },
+    // method to check if icon is stored
+    inStoredIcons(id){
+      return this.svgIcons.filter(icon => icon.id === id).length > 0
     },
     search(value){
       const foundIcons = []
@@ -184,7 +189,6 @@ export default {
   },
   mounted(){
     this.numberOfStoredIcons = this.svgIcons.length
-    console.log(this.svgIcons)
 
     this.$bus.$on('filterSelected',(category) => {
       if(category.toLowerCase() === 'all')
