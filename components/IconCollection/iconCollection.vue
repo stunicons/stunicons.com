@@ -262,6 +262,7 @@ name: "iconCollection",
           background-color: $clr-primary;
           color:$bg;
           border-radius: 4px;
+          outline: none;
 
           i{
             @apply mr-2;
