@@ -41,6 +41,10 @@ export default {
     .add-to-collection{
       display: block;
     }
+    .icon{
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
   }
 
   .add-to-collection{
@@ -64,8 +68,10 @@ export default {
     height: fit-content;
     width: fit-content;
 
+
     .icon, .name{
-      @apply  py-2 ;
+      @apply  pb-2 ;
+      transition:all .3s ease;
     }
     .name{
       font-size: .7rem;
