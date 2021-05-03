@@ -1,18 +1,18 @@
 export const state = () => ({
-  storedIcons: []
+  storedIcons: {}
 })
 
 export const mutations = {
   readStoredIcons(state) {
     if(process.browser)
-         state.storedIcons = JSON.parse(localStorage.getItem('storedIcons'))
+         state.storedIcons = JSON.parse(localStorage.getItem('storedIcons')) || {}
 
   }
 }
 
 export const actions = {
-  storedIcons({commit,state}, {icon, category}) {
-    const jsonStoredIcons = state.storedIcons
+  storeIcon({commit,state}, {icon, category}) {
+    let jsonStoredIcons = state.storedIcons
 
     //check if icon was not already added to the storage
     if(jsonStoredIcons[category])
@@ -27,6 +27,7 @@ export const actions = {
 
     jsonStoredIcons[category].push(icon) // add icon
 
+    jsonStoredIcons = Object.assign({},jsonStoredIcons)
     localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
 
     commit('readStoredIcons')
@@ -36,6 +37,9 @@ export const actions = {
 
 export const getters = {
   svgIcons(state) {
+
+    if(state.storedIcons.length < 1)
+      return []
     const svgIcons = []
     const iconCategories = Object.keys(state.storedIcons)
 
