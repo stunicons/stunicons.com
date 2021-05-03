@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
 .version{
   @apply py-1 px-4 rounded-lg mx-4;
-  background:$clr-primary-lighten;
+  background:$bg;
   color:$clr-primary;
   height: fit-content;
 
