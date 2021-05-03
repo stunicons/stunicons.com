@@ -253,11 +253,6 @@ export default {
     }
 
     .icon-pack{
-      @apply mb-24 ;
-
-      &:nth-last-child{
-        @apply mb-4;
-      }
 
       &--header{
         @apply mb-8 ;
