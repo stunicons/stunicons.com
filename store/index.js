@@ -32,6 +32,22 @@ export const actions = {
 
     commit('readStoredIcons')
   },
+  deleteIcon({commit, state},{icon,category}) {
+    let jsonStoredIcons = JSON.parse(JSON.stringify(state.storedIcons))
+
+    let foundIcon = jsonStoredIcons[category].filter(storedIcon => storedIcon.id === icon.id)
+
+
+    jsonStoredIcons = Object.assign({},jsonStoredIcons)
+
+
+    let iconIndex = jsonStoredIcons[category].indexOf(foundIcon[0])
+    if(iconIndex >= 0) jsonStoredIcons[category].splice(iconIndex,1)
+
+    localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
+
+    commit('readStoredIcons')
+  }
 }
 
 
