@@ -12,9 +12,11 @@
 <script>
 export default {
   name: "Collection-accessor",
-  props:{
-    numberOfIcons:{default:0}
-  }
+  computed:{
+    numberOfIcons(){
+      return this.$store.getters['svgIcons'].length
+    }
+  },
 }
 </script>
 

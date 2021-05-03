@@ -8,7 +8,7 @@
       <icon-body-selector />
     </div>
     <div class="search--collection">
-      <collection-accessor @openCollection="$emit('openCollection')" :number-of-icons="numberOfStoredIcons"/>
+      <collection-accessor @openCollection="$emit('openCollection')" />
     </div>
   </div>
 </div>
@@ -23,7 +23,6 @@ export default {
 name: "Header",
   components: {IconBodySelector, SearchFilter, CollectionAccessor, SearchInput},
   props:{
-    numberOfStoredIcons:{default:0},
     value:{type:String}
   },
   data(){
