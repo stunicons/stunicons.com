@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SearchFilter from "~/components/Search/SearchFilter";
+import SearchFilter from "~/components/Header/SearchFilter";
 
 
 

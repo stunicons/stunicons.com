@@ -22,12 +22,12 @@ export default {
   },
 
   methods:{
-    //emit event on Search
+    //emit event on Header
     search(){
       this.$emit('input',this.searchKey)
     },
 
-    //act on Search key change
+    //act on Header key change
     searchKeyChanged(){
       this.search()
 

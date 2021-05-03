@@ -20,7 +20,7 @@ import CollectionAccessor from "./Collection-accessor";
 import SearchFilter from "./SearchFilter";
 import IconBodySelector from "../IconBodySelector";
 export default {
-name: "Search",
+name: "Header",
   components: {IconBodySelector, SearchFilter, CollectionAccessor, SearchInput},
   props:{
     numberOfStoredIcons:{default:0},
