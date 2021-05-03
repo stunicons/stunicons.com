@@ -9,12 +9,12 @@
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="https://www.linkedin.com/in/stunnity-soft-7413bb19a" target="_blank">
           <i class="si-linkedin"></i>
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="https://twitter.com/stunnity" target="_blank">
           <i class="si-twitter"></i>
         </a>
       </li>
