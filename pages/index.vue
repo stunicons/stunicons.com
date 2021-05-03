@@ -11,8 +11,9 @@
           <WelcomingText />
 
           <!-- Header bar -->
-          <SearchInput @input="search" v-model="searchKey"/>
-
+          <article class="flex justify-center w-full">
+            <SearchInput @input="search" v-model="searchKey"/>
+          </article>
 
           <!--      icon body selector-->
 
@@ -20,7 +21,7 @@
 
       </section>
 
-      <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
+      <HeaderFilter @input="search" @openCollection="openCollection" />
 
 
       <!-- icon pack list-->
@@ -76,7 +77,7 @@
 <script>
 import Navbar from '~/components/Navbar.vue'
 import WelcomingText from "../components/WelcomingText";
-import Search from "../components/Header/Header";
+import HeaderFilter from "../components/Header/Header";
 import IconPackHeader from "../components/IconPack/IconPackHeader";
 import Icon from "../components/IconPack/Icon";
 import IconBodySelector from "../components/IconBodySelector";
@@ -93,7 +94,7 @@ export default {
   components:{
     SearchInput,
     IconCollection,
-    IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
+    IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, HeaderFilter, WelcomingText, Navbar},
   data(){
     return {
       icons: icons,

@@ -1,13 +1,13 @@
 <template>
-<div class="search">
-  <div class="search--wrapper">
-    <div class="search--filter">
+<div class="header">
+  <div class="header--wrapper">
+    <div class="header--filter">
       <search-filter />
     </div>
-    <div class="search--icon-body-selector">
+    <div class="header--icon-body-selector">
       <icon-body-selector />
     </div>
-    <div class="search--collection">
+    <div class="header--collection">
       <collection-accessor @openCollection="$emit('openCollection')" />
     </div>
   </div>
@@ -39,8 +39,8 @@ name: "Header",
 </script>
 
 <style lang="scss" scoped>
-.search{
-  @apply my-24;
+.header{
+  @apply my-16;
   &--wrapper{
     @apply flex items-center ;
 

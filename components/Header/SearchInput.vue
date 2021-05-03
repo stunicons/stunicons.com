@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-input {
-  @apply px-2 py-2 flex items-center rounded-md;
+  @apply px-2 py-2 my-16 flex items-center rounded-md;
   background-color: $bg ;
   max-width: 50rem;
   width:100%;
