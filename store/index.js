@@ -3,6 +3,7 @@ export const state = () => ({
 })
 
 export const mutations = {
+  //read storage and retrive all stored icons
   readStoredIcons(state) {
     if(process.browser)
          state.storedIcons = JSON.parse(localStorage.getItem('storedIcons')) || {}
@@ -12,7 +13,7 @@ export const mutations = {
 
 export const actions = {
   storeIcon({commit,state}, {icon, category}) {
-    let jsonStoredIcons = JSON.parse(JSON.stringify(state.storedIcons))
+    let jsonStoredIcons = JSON.parse(JSON.stringify(state.storedIcons)) //remove object reference, make new object
 
     //check if icon was not already added to the storage
     if(jsonStoredIcons[category])
@@ -27,31 +28,31 @@ export const actions = {
 
     jsonStoredIcons[category].push(icon) // add icon
 
-    jsonStoredIcons = Object.assign({},jsonStoredIcons)
-    localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
+    jsonStoredIcons = Object.assign({},jsonStoredIcons) //convert to object
+    localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons)) //restore icon
 
-    commit('readStoredIcons')
+    commit('readStoredIcons') //read storage again
   },
   deleteIcon({commit, state},{icon,category}) {
-    let jsonStoredIcons = JSON.parse(JSON.stringify(state.storedIcons))
+    let jsonStoredIcons = JSON.parse(JSON.stringify(state.storedIcons)) //remove object reference
 
-    let foundIcon = jsonStoredIcons[category].filter(storedIcon => storedIcon.id === icon.id)
+    let foundIcon = jsonStoredIcons[category].filter(storedIcon => storedIcon.id === icon.id) //find icon to be deleted
+
+    jsonStoredIcons = Object.assign({},jsonStoredIcons) //convert to Object
 
 
-    jsonStoredIcons = Object.assign({},jsonStoredIcons)
+    let iconIndex = jsonStoredIcons[category].indexOf(foundIcon[0]) // index of icon which is going to be deleted
+    if(iconIndex >= 0) jsonStoredIcons[category].splice(iconIndex,1) // if icon found deleted it
 
+    localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons)) //restore icons
 
-    let iconIndex = jsonStoredIcons[category].indexOf(foundIcon[0])
-    if(iconIndex >= 0) jsonStoredIcons[category].splice(iconIndex,1)
-
-    localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
-
-    commit('readStoredIcons')
+    commit('readStoredIcons') //read storage again
   }
 }
 
 
 export const getters = {
+  //get all svg icons as one array
   svgIcons(state) {
 
     if(state.storedIcons.length < 1)
