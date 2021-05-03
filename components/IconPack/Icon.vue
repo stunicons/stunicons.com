@@ -1,6 +1,6 @@
 <template>
 <div class="icon-card" @mouseenter="mouseOver = true" @mouseleave="mouseOver = false" :class="{hoverEffect:hoverEffect,stored:stored}" >
-  <div class="add-to-collection" @click="$emit('add')">
+  <div class="add-to-collection" @click="actOnIcon">
     <div class="add-icon icon" v-if="mouseOver && !stored">
       <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 3.75V14.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -39,6 +39,14 @@ export default {
   data(){
     return{
       mouseOver:false,
+    }
+  },
+  methods:{
+    actOnIcon(){
+      if(this.stored)
+        this.$emit('remove')
+      else
+        this.$emit('add')
     }
   }
 
