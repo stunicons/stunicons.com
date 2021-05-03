@@ -4,20 +4,23 @@
 
       <section class="welcome-part">
         <section class="welcome-part--wrapper maximum-width">
-                    <!-- navbar -->
+          <!-- navbar -->
           <Navbar />
 
           <!-- welcome world -->
           <WelcomingText />
 
           <!-- Search bar -->
-          <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
+          <SearchInput @input="search" v-model="searchKey"/>
 
 
           <!--      icon body selector-->
-          <icon-body-selector />
+
         </section>
+
       </section>
+
+      <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
 
 
       <!-- icon pack list-->
@@ -79,11 +82,13 @@ import {icons} from "~/services/icons.json"
 import IconEditor from "../components/IconEditor/IconEditor";
 import IconCollection from "../components/IconCollection/iconCollection";
 import iconCollectionMixin from "../mixins/iconCollection";
+import SearchInput from "../components/Search/SearchInput";
 
 export default {
   name:"Home",
   mixins:[iconCollectionMixin],
   components:{
+    SearchInput,
     IconCollection,
     IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
   data(){
@@ -237,7 +242,7 @@ export default {
     .welcome-part{
       @apply w-full flex justify-center;
       transition: all .1s ease;
-      background-image: linear-gradient(-45deg, $red , $clr-primary 25%);
+      background-image: linear-gradient(-45deg, $red , $clr-primary 95%);
     }
 
     .icon-pack{

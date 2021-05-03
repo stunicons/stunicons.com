@@ -37,9 +37,9 @@ name: "WelcomingText"
     }
   }
   &--p{
-    font-size:1.25rem;
+    font-size:1.15rem;
     font-weight:500 ;
-    color:$bg;
+    color:$bg-tertiary;
 
   }
 }

@@ -4,8 +4,8 @@
     <div class="search--filter">
       <search-filter />
     </div>
-    <div class="search--input">
-      <SearchInput @input="search" v-model="searchKey"/>
+    <div class="search--icon-body-selector">
+      <icon-body-selector />
     </div>
     <div class="search--collection">
       <collection-accessor @openCollection="$emit('openCollection')" :number-of-icons="numberOfStoredIcons"/>
@@ -18,9 +18,10 @@
 import SearchInput from "./SearchInput";
 import CollectionAccessor from "./Collection-accessor";
 import SearchFilter from "./SearchFilter";
+import IconBodySelector from "../IconBodySelector";
 export default {
 name: "Search",
-  components: {SearchFilter, CollectionAccessor, SearchInput},
+  components: {IconBodySelector, SearchFilter, CollectionAccessor, SearchInput},
   props:{
     numberOfStoredIcons:{default:0},
     value:{type:String}
@@ -42,12 +43,12 @@ name: "Search",
 .search{
   @apply my-24;
   &--wrapper{
-    @apply flex ;
+    @apply flex items-center ;
 
   }
 
-  &--input{
-    @apply mx-2;
+  &--icon-body-selector{
+    @apply mx-2 flex justify-center;
     flex:1;
   }
 }

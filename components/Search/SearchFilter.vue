@@ -64,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 
 @mixin filter-selector {
-    @apply px-2 py-5 rounded-md;
+    @apply px-2 py-4 rounded-md;
     background-color: $bg-tertiary ;
     width:15rem;
     cursor: pointer;

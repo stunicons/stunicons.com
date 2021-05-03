@@ -33,13 +33,13 @@ export default {
 
     li{
       @apply mx-4 py-2;
-      font-weight: 600;
+      font-weight: 500;
       color:$clr-lighten;
       cursor: pointer;
 
       &.active{
         color: $clr-primary;
-        border-bottom: 4px solid $clr-primary;
+        border-bottom: 2px solid $clr-primary;
       }
 
     }

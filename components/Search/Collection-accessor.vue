@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .collection-accessor{
-  @apply px-2 py-5 rounded-md;
+  @apply px-2 py-4 rounded-md;
   background-color: $bg-tertiary ;
   width:5.7rem;
   cursor: pointer;
