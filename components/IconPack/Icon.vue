@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .icon-card{
-  @apply flex justify-center items-center rounded-md m-3;
+  @apply flex justify-center items-center rounded-md;
   background-color: $bg-secondary;
   width: 7rem;
   height:6rem;

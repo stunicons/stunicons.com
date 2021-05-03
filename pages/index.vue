@@ -21,16 +21,19 @@
 
       </section>
 
-      <HeaderFilter @input="search" @openCollection="openCollection" />
-
+      <section class="header-filter flex justify-center ">
+        <section class="header-filter--wrapper maximum-width">
+          <HeaderFilter @input="search" @openCollection="openCollection" />
+        </section>
+      </section>
 
       <!-- icon pack list-->
-      <section class="icon-pack x-padding" v-for="iconGroup in icons" :key="iconGroup.categoryName">
-        <section class="center">
+      <section class="icon-pack flex justify-center" v-for="iconGroup in icons" :key="iconGroup.categoryName">
+        <section class="maximum-width flex flex-col">
           <div class="icon-pack--header">
             <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
           </div>
-          <div class="icon-pack--icons" >
+          <div class="icon-pack--icons " >
             <icon
               v-for="icon in iconGroup.icons"
               :stored="inStoredIcons(icon.id)"
@@ -261,8 +264,10 @@ export default {
       }
 
       &--icons{
-        @apply flex flex-row flex-wrap justify-start;
-
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 7rem);
+        grid-gap: 1rem;
+        justify-content: space-between;
       }
     }
   }
