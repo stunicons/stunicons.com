@@ -39,6 +39,7 @@
               :stored="inStoredIcons(icon.id)"
               :key="icon.id"
               @add="addToCollection(icon,iconGroup.categoryName)"
+              @remove="removeFromCollection(icon,iconGroup.categoryName)"
               @click="clickIcon(icon,iconGroup.categoryName)">
               <template #svg >
                 <i :class="`${icon.id}`"></i>
@@ -65,7 +66,7 @@
 <!--    icon collection-->
     <transition name="fade">
       <div class="icon-collection-holder" ref="icon-collection-holder" @click="iconCollectionHolderClicked"  v-if="collectionVisible">
-        <div class="icon-collection-holder--wrapper">
+        <div class="icon-collection-holder--wrapper w-full">
         <icon-collection />
         </div>
       </div>
@@ -185,26 +186,10 @@ export default {
         this.collectionVisible = false;
     },
     addToCollection(icon,category){
-      // const jsonStoredIcons = this.storedIcons
-      //
-      // //check if icon was not already added to the storage
-      // if(jsonStoredIcons[category])
-      //   for(const storedIcon of jsonStoredIcons[category])
-      //     if(storedIcon.id === icon.id )
-      //       return
-      //
-      // // if there is not group created in the storage
-      // // we will first create it with empty array to avoid bugs
-      // if(!jsonStoredIcons[category])
-      //   jsonStoredIcons[category] = []
-      //
-      // jsonStoredIcons[category].push(icon) // add icon
-      //
-      // localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
-      //
-      // this.numberOfStoredIcons = this.numberOfStoredIcons+1
       this.$store.dispatch('storeIcon',{icon,category})
-
+    },
+    removeFromCollection(icon,category){
+      this.$store.dispatch('deleteIcon',{icon,category})
     }
   },
   mounted(){

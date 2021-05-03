@@ -5,7 +5,7 @@
       <h4>Collection <span class="number">{{svgIcons.length}}</span></h4>
     </div>
     <div class="icons">
-      <icon :hoverEffect="false" v-for="icon in svgIcons" :key="icon.id">
+      <icon :hoverEffect="false" :stored="true" v-for="icon in svgIcons" :key="icon.id">
         <template #svg >
           <i :class="icon.id"></i>
         </template>
@@ -181,11 +181,13 @@ name: "iconCollection",
 
 <style lang="scss" scoped>
 .icon-collection{
+  @apply w-full;
   &--wrapper{
+
     @apply rounded-lg;
     background-color: $bg;
     padding:3rem;
-    width:fit-content;
+    width:100%;
     max-width: 50rem;
 
     .head{
@@ -204,7 +206,13 @@ name: "iconCollection",
     }
 
     .icons{
-      @apply flex my-3;
+      @apply my-3;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 7rem);
+      grid-gap:1rem .5rem;
+      justify-content: space-between;
+      max-height: 20rem;
+      overflow: auto;
     }
     .customize{
       @apply flex flex-col mt-5;
