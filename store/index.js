@@ -12,7 +12,7 @@ export const mutations = {
 
 export const actions = {
   storeIcon({commit,state}, {icon, category}) {
-    let jsonStoredIcons = state.storedIcons
+    let jsonStoredIcons = JSON.parse(JSON.stringify(state.storedIcons))
 
     //check if icon was not already added to the storage
     if(jsonStoredIcons[category])
@@ -44,7 +44,7 @@ export const getters = {
     const iconCategories = Object.keys(state.storedIcons)
 
     iconCategories.forEach(category => {
-        this.storedIcons[category].forEach(icon => {
+        state.storedIcons[category].forEach(icon => {
           try{
             svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`), ...icon})
           }catch (e) {
