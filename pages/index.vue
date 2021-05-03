@@ -1,23 +1,27 @@
 <template>
   <div class="page-container">
     <div class="page">
-     <!-- navbar -->
-      <Navbar />
 
-      <!-- welcome world -->
-      <WelcomingText />
+      <section class="welcome-part">
+        <section class="welcome-part--wrapper maximum-width">
+                    <!-- navbar -->
+          <Navbar />
 
-      <!-- Search bar -->
-      <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="numberOfStoredIcons"/>
+          <!-- welcome world -->
+          <WelcomingText />
+
+          <!-- Search bar -->
+          <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="svgIcons.length"/>
 
 
-      <!--      icon body selector-->
-      <icon-body-selector />
-
+          <!--      icon body selector-->
+          <icon-body-selector />
+        </section>
+      </section>
 
 
       <!-- icon pack list-->
-      <section class="icon-pack" v-for="iconGroup in icons" :key="iconGroup.categoryName">
+      <section class="icon-pack x-padding" v-for="iconGroup in icons" :key="iconGroup.categoryName">
         <div class="icon-pack--header">
           <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
         </div>
@@ -95,8 +99,11 @@ export default {
       numberOfStoredIcons: 0
     }
   },
-
-
+  computed:{
+    svgIcons(){
+      return this.$store.getters['svgIcons']
+    }
+  },
   methods:{
     clickIcon(icon, category){
       this.icon.src = `${category}/${icon.id}.svg`
@@ -166,30 +173,32 @@ export default {
         this.collectionVisible = false;
     },
     addToCollection(icon,category){
-      const jsonStoredIcons = this.storedIcons
-
-      //check if icon was not already added to the storage
-      if(jsonStoredIcons[category])
-        for(const storedIcon of jsonStoredIcons[category])
-          if(storedIcon.id === icon.id )
-            return
-
-      // if there is not group created in the storage
-      // we will first create it with empty array to avoid bugs
-      if(!jsonStoredIcons[category])
-        jsonStoredIcons[category] = []
-
-      jsonStoredIcons[category].push(icon) // add icon
-
-      localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
-
-      this.numberOfStoredIcons = this.numberOfStoredIcons+1
+      // const jsonStoredIcons = this.storedIcons
+      //
+      // //check if icon was not already added to the storage
+      // if(jsonStoredIcons[category])
+      //   for(const storedIcon of jsonStoredIcons[category])
+      //     if(storedIcon.id === icon.id )
+      //       return
+      //
+      // // if there is not group created in the storage
+      // // we will first create it with empty array to avoid bugs
+      // if(!jsonStoredIcons[category])
+      //   jsonStoredIcons[category] = []
+      //
+      // jsonStoredIcons[category].push(icon) // add icon
+      //
+      // localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
+      //
+      // this.numberOfStoredIcons = this.numberOfStoredIcons+1
+      this.$store.dispatch('storeIcon',{icon,category})
 
     }
   },
   mounted(){
     this.numberOfStoredIcons = this.svgIcons.length
-
+    this.$store.commit('readStoredIcons')
+    console.log(this.$store.getters['storedIcons'])
     this.$bus.$on('filterSelected',(category) => {
       if(category.toLowerCase() === 'all')
         this.icons = icons;
@@ -225,6 +234,11 @@ export default {
   }
 
   .page{
+    .welcome-part{
+      @apply w-full flex justify-center;
+      transition: all .1s ease;
+      background-image: linear-gradient(-45deg, $red , $clr-primary 25%);
+    }
 
     .icon-pack{
       @apply mb-24 ;
