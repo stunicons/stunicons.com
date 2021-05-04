@@ -60,16 +60,16 @@ export default {
       }
       &::-webkit-scrollbar-track{
         @apply rounded-md;
-        background-color: darken($bg-tertiary,5);
+        background-color: $bg-tertiary;
       }
 
       &::-webkit-scrollbar-thumb{
         border-radius: 2.5px;
         cursor: pointer;
-        background-color: darken($bg-tertiary,30);
+        background-color: $bg-secondary;
 
         &:hover{
-          background-color: darken($bg-tertiary,40);
+          background-color: $bg;
         }
 
       }

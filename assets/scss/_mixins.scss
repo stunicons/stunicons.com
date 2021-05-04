@@ -2,3 +2,23 @@
   height:fit-content;
   width: fit-content;
 }
+
+@mixin vertical-scrollbar{
+    &::-webkit-scrollbar{
+      @apply rounded-md;
+      width:.4rem;
+    }
+    &::-webkit-scrollbar-track{
+      background-color: $bg-tertiary;
+    }
+
+    &::-webkit-scrollbar-thumb{
+      border-radius: 2.5px;
+      background-color: $bg-secondary;
+
+      &:hover{
+        background-color: $bg;
+      }
+
+    }
+}

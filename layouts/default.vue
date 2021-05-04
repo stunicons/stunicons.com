@@ -8,6 +8,7 @@
 
 .page-container   {
   @apply w-full ;
+  background-color: $bg;
 
   .maximum-width{
     @apply px-5;

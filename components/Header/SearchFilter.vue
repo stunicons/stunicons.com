@@ -83,9 +83,11 @@ export default {
         }
         &.icon{
           transition: transform .4s ease-in;
+          transform: rotate(180deg);
+
         }
         &.selecting{
-          transform: rotate(180deg);
+          transform: rotate(0deg);
         }
       }
     }
@@ -101,31 +103,15 @@ export default {
         max-height: 20rem;
         overflow-y: auto;
 
-        &::-webkit-scrollbar{
-          @apply rounded-md;
-          width:.4rem;
-        }
-        &::-webkit-scrollbar-track{
-          background-color: darken($bg-tertiary,5);
-        }
-
-        &::-webkit-scrollbar-thumb{
-          border-radius: 2.5px;
-          background-color: darken($bg-tertiary,30);
-
-          &:hover{
-            background-color: darken($bg-tertiary,40);
-          }
-
-        }
+        @include vertical-scrollbar;
 
         li{
           @apply py-2 px-3 rounded-sm;
           text-transform: capitalize;
 
           &:hover{
-            background-color:  darken($bg-tertiary,5);
-            border-right:3px solid darken($bg-tertiary,10);
+            background-color:  $bg-tertiary;
+            border-right:3px solid $bg-secondary;
           }
         }
       }
