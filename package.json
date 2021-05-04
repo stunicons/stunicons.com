@@ -23,7 +23,7 @@
     "js-beautify": "^1.13.13",
     "jszip": "^3.6.0",
     "nuxt": "^2.15.3",
-    "stunicons": "^1.0.13"
+    "stunicons": "^1.0.14"
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^2.0.5",
