@@ -1,6 +1,6 @@
 <template>
-<footer class="footer">
-  <div class="footer--wrapper">
+<footer class="footer w-full grid place-items-center">
+  <div class="footer--wrapper maximum-width">
     <p class="text">StunIcons pack made with <span class="love">♥️</span> by <strong>Stunnity</strong></p>
     <ul class="social-links">
       <li>
