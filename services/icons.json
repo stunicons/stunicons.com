@@ -52,7 +52,7 @@
         {"id": "si-star", "name": "star", "tags": ["star"]},
         {"id": "si-upload", "name": "upload", "tags": ["upload","send","transfer","transmit"]},
         {"id": "si-mic", "name": "mic", "tags": ["mic","megaphone","recorder","transmitter","amplifier"]},
-        {"id": "si-moon", "name": "moon", "tags": ["moon","galaxy"]},
+        {"id": "si-moon", "name": "moon", "tags": ["moon","galaxy"]}
       ]
     }
   ]
