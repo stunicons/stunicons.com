@@ -182,7 +182,6 @@ export default {
     },
 
     close() {
-      // this.$destroy();
       this.$parent.collectionVisible = false
     }
 

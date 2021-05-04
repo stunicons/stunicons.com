@@ -63,7 +63,6 @@ export const getters = {
     iconCategories.forEach(category => {
         state.storedIcons[category].forEach(icon => {
           try{
-            console.log('we are in mein')
             svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`),category, ...icon})
           }catch (e) {
             console.log(e)

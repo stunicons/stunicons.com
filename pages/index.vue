@@ -12,7 +12,7 @@
 
           <!-- Header bar -->
           <article class="flex justify-center w-full">
-            <SearchInput @input="search" v-model="searchKey"/>
+            <SearchInput @input="search" />
           </article>
 
           <!--      icon body selector-->
@@ -66,7 +66,7 @@
 <!--    icon collection-->
     <transition name="fade">
       <div class="icon-collection-holder" ref="icon-collection-holder" @click="iconCollectionHolderClicked"  v-if="collectionVisible">
-        <div class="icon-collection-holder--wrapper w-full">
+        <div class="icon-collection-holder--wrapper">
         <icon-collection />
         </div>
       </div>
@@ -110,11 +110,6 @@ export default {
         src:""
       },
       numberOfStoredIcons: 0
-    }
-  },
-  computed:{
-    svgIcons(){
-      return this.$store.getters['svgIcons']
     }
   },
   methods:{
@@ -187,9 +182,6 @@ export default {
     },
     addToCollection(icon,category){
       this.$store.dispatch('storeIcon',{icon,category})
-    },
-    removeFromCollection(icon,category){
-      this.$store.dispatch('deleteIcon',{icon,category})
     }
   },
   mounted(){
