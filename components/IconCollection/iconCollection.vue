@@ -201,7 +201,7 @@ export default {
     @apply rounded-lg;
     background-color: $bg;
     padding: 3rem;
-    width: 100%;
+    width: 100vw;
     max-width: 50rem;
 
     .head {
