@@ -10,7 +10,7 @@
       </div>
       <div class="navbar--action-btn">
         <div class="action-btn--request-icon">
-          <button>Request Icon</button>
+          <a href="https://github.com/Stunnity/stunicons/blob/main/RequestingIcon.md" target="_blank">Request Icon</a>
         </div>
         <div class="action-btn--go-to-github">
           <a target="_blank" href="https://github.com/Stunnity/stunicons">
@@ -84,7 +84,7 @@ export default {
       .action-btn{
         &--request-icon{
           @apply mx-5;
-          button{
+          a{
             @apply py-3 px-8 rounded-md;
             color:$clr-primary;
             background-color: $bg;

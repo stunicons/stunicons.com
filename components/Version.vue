@@ -1,6 +1,6 @@
 <template>
   <div class="version">
-    <h6>v {{ version }}</h6>
+    <a href="https://github.com/Stunnity/stunicons/releases" target="_blank">v {{ version }}</a>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   color:$clr-primary;
   height: fit-content;
 
-  h6{
+  a{
     font-size: 0.875rem;
     font-weight: 600;
   }
