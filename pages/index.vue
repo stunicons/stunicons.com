@@ -1,39 +1,55 @@
 <template>
   <div class="page-container">
     <div class="page">
-     <!-- navbar -->
-      <Navbar />
 
-      <!-- welcome world -->
-      <WelcomingText />
+      <section class="welcome-part">
+        <section class="welcome-part--wrapper maximum-width">
+          <!-- navbar -->
+          <Navbar />
 
-      <!-- Search bar -->
-      <Search @input="search" @openCollection="openCollection" :number-of-stored-icons="numberOfStoredIcons"/>
+          <!-- welcome world -->
+          <WelcomingText />
 
+          <!-- Header bar -->
+          <article class="flex justify-center w-full">
+            <SearchInput @input="search" />
+          </article>
 
-      <!--      icon body selector-->
-      <icon-body-selector />
+          <!--      icon body selector-->
 
+        </section>
 
+      </section>
+
+      <section class="header-filter flex justify-center ">
+        <section class="header-filter--wrapper maximum-width">
+          <HeaderFilter @input="search" @openCollection="openCollection" />
+        </section>
+      </section>
 
       <!-- icon pack list-->
-      <section class="icon-pack" v-for="iconGroup in icons" :key="iconGroup.categoryName">
-        <div class="icon-pack--header">
-          <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
-        </div>
-        <div class="icon-pack--icons" >
-          <icon
-            v-for="icon in iconGroup.icons"
-            :stored="inStoredIcons(icon.id)"
-            :key="icon.id"
-            @add="addToCollection(icon,iconGroup.categoryName)"
-            @click="clickIcon(icon,iconGroup.categoryName)">
-            <template #svg >
-              <i :class="`${icon.id}`"></i>
-            </template>
-            <template #name> {{icon.name}} </template>
-          </icon>
-        </div>
+      <section class="icon-pack flex justify-center" v-for="iconGroup in icons" :key="iconGroup.categoryName">
+        <section class="maximum-width flex flex-col">
+          <div class="icon-pack--header">
+            <icon-pack-header :heading="iconGroup.categoryName" :number="iconGroup.icons.length"/>
+          </div>
+          <div class="icon-pack--icons " >
+            <icon
+              v-for="icon in iconGroup.icons"
+              :stored="inStoredIcons(icon.id)"
+              :key="icon.id"
+              @add="addToCollection(icon,iconGroup.categoryName)"
+              @remove="removeFromCollection(icon,iconGroup.categoryName)"
+              @click="clickIcon(icon,iconGroup.categoryName)">
+              <template #svg >
+                <i :class="`${icon.id}`"></i>
+              </template>
+              <template #name> {{icon.name}} </template>
+            </icon>
+          </div>
+              <!-- footer -->
+          <app-footer/>
+        </section>
       </section>
 
     </div>
@@ -57,8 +73,7 @@
     </transition>
 
 
-    <!-- footer -->
-    <app-footer/>
+
 
   </div>
 </template>
@@ -66,7 +81,7 @@
 <script>
 import Navbar from '~/components/Navbar.vue'
 import WelcomingText from "../components/WelcomingText";
-import Search from "../components/Search/Search";
+import HeaderFilter from "../components/Header/Header";
 import IconPackHeader from "../components/IconPack/IconPackHeader";
 import Icon from "../components/IconPack/Icon";
 import IconBodySelector from "../components/IconBodySelector";
@@ -75,13 +90,15 @@ import {icons} from "~/services/icons.json"
 import IconEditor from "../components/IconEditor/IconEditor";
 import IconCollection from "../components/IconCollection/iconCollection";
 import iconCollectionMixin from "../mixins/iconCollection";
+import SearchInput from "../components/Header/SearchInput";
 
 export default {
   name:"Home",
   mixins:[iconCollectionMixin],
   components:{
+    SearchInput,
     IconCollection,
-    IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, Search, WelcomingText, Navbar},
+    IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, HeaderFilter, WelcomingText, Navbar},
   data(){
     return {
       icons: icons,
@@ -95,8 +112,6 @@ export default {
       numberOfStoredIcons: 0
     }
   },
-
-
   methods:{
     clickIcon(icon, category){
       this.icon.src = `${category}/${icon.id}.svg`
@@ -166,30 +181,13 @@ export default {
         this.collectionVisible = false;
     },
     addToCollection(icon,category){
-      const jsonStoredIcons = this.storedIcons
-
-      //check if icon was not already added to the storage
-      if(jsonStoredIcons[category])
-        for(const storedIcon of jsonStoredIcons[category])
-          if(storedIcon.id === icon.id )
-            return
-
-      // if there is not group created in the storage
-      // we will first create it with empty array to avoid bugs
-      if(!jsonStoredIcons[category])
-        jsonStoredIcons[category] = []
-
-      jsonStoredIcons[category].push(icon) // add icon
-
-      localStorage.setItem('storedIcons',JSON.stringify(jsonStoredIcons))
-
-      this.numberOfStoredIcons = this.numberOfStoredIcons+1
-
+      this.$store.dispatch('storeIcon',{icon,category})
     }
   },
   mounted(){
     this.numberOfStoredIcons = this.svgIcons.length
-
+    this.$store.commit('readStoredIcons')
+    console.log(this.$store.getters['storedIcons'])
     this.$bus.$on('filterSelected',(category) => {
       if(category.toLowerCase() === 'all')
         this.icons = icons;
@@ -225,21 +223,23 @@ export default {
   }
 
   .page{
+    .welcome-part{
+      @apply w-full flex justify-center;
+      transition: all .1s ease;
+      background-image: linear-gradient(-45deg, $red , $clr-primary 95%);
+    }
 
     .icon-pack{
-      @apply mb-24 ;
-
-      &:nth-last-child{
-        @apply mb-4;
-      }
 
       &--header{
         @apply mb-8 ;
       }
 
       &--icons{
-        @apply flex flex-row flex-wrap justify-start;
-
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 7rem);
+        grid-gap: 1rem;
+        justify-content: space-between;
       }
     }
   }

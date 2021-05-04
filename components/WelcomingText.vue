@@ -31,11 +31,15 @@ name: "WelcomingText"
     font-size: 3rem;
     font-weight: 600;
     @apply mb-5;
+
+    h2{
+      color:$bg;
+    }
   }
   &--p{
-    font-size:1.25rem;
+    font-size:1.15rem;
     font-weight:500 ;
-    color:$clr-lighten;
+    color:$bg-tertiary;
 
   }
 }

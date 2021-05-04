@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SearchInput from "~/components/Search/SearchInput";
+import SearchInput from "~/components/Header/SearchInput";
 
 
 
@@ -14,7 +14,7 @@ describe('Mounted SearchFilter', () => {
   })
 
   //first input on  element
-  input.element.value = 'Search mwana'
+  input.element.value = 'Header mwana'
 
 
   wrapper.vm.$nextTick( () => {
