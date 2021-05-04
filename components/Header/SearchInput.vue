@@ -65,9 +65,9 @@ export default {
   }
 
   .icon{
-    @apply px-2;
+    @apply px-2 grid place-items-center;
       i{
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 500;
       }
     &.searching{
