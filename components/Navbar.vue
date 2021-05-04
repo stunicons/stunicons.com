@@ -43,14 +43,14 @@ export default {
   },
   methods:{
     changeColorMode(e){
-      console.log(this.$colorMode)
+      console.log('before',this.$colorMode.preference, this.$colorMode.preference === "dark", this.$colorMode.preference === "light")
       if(this.$colorMode.preference === "dark"){
         this.$colorMode.preference = "light"
-
+        return
       }
-      if(this.$colorMode.preference === ""){
-        this.$colorMode.preference = "dark"
 
+      if(this.$colorMode.preference === "light"){
+        this.$colorMode.preference = "dark"
       }
 
     }

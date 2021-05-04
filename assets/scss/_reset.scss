@@ -18,5 +18,12 @@ html{
 *::after {
   box-sizing: border-box;
   margin: 0;
+  outline: none;
+}
+
+button,
+input,
+textarea{
+ outline: none;
 }
 
