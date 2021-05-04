@@ -12,7 +12,7 @@
 
           <!-- Header bar -->
           <article class="flex justify-center w-full">
-            <SearchInput @input="search" />
+            <SearchInput @input="search" v-model="searchKey" />
           </article>
 
           <!--      icon body selector-->
@@ -23,7 +23,7 @@
 
       <section class="header-filter flex justify-center ">
         <section class="header-filter--wrapper maximum-width">
-          <HeaderFilter @input="search" @openCollection="openCollection" />
+          <HeaderFilter @openCollection="openCollection" />
         </section>
       </section>
 
@@ -47,10 +47,17 @@
               <template #name> {{icon.name}} </template>
             </icon>
           </div>
-              <!-- footer -->
-          <app-footer/>
+
         </section>
       </section>
+      <!--          no icons-->
+      <section class="no-result grid place-items-center" v-if="icons.length < 1">
+        <p class="py-4 pb-32 text-center px-10">No result found for `{{searchKey}}`</p>
+      </section>
+
+
+        <!-- footer -->
+        <app-footer/>
 
     </div>
 
@@ -101,6 +108,7 @@ export default {
     IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, HeaderFilter, WelcomingText, Navbar},
   data(){
     return {
+      searchKey:"",
       icons: icons,
       editorVisible:false,
       collectionVisible:false,
@@ -243,6 +251,8 @@ export default {
       }
     }
   }
+
+
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
