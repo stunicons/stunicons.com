@@ -1,3 +1,5 @@
+
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -5,7 +7,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Burgeoning pack with 30+ highly customizable icons for your outstanding UI. Easily tweak your icon in a few seconds.' },
+      { hid: 'description', name: 'keywords', content: 'stunnity, stun, stunicon, light, icons, simple'},
+      { hid: 'og:image', property: 'og:image', content: '/post.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

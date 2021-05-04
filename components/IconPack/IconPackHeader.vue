@@ -28,7 +28,7 @@ export default {
     }
     span{
       @apply px-4 py-1 ml-4 rounded-full;
-      color:$bg;
+      color:$bg !important;
       font-size: .9rem;
       background-color: $clr-primary;
     }

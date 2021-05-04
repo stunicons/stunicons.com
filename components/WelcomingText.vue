@@ -6,7 +6,7 @@
   </div>
   <div class="welcoming-text--p">
     <p>
-      Growing icon pack with 1,000+ editable icons in 3 styles for outstanding UI. Easily change the size or color of any icon in a few seconds.
+     Burgeoning pack with 30+ highly customizable icons for your outstanding UI. Easily tweak your icon in a few seconds.
     </p>
   </div>
   </div>
