@@ -10,22 +10,12 @@ const mixin = {
     },
     //return icons which are stored
     svgIcons(){
-      const svgIcons = []
-      const iconCategories = Object.keys(this.storedIcons)
-
-
-      iconCategories.forEach(category => {
-          this.storedIcons[category].forEach(icon => {
-            try{
-              svgIcons.push({svg: require(`stunicons/icons/${category}/${icon.id}.svg`), ...icon})
-            }catch (e) {
-              console.log(e)
-            }
-          })
-
-        })
-
-      return svgIcons;
+      return this.$store.getters['svgIcons']
+    }
+  },
+  methods:{
+    removeFromCollection(icon,category){
+      this.$store.dispatch('deleteIcon',{icon,category})
     }
   }
 }
