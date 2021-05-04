@@ -15,6 +15,7 @@ const mixin = {
   },
   methods:{
     removeFromCollection(icon,category){
+      console.log(icon,category)
       this.$store.dispatch('deleteIcon',{icon,category})
     }
   }
