@@ -272,7 +272,7 @@ export default {
     position: fixed;
     top:90vh;
     z-index: 100;
-    left:50%;
+    left:47%;
     background-color: $clr-primary;
 
 

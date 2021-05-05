@@ -223,8 +223,8 @@ export default {
       document.body.removeChild(downloadLink);
     },
   },
-  mounted(){
-    svgIcon = require(`stunicons/icons/${this.icon.src}`)
+  async mounted(){
+    svgIcon = await require(`stunicons/icons/${this.icon.src}`)
     this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
 
 
