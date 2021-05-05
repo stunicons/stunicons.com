@@ -80,7 +80,7 @@
     </transition>
 
 <!--    icon collection-->
-    <transition name="fade">
+    <transition name="fade-icon">
       <div class="copied" v-if="isCopyMessageVisible">
         <span class="copied--wrapper">Copied!</span>
       </div>
@@ -300,4 +300,16 @@ export default {
     transform: translateY(70px);
   }
 }
+
+.fade-icon-enter-active, .fade-icon-leave-active {
+  //transition: opacity .5s;
+  transition: .5s;
+  transition-property: opacity,transform;
+}
+.fade-icon-enter, .fade-icon-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(70px);
+
+}
+
 </style>
