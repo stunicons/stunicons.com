@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .icon-card{
-  @apply flex justify-center items-center rounded-md;
+  @apply rounded-md;
   background-color: $bg-secondary;
   width: 7rem;
   height:6rem;
@@ -69,7 +69,7 @@ export default {
     }
     .icon{
         font-size: 1.5rem;
-        cursor: pointer;
+        //cursor: pointer;
       }
   }
 
@@ -98,9 +98,9 @@ export default {
   }
 
   .icon-card--wrapper{
-    @apply flex items-center flex-col;
-    height: fit-content;
-    width: fit-content;
+    @apply flex items-center justify-center flex-col;
+    height: 100%;
+    width: 100%;
 
 
     .icon, .name{
