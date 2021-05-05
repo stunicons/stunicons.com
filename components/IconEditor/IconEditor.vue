@@ -132,16 +132,36 @@ export default {
       if(svg){
 
         let paths = svg.getElementsByTagName('path')
+        let polygon = svg.getElementsByTagName('polygon')
+        let rect = svg.getElementsByTagName('rect')
 
         svg.setAttribute('width',this.fontSize)
         svg.setAttribute('height',this.fontSize)
         svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
         svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
 
-        //transform all path els
-        paths.forEach(pathEl => {
-          pathEl.setAttribute('fill',this.color)
-        })
+
+        if(paths.length > 0 ){
+          //transform all path els
+          paths.forEach(pathEl => {
+            pathEl.setAttribute('fill',this.color)
+          })
+        }
+
+        if(polygon.length > 0){
+          //transform all path els
+          polygon.forEach(el => {
+            el.setAttribute('fill',this.color)
+          })
+        }
+
+        if(rect.length > 0){
+          //transform all path els
+          rect.forEach(el => {
+            el.setAttribute('fill',this.color)
+          })
+        }
+
 
         svg = svg.outerHTML // to html element codes
         return svg.toString()
