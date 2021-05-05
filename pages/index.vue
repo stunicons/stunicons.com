@@ -79,7 +79,12 @@
       </div>
     </transition>
 
-
+<!--    icon collection-->
+    <transition name="fade">
+      <div class="copied" v-if="isCopyMessageVisible">
+        <span class="copied--wrapper">Copied!</span>
+      </div>
+    </transition>
 
 
   </div>
@@ -108,6 +113,7 @@ export default {
     IconEditor, appFooter, IconBodySelector, Icon, IconPackHeader, HeaderFilter, WelcomingText, Navbar},
   data(){
     return {
+      isCopyMessageVisible: false,
       searchKey:"",
       icons: icons,
       editorVisible:false,
@@ -193,6 +199,8 @@ export default {
     }
   },
   mounted(){
+    let timeout;
+    const self = this;
     this.numberOfStoredIcons = this.svgIcons.length
     this.$store.commit('readStoredIcons')
     console.log(this.$store.getters['storedIcons'])
@@ -201,6 +209,13 @@ export default {
         this.icons = icons;
       else
         this.icons = icons.filter(iconGroup => iconGroup.categoryName === category)
+    })
+
+    this.$bus.$on('iconCopy',()=>{
+      self.isCopyMessageVisible = true;
+      timeout = setTimeout(()=>{
+        self.isCopyMessageVisible = false;
+      },2000)
     })
 
   }
@@ -252,7 +267,22 @@ export default {
     }
   }
 
+  .copied{
+    @apply rounded;
+    position: fixed;
+    top:90vh;
+    z-index: 100;
+    left:50%;
+    background-color: $clr-primary;
 
+
+    span{
+      @apply py-2 px-10 block;
+      color:$bg;
+      font-size: .9rem;
+
+    }
+  }
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

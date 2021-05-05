@@ -233,7 +233,6 @@ export default {
 
     clipboard.on('success',function(e){
       self.$bus.$emit('iconCopy')
-      self.$emit('classCopy',e)
     })
   }
 }
