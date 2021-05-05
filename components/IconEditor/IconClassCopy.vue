@@ -31,6 +31,7 @@ export default {
     const self = this
 
     clipboard.on('success',function(e){
+      self.$bus.$emit('iconCopy')
       self.$emit('classCopy',e)
     })
 

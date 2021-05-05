@@ -20,14 +20,23 @@
 
 
 
-//main web colors
-$clr: var(--clr);
-$clr-lighten: var(--clr-lighten);
-$clr-primary: var(--clr-primary);
-$clr-primary-lighten: var(--clr-primary-lighten);
-$bg: var(--bg);
-$bg-secondary: var(--bg-secondary);
-$bg-tertiary: var(--bg-tertiary);
+//main web colors THIS OF FORM DARK MODES CUSTOMIZATION
+//$clr: var(--clr);
+//$clr-lighten: var(--clr-lighten);
+//$clr-primary: var(--clr-primary);
+//$clr-primary-lighten: var(--clr-primary-lighten);
+//$bg: var(--bg);
+//$bg-secondary: var(--bg-secondary);
+//$bg-tertiary: var(--bg-tertiary);
+
+
+$clr: #030c0e;
+$clr-lighten: #666666;
+$clr-primary: #FE4E00;
+$clr-primary-lighten: #FFD6C3;
+$bg: #FFFFFF;
+$bg-secondary:#F8F8F8;
+$bg-tertiary: #EFEFEF;
 
 
 
