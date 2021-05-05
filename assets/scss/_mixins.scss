@@ -9,15 +9,15 @@
       width:.4rem;
     }
     &::-webkit-scrollbar-track{
-      background-color: $bg-tertiary;
+      background-color: darken($bg-tertiary,5);
     }
 
     &::-webkit-scrollbar-thumb{
       border-radius: 2.5px;
-      background-color: $bg-secondary;
+      background-color: darken($bg-tertiary,40);
 
       &:hover{
-        background-color: $bg;
+        background-color: darken($bg-tertiary,40);
       }
 
     }
