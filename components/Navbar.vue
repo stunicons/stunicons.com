@@ -79,7 +79,7 @@ export default {
     }
 
     &--action-btn{
-      @apply flex;
+      @apply flex items-center;
 
       .action-btn{
         &--request-icon{
@@ -103,7 +103,7 @@ export default {
               font-weight: 600;
 
               i{
-                font-size: 1.2rem;
+                font-size: 1.4rem;
                 font-weight: 600;
               }
             }
