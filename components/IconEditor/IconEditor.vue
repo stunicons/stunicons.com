@@ -82,12 +82,14 @@
           </ul>
         </div>
         <div class="code--copy">
-          <copy>
-            <template #icon>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z"/></svg>
-            </template>
-            <template #title>Copy</template>
-          </copy>
+          <div class="code--copy--wrapper" :data-clipboard-text="readyCode">
+            <copy >
+              <template #icon>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z"/></svg>
+              </template>
+              <template #title>Copy</template>
+            </copy>
+          </div>
         </div>
       </div>
     </div>
@@ -104,9 +106,9 @@ import dataUriToSvg from "../../utils/svgToElement";
 import ColorPicker from "../SVG/reusable/ColorPicker";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
 import svgToEl from "../../mixins/svgToEl";
+import ClipboardJS from "clipboard";
 
-let svgIcon;
-
+let svgIcon, clipboard;
 
 export default {
   name: "IconEditor",
@@ -174,6 +176,13 @@ export default {
       const uri = encodeURIComponent(svg)
 
       return {svg:svg,css:`background-image: url("${uri}");`}
+    },
+
+    readyCode(){
+      if(this.activeTab === 'svg')
+        return this.codes.svg
+      if(this.activeTab === 'dataUrl')
+        return this.codes.css
     }
 
   },
@@ -217,6 +226,15 @@ export default {
   mounted(){
     svgIcon = require(`stunicons/icons/${this.icon.src}`)
     this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
+
+
+    clipboard = new ClipboardJS('.code--copy--wrapper')
+    const self = this
+
+    clipboard.on('success',function(e){
+      self.$bus.$emit('iconCopy')
+      self.$emit('classCopy',e)
+    })
   }
 }
 </script>
@@ -333,22 +351,14 @@ export default {
           }
         }
 
+        &--copy{
+          &--wrapper{
+            @include fit-content;
+          }
+        }
+
       }
     }
   }
 }
 </style>
-
-
-
-<!--MO = 4*pi*10^(-7);-->
-<!--I = 5;-->
-<!--N=500;-->
-<!--R=0.5;-->
-<!--X=-4:0.05:4;-->
-<!--BX = MO*I*N*R^2./( 2*(X.^2+R^2).^(3/2));-->
-<!--plot(X,BX)-->
-<!--xlabel("x(m)");-->
-<!--ylabel("B(T)");-->
-<!-- grid;-->
-<!-- title("B as a function of distance");-->
