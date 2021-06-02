@@ -4,7 +4,7 @@
     <div class="rows row--1">
       <div class="icon">
       <div class="icon--title">
-        <h5>Arrow left</h5>
+        <h5>{{icon.name}}</h5>
       </div>
       <div class="icon--svg" v-if="formattedSvg">
         <div class="svg" v-html="formattedSvg">
@@ -261,6 +261,7 @@ export default {
           h5{
             font-weight: 600;
             font-size: 1.2rem;
+            text-transform: capitalize;
           }
         }
 
