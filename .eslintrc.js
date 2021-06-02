@@ -11,8 +11,9 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {},
-  "parser": "babel-eslint",
   "parserOptions": {
+    "parser": "babel-eslint",
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "allowImportExportEverywhere": true
   }
