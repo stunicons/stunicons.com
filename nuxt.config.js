@@ -40,7 +40,8 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
     // '@nuxtjs/color-mode',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -63,5 +64,8 @@ export default {
 
   styleResources: {
     scss: '@/assets/scss/main.scss'
-  }
+  },
+  googleAnalytics: {
+    id: 'G-DDQCJ9TH38'
+  } 
 }
