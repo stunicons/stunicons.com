@@ -213,7 +213,7 @@ export default {
     const self = this;
     this.numberOfStoredIcons = this.svgIcons.length
     this.$store.commit('readStoredIcons')
-    console.log(this.$store.getters['storedIcons'])
+
     this.$bus.$on('filterSelected',(category) => {
       if(category.toLowerCase() === 'all')
         this.icons = icons;
