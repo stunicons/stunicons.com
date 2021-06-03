@@ -125,67 +125,76 @@ export default {
   methods: {
     // download svgs as zip file
     saveSvg() {
-      const svgZip = new JSZip();
-      const iconsFolder = svgZip.folder('icons')
+      try{
+        const svgZip = new JSZip();
+        const iconsFolder = svgZip.folder('icons')
 
-      // loop into icons and add them to folder
-      this.editedIcons.map(icon => {
-        const name = icon.name + ".svg"
-        const svgData = icon.svg;
+        // loop into icons and add them to folder
+        this.editedIcons.map(icon => {
+          const name = icon.name + ".svg"
+          const svgData = icon.svg;
 
-        const preface = '<?xml version="1.0" standalone="no"?>\r\n';
-        const svgBlob = new Blob([preface, svgData], {type: "image/svg+xml;charset=utf-8"});
-        iconsFolder.file(name, svgBlob) // add icon to folder
-      })
+          const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+          const svgBlob = new Blob([preface, svgData], {type: "image/svg+xml;charset=utf-8"});
+          iconsFolder.file(name, svgBlob) // add icon to folder
+        })
 
-      this.download(svgZip, `stunicons-svg-${this.fontSize}.zip`) // download icons
+        this.download(svgZip, `stunicons-svg-${this.fontSize}.zip`) // download icons
 
-      //analytics
-      this.$gtag.event('iconDownload', {
-        'event_category': 'download',
-        'event_label': 'svgCollection',
-        'value': {number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)}
-      })
+        //analytics
+        this.$gtag.event('iconDownload', {
+          'event_category': 'download',
+          'event_label': 'svgCollection',
+          'value': {number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)}
+        })
+
+      }catch(e){
+        this.$sentry.captureException(e)
+      }
     },
     //download pngs files
     savePng() {
-      const pngZip = new JSZip();
-      const iconsFolder = pngZip.folder('icons')
+      try{
+        const pngZip = new JSZip();
+        const iconsFolder = pngZip.folder('icons')
 
-      this.editedIcons.map((icon, i) => {
+        this.editedIcons.map((icon, i) => {
 
-        const name = icon.name + '.png'
+          const name = icon.name + '.png'
 
-        const image = new Image();
-        image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(icon.svg)));
+          const image = new Image();
+          image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(icon.svg)));
 
-        // when image src load convert image to canvas
-        image.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = image.width;
-          canvas.height = image.height;
-          const context = canvas.getContext('2d');
-          context.drawImage(image, 0, 0);
+          // when image src load convert image to canvas
+          image.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            const context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
 
-          //convert image to blob so that it can be saved as file
-          canvas.toBlob(blob => {
-            iconsFolder.file(name, blob) // save file to folder
+            //convert image to blob so that it can be saved as file
+            canvas.toBlob(blob => {
+              iconsFolder.file(name, blob) // save file to folder
 
-            if ((i + 1) === this.editedIcons.length) // if thi is the last element in array of icons download zip
-              this.download(pngZip, `stunicons-png-${this.fontSize}.zip`)
-          })
-        }
-      })
+              if ((i + 1) === this.editedIcons.length) // if thi is the last element in array of icons download zip
+                this.download(pngZip, `stunicons-png-${this.fontSize}.zip`)
+            })
+          }
+        })
 
 
-      //analytics
-      this.$gtag.event('iconDownload', {
-        'event_category': 'download',
-        'event_label': 'pngCollection',
-        'value':{number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)} 
+        //analytics
+        this.$gtag.event('iconDownload', {
+          'event_category': 'download',
+          'event_label': 'pngCollection',
+          'value':{number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)} 
         
-      })
+        })
       
+      } catch(e){
+        this.$sentry.captureException(e)
+      }
     },
     //download zip file
     download(zip, name) {
