@@ -78,6 +78,7 @@ import ColorPicker from "../SVG/reusable/ColorPicker";
 import Copy from "../Reusable/Copy";
 import iconCollectionMixin from "../../mixins/iconCollection";
 import svgToEl from "../../mixins/svgToEl";
+import getSvgIds from "../../utils/getSvgIds";
 import dataUriToSvg from "../../utils/svgToElement";
 import JSZip from 'jszip'
 import {saveAs} from 'file-saver'
@@ -138,6 +139,13 @@ export default {
       })
 
       this.download(svgZip, `stunicons-svg-${this.fontSize}.zip`) // download icons
+
+      //analytics
+      this.$gtag.event('iconDownload', {
+        'event_category': 'download',
+        'event_label': 'svgCollection',
+        'value': {number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)}
+      })
     },
     //download pngs files
     savePng() {
@@ -169,6 +177,15 @@ export default {
         }
       })
 
+
+      //analytics
+      this.$gtag.event('iconDownload', {
+        'event_category': 'download',
+        'event_label': 'pngCollection',
+        'value':{number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)} 
+        
+      })
+      
     },
     //download zip file
     download(zip, name) {
@@ -188,7 +205,7 @@ export default {
   },
   mounted() {
     // console.log(this.editedIcons)
-  }
+    }
 }
 </script>
 

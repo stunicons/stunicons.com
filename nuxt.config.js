@@ -28,7 +28,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/highlight.js',
-    '~/plugins/eventBus.js'
+    '~/plugins/eventBus.js',
+    { src: '~/plugins/ga.client.js', mode:'client'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,7 +42,8 @@ export default {
     '@nuxtjs/tailwindcss',
     // '@nuxtjs/color-mode',
     '@nuxtjs/style-resources',
-    '@nuxtjs/google-analytics'
+    // '@nuxtjs/google-analytics'
+    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -65,7 +67,7 @@ export default {
   styleResources: {
     scss: '@/assets/scss/main.scss'
   },
-  googleAnalytics: {
-    id: 'G-DDQCJ9TH38'
-  } 
+  // googleAnalytics: {
+  //   id: process.env.GA_ID
+  // } 
 }

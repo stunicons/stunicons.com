@@ -7,7 +7,7 @@
         <h5>{{icon.name}}</h5>
       </div>
       <div class="icon--svg" v-if="formattedSvg">
-        <div class="svg" v-html="formattedSvg">
+        <div id='svg-container' class="svg" v-html="formattedSvg">
 
         </div>
       </div>
@@ -107,6 +107,7 @@ import ColorPicker from "../SVG/reusable/ColorPicker";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
 import svgToEl from "../../mixins/svgToEl";
 import ClipboardJS from "clipboard";
+import invert from 'invert-color';
 
 let svgIcon, clipboard;
 
@@ -123,6 +124,12 @@ export default {
       fontSize:24,
       color:"",
       activeTab:'svg'
+    }
+  },
+  watch:{
+    color(val){
+      this.invertIconBgColor()
+      console.log(val)
     }
   },
   computed:{
@@ -168,6 +175,7 @@ export default {
         svg = svg.outerHTML // to html element codes
         return svg.toString()
       }
+
     },
 
     //returns css and html svg codes based on formatted svg
@@ -187,6 +195,10 @@ export default {
 
   },
   methods:{
+    invertIconBgColor(){
+      const el = document.getElementById('svg-container')
+      el.style.backgroundColor = invert(this.color,{ black: '#001233', white: '#ffffff', threshold: 0.9 })
+    },
     saveSvg(){
       const name = this.icon.id
 
@@ -195,7 +207,15 @@ export default {
       const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
       const svgUrl = URL.createObjectURL(svgBlob);
 
+      //analytics
+      this.$gtag.event('iconDownload', {
+        'event_category': 'download',
+        'event_label': 'svg',
+        'value': this.icon.id
+      })
+
       this.download(svgUrl, name);
+
     },
 
     savePng(){
@@ -211,6 +231,13 @@ export default {
         const context = canvas.getContext('2d');
         context.drawImage(image, 0, 0);
 
+        //analytics
+        this.$gtag.event('iconDownload', {
+          'event_category': 'download',
+          'event_label': 'png',
+          'value': this.icon.id
+        })
+
         this.download(canvas.toDataURL(),name)
       }
     },
@@ -221,6 +248,7 @@ export default {
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
+
     },
   },
   async mounted(){
@@ -232,7 +260,20 @@ export default {
     const self = this
 
     clipboard.on('success',function(e){
+      //analytics
+      self.$gtag.event('iconCopy', {
+        'event_category': 'copy',
+        'event_label': 'codes',
+        'value': self.icon.id
+      })
       self.$bus.$emit('iconCopy')
+    })
+
+    //analytics
+    this.$gtag.event('iconOpened', {
+      'event_category': 'interaction',
+      'event_label': 'icon',
+      'value': this.icon.id
     })
   }
 }
@@ -266,8 +307,11 @@ export default {
         }
 
         &--svg{
-          @apply my-5;
+          @apply my-3;
           .svg{
+            @apply p-2;
+            width:fit-content;
+            border-radius:2px;
             svg{
               transition: 1s all ease;
 

@@ -178,6 +178,13 @@ export default {
 
       this.icons = foundIcons
 
+      //analytics
+      this.$gtag.event('search', {
+        'event_category': 'interaction',
+        'event_label': 'search',
+        'value': value
+      })
+
     },
     openCollection(){
       this.collectionVisible = true
@@ -196,6 +203,9 @@ export default {
     },
     addToCollection(icon,category){
       this.$store.dispatch('storeIcon',{icon,category})
+    },
+    track(){
+      this.$gtag.pageview(this.$route)
     }
   },
   mounted(){
@@ -218,8 +228,7 @@ export default {
       },2000)
     })
 
-    this.$ga.page('/')
-    this.$ga.page(this.$router)
+    this.track();
   }
 
 }
