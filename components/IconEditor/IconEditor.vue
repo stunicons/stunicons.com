@@ -197,7 +197,7 @@ export default {
   methods:{
     invertIconBgColor(){
       const el = document.getElementById('svg-container')
-      el.style.backgroundColor = invert(this.color,true)
+      el.style.backgroundColor = invert(this.color,{ black: '#001233', white: '#ffffff', threshold: 0.9 })
     },
     saveSvg(){
       const name = this.icon.id
