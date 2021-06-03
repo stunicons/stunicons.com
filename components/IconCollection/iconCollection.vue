@@ -78,6 +78,7 @@ import ColorPicker from "../SVG/reusable/ColorPicker";
 import Copy from "../Reusable/Copy";
 import iconCollectionMixin from "../../mixins/iconCollection";
 import svgToEl from "../../mixins/svgToEl";
+import getSvgIds from "../../utils/getSvgIds";
 import dataUriToSvg from "../../utils/svgToElement";
 import JSZip from 'jszip'
 import {saveAs} from 'file-saver'
@@ -143,7 +144,7 @@ export default {
       this.$gtag.event('iconDownload', {
         'event_category': 'download',
         'event_label': 'svgCollection',
-        'value': this.storedIcons.map(icon => icon.id)
+        'value': getSvgIds(this.storedIcons)
       })
     },
     //download pngs files
@@ -176,12 +177,14 @@ export default {
         }
       })
 
+
       //analytics
       this.$gtag.event('iconDownload', {
         'event_category': 'download',
         'event_label': 'pngCollection',
-        'value': this.storedIcons.map(icon => icon.id)
+        'value': getSvgIds(this.storedIcons)
       })
+      
     },
     //download zip file
     download(zip, name) {
