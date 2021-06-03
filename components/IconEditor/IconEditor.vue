@@ -234,6 +234,13 @@ export default {
     clipboard.on('success',function(e){
       self.$bus.$emit('iconCopy')
     })
+
+    //analytics
+    this.$gtag.event('iconOpened', {
+      'event_category': 'interaction',
+      'event_label': 'icon',
+      'value': this.icon.id
+    })
   }
 }
 </script>
