@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueGtag from 'vue-gtag';
 
-export default ({ isDev, app }) => {
+export default ({ app }) => {
 
     Vue.use(VueGtag, {
         config: { id: process.env.GATAG_ID },
