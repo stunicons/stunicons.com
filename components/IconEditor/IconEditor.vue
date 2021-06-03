@@ -311,6 +311,7 @@ export default {
           .svg{
             @apply p-2;
             width:fit-content;
+            border-radius:2px;
             svg{
               transition: 1s all ease;
 
