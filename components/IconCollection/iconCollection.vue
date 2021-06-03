@@ -169,6 +169,11 @@ export default {
         }
       })
 
+      this.$gtag.event('iconDownload', {
+        'event_category': 'download',
+        'event_label': 'pngCollection',
+        'value': this.icon.id
+      })
     },
     //download zip file
     download(zip, name) {
@@ -188,7 +193,7 @@ export default {
   },
   mounted() {
     // console.log(this.editedIcons)
-  }
+    }
 }
 </script>
 
