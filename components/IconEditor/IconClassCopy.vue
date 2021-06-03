@@ -33,10 +33,10 @@ export default {
     clipboard.on('success',function(e){
 
       //analytics
-      this.$gtag.event('iconCopy', {
+      self.$gtag.event('iconCopy', {
         'event_category': 'copy',
         'event_label': 'tag',
-        'value': this.icon.id
+        'value': self.iconClass
       })
       self.$bus.$emit('iconCopy')
       self.$emit('classCopy',e)
