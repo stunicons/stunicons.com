@@ -205,7 +205,6 @@ export default {
       this.$store.dispatch('storeIcon',{icon,category})
     },
     track(){
-      console.log(this.$gtag)
       this.$gtag.pageview(this.$route)
     }
   },
