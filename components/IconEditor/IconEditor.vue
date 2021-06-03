@@ -7,7 +7,7 @@
         <h5>{{icon.name}}</h5>
       </div>
       <div class="icon--svg" v-if="formattedSvg">
-        <div class="svg" v-html="formattedSvg">
+        <div id='svg-container' class="svg" v-html="formattedSvg">
 
         </div>
       </div>
@@ -107,6 +107,7 @@ import ColorPicker from "../SVG/reusable/ColorPicker";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
 import svgToEl from "../../mixins/svgToEl";
 import ClipboardJS from "clipboard";
+import invert from 'invert-color';
 
 let svgIcon, clipboard;
 
@@ -123,6 +124,12 @@ export default {
       fontSize:24,
       color:"",
       activeTab:'svg'
+    }
+  },
+  watch:{
+    color(val){
+      this.invertIconBgColor()
+      console.log(val)
     }
   },
   computed:{
@@ -168,6 +175,7 @@ export default {
         svg = svg.outerHTML // to html element codes
         return svg.toString()
       }
+
     },
 
     //returns css and html svg codes based on formatted svg
@@ -187,6 +195,10 @@ export default {
 
   },
   methods:{
+    invertIconBgColor(){
+      const el = document.getElementById('svg-container')
+      el.style.backgroundColor = invert(this.color,true)
+    },
     saveSvg(){
       const name = this.icon.id
 
@@ -295,8 +307,10 @@ export default {
         }
 
         &--svg{
-          @apply my-5;
+          @apply my-3;
           .svg{
+            @apply p-2;
+            width:fit-content;
             svg{
               transition: 1s all ease;
 
