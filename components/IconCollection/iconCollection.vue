@@ -144,7 +144,7 @@ export default {
       this.$gtag.event('iconDownload', {
         'event_category': 'download',
         'event_label': 'svgCollection',
-        'value': getSvgIds(this.storedIcons)
+        'value': {number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)}
       })
     },
     //download pngs files
@@ -182,7 +182,8 @@ export default {
       this.$gtag.event('iconDownload', {
         'event_category': 'download',
         'event_label': 'pngCollection',
-        'value': getSvgIds(this.storedIcons)
+        'value':{number : this.$store.getters['svgIcons'].length, icons: getSvgIds(this.storedIcons)} 
+        
       })
       
     },
