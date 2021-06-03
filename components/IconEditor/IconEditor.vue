@@ -248,6 +248,12 @@ export default {
     const self = this
 
     clipboard.on('success',function(e){
+      //analytics
+      this.$gtag.event('iconCopy', {
+        'event_category': 'copy',
+        'event_label': 'codes',
+        'value': this.icon.id
+      })
       self.$bus.$emit('iconCopy')
     })
 
