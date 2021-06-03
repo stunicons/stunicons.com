@@ -31,6 +31,8 @@ export default {
     const self = this
 
     clipboard.on('success',function(e){
+
+      //analytics
       this.$gtag.event('iconCopy', {
         'event_category': 'copy',
         'event_label': 'tag',

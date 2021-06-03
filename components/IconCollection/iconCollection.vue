@@ -138,6 +138,13 @@ export default {
       })
 
       this.download(svgZip, `stunicons-svg-${this.fontSize}.zip`) // download icons
+
+      //analytics
+      this.$gtag.event('iconDownload', {
+        'event_category': 'download',
+        'event_label': 'svgCollection',
+        'value': this.storedIcons.map(icon => icon.id)
+      })
     },
     //download pngs files
     savePng() {
@@ -169,10 +176,11 @@ export default {
         }
       })
 
+      //analytics
       this.$gtag.event('iconDownload', {
         'event_category': 'download',
         'event_label': 'pngCollection',
-        'value': this.icon.id
+        'value': this.storedIcons.map(icon => icon.id)
       })
     },
     //download zip file
