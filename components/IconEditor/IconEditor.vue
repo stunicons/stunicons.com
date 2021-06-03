@@ -195,7 +195,15 @@ export default {
       const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
       const svgUrl = URL.createObjectURL(svgBlob);
 
+      //analytics
+      this.$gtag.event('iconDownload', {
+        'event_category': 'download',
+        'event_label': 'svg',
+        'value': this.icon.id
+      })
+
       this.download(svgUrl, name);
+
     },
 
     savePng(){
@@ -211,6 +219,13 @@ export default {
         const context = canvas.getContext('2d');
         context.drawImage(image, 0, 0);
 
+        //analytics
+        this.$gtag.event('iconDownload', {
+          'event_category': 'download',
+          'event_label': 'png',
+          'value': this.icon.id
+        })
+
         this.download(canvas.toDataURL(),name)
       }
     },
@@ -221,6 +236,7 @@ export default {
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
+
     },
   },
   async mounted(){
