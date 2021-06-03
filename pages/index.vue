@@ -218,8 +218,6 @@ export default {
       },2000)
     })
 
-    this.$ga.page('/')
-    this.$ga.page(this.$router)
   }
 
 }

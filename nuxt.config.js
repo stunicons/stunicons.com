@@ -66,6 +66,6 @@ export default {
     scss: '@/assets/scss/main.scss'
   },
   googleAnalytics: {
-    id: 'G-DDQCJ9TH38'
+    id: 'UA-196426137-1'
   } 
 }
