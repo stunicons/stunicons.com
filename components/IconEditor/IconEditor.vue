@@ -200,45 +200,52 @@ export default {
       el.style.backgroundColor = invert(this.color,{ black: '#001233', white: '#ffffff', threshold: 0.9 })
     },
     saveSvg(){
-      const name = this.icon.id
+      try{
+        const name = this.icon.id
 
-      const svgData = this.formattedSvg;
-      const preface = '<?xml version="1.0" standalone="no"?>\r\n';
-      const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
-      const svgUrl = URL.createObjectURL(svgBlob);
-
-      //analytics
-      this.$gtag.event('iconDownload', {
-        'event_category': 'download',
-        'event_label': 'svg',
-        'value': this.icon.id
-      })
-
-      this.download(svgUrl, name);
-
-    },
-
-    savePng(){
-      const name = this.icon.id + '.png'
-
-      const image = new Image();
-      image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
-
-      image.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        const context = canvas.getContext('2d');
-        context.drawImage(image, 0, 0);
+        const svgData = this.formattedSvg;
+        const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+        const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+        const svgUrl = URL.createObjectURL(svgBlob);
 
         //analytics
         this.$gtag.event('iconDownload', {
           'event_category': 'download',
-          'event_label': 'png',
+          'event_label': 'svg',
           'value': this.icon.id
         })
 
-        this.download(canvas.toDataURL(),name)
+        this.download(svgUrl, name);
+      }catch(e){
+        this.$sentry.captureException(e)
+      }
+    },
+
+    savePng(){
+      try{
+        const name = this.icon.id + '.png'
+
+        const image = new Image();
+        image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(this.formattedSvg)));
+
+        image.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = image.width;
+          canvas.height = image.height;
+          const context = canvas.getContext('2d');
+          context.drawImage(image, 0, 0);
+
+          //analytics
+          this.$gtag.event('iconDownload', {
+            'event_category': 'download',
+            'event_label': 'png',
+            'value': this.icon.id
+          })
+
+          this.download(canvas.toDataURL(),name)
+        }
+      }catch(e){
+        this.$sentry.captureException(e)
       }
     },
     download(url,name){

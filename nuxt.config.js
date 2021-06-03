@@ -1,3 +1,5 @@
+import { Integrations } from "@sentry/tracing";
+
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -49,7 +51,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/sentry'
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -67,6 +70,26 @@ export default {
   styleResources: {
     scss: '@/assets/scss/main.scss'
   },
+  sentry: {
+    dsn: process.env.SENTRY_DNS, // Enter your project's DSN here
+    // Additional Module Options go here
+    // https://sentry.nuxtjs.org/sentry/options
+    config: {
+      // Add native Sentry config here
+      // https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
+    },
+    tracesSampleRate: 1.0,
+    integrations: [new Integrations.BrowserTracing()],
+    vueOptions: {
+      tracing: true,
+      tracingOptions: {
+        hooks: [ 'mount', 'update' ],
+        timeout: 2000,
+        trackComponents: true
+      }
+    },
+  }
+  ,
   // googleAnalytics: {
   //   id: process.env.GA_ID
   // } 
