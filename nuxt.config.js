@@ -45,7 +45,8 @@ export default {
     // '@nuxtjs/color-mode',
     '@nuxtjs/style-resources',
     // '@nuxtjs/google-analytics'
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    "@nuxtjs/svg"
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -92,5 +93,5 @@ export default {
   ,
   // googleAnalytics: {
   //   id: process.env.GA_ID
-  // } 
+  // }
 }
