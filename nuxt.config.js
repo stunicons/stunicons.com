@@ -4,11 +4,11 @@ import { Integrations } from "@sentry/tracing";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'stunicons',
+    title: 'Stunicons',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Burgeoning pack with 30+ highly customizable icons for your outstanding UI. Easily tweak your icon in a few seconds.' },
+      { hid: 'description', name: 'description', content: 'Burgeoning pack with 100+ highly customizable icons for your outstanding UI. Easily tweak your icon in a few seconds.' },
       { hid: 'description', name: 'keywords', content: 'stunnity, stun, stunicon, light, icons, simple'},
       { hid: 'og:image', property: 'og:image', content: 'https://res.cloudinary.com/dawr8i20o/image/upload/v1620153858/stunnity/stunicons/cdn/post_1_av24tt.png' }
     ],
