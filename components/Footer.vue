@@ -3,11 +3,11 @@
   <div class="footer--wrapper maximum-width">
     <p class="text">StunIcons pack made with <span class="love">♥️</span> by <strong>Stunnity</strong></p>
     <ul class="social-links">
-      <li>
+      <!-- <li>
         <a href="">
           <i class="si-instagram"></i>
         </a>
-      </li>
+      </li> -->
       <li>
         <a href="https://www.linkedin.com/in/stunnity-soft-7413bb19a" target="_blank">
           <i class="si-linkedin"></i>
@@ -18,11 +18,11 @@
           <i class="si-twitter"></i>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="">
           <i class="si-facebook"></i>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </footer>

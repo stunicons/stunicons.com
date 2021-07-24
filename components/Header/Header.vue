@@ -5,7 +5,7 @@
       <search-filter />
     </div>
     <div class="header--icon-body-selector">
-      <icon-body-selector />
+      <!-- <icon-body-selector /> -->
     </div>
     <div class="header--collection">
       <collection-accessor @openCollection="$emit('openCollection')" />
