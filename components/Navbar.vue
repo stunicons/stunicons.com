@@ -10,7 +10,7 @@
       </div>
       <div class="navbar--action-btn">
         <div class="action-btn--request-icon">
-          <a href="https://github.com/Stunnity/stunicons/issues/new?assignees=Daniel-Dukundane%2C+Gustavy&labels=enhancement%2C+request+icon&template=request-icon.md&title=Requesting+Icon" target="_blank">Request Icon</a>
+          <a href="https://github.com/stunicons/stunicons/issues/new/choose" target="_blank">Request Icon</a>
         </div>
         <div class="action-btn--go-to-github">
           <a target="_blank" href="https://github.com/Stunnity/stunicons">
