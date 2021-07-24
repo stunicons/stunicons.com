@@ -74,7 +74,7 @@
         {"id": "si-image", "name": "image", "tags": ["image","photo", "picture"]},
         {"id": "si-info", "name": "info", "tags": ["info","warn", "alert"]},
         {"id": "si-label", "name": "label", "tags": ["label","galaxy"]},
-        {"id": "si-layer", "name": "layer", "tags": ["layer"]},
+        {"id": "si-layers", "name": "layers", "tags": ["layers","depth","height","steps"]},
         {"id": "si-link", "name": "link", "tags": ["link","attach"]},
         {"id": "si-lock", "name": "lock", "tags": ["lock"]},
         {"id": "si-menu-alt", "name": "menu alt", "tags": ["menu"]},
