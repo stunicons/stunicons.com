@@ -100,7 +100,13 @@
         {"id": "si-users", "name": "users", "tags": ["users","members", "people"]},
         {"id": "si-window", "name": "window", "tags": ["window","tab","web"]},
         {"id": "si-zoom-in", "name": "zoom in", "tags": ["zoom","in","len", "zooming"]},
-        {"id": "si-zoom-out", "name": "zoom out", "tags": ["zoom","out","len", "zooming"]}
+        {"id": "si-zoom-out", "name": "zoom out", "tags": ["zoom","out","len", "zooming"]},
+        {"id": "si-github", "name": "github", "tags": ["github"]},
+        {"id": "si-slack", "name": "slack", "tags": ["slack"]},
+        {"id": "si-twitter", "name": "twitter", "tags": ["twitter"]},
+        {"id": "si-settings", "name": "settings", "tags": ["settings","gear","preferences", "environment", "locale", ""]},
+        {"id": "si-behance", "name": "behance", "tags": ["behance","design"]},
+        {"id": "si-phone", "name": "phone", "tags": ["phone","telephone","mobilephone", "dial" ,"speaker","call"]}
       ]
     }
   ]
