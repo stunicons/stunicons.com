@@ -6,7 +6,7 @@
   </div>
   <div class="welcoming-text--p">
     <p>
-     Burgeoning pack with 30+ highly customizable icons for your outstanding UI. Easily tweak your icon in a few seconds.
+     Burgeoning pack with 100+ highly customizable icons for your outstanding UI. Easily tweak your icon in a few seconds.
     </p>
   </div>
   </div>
