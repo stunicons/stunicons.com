@@ -15,7 +15,11 @@
         <div class="action-btn--go-to-github">
           <a target="_blank" href="https://github.com/Stunnity/stunicons">
             <span class="github-icon"><i class="si-github"></i></span>
-            <span class="github-name">Github</span>
+          </a>
+        </div>
+        <div class="action-btn--go-to-github">
+          <a target="_blank" href="https://www.figma.com/community/plugin/986549709687678796/Stunicons">
+            <span class="github-icon">Figma</span>
           </a>
         </div>
 <!--        dark mode-->
