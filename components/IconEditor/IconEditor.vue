@@ -102,7 +102,6 @@
 import Copy from "../Reusable/Copy";
 import IconClassCopy from "./IconClassCopy";
 import CodeHighlight from "./CodeHighlight";
-import dataUriToSvg from "../../utils/svgToElement";
 import ColorPicker from "../SVG/reusable/ColorPicker";
 import FontSizeAdjuster from "../SVG/reusable/FontSizeAdjuster";
 import svgToEl from "../../mixins/svgToEl";
@@ -259,9 +258,8 @@ export default {
     },
   },
   async mounted(){
-    svgIcon = await require(`stunicons/icons/${this.icon.src}`)
-    this.baseSvg = dataUriToSvg(svgIcon) // set base SVG code on data mount
-
+    svgIcon = await require(`stunicons/icons/${this.icon.src}?raw`)
+    this.baseSvg = svgIcon
 
     clipboard = new ClipboardJS('.code--copy--wrapper')
     const self = this
