@@ -28,7 +28,7 @@
     "js-beautify": "^1.13.13",
     "jszip": "^3.6.0",
     "nuxt": "^2.15.3",
-    "stunicons": "^1.0.21",
+    "stunicons": "^1.1.1",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
