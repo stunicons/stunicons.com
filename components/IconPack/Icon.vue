@@ -61,6 +61,10 @@ export default {
   height:6rem;
   position: relative;
 
+  .icon{
+    font-size:1.5rem;
+  }
+
 
   &.hoverEffect:hover,
   &.stored{
@@ -68,7 +72,7 @@ export default {
       display: block;
     }
     .icon{
-        font-size: 1.5rem;
+        font-size: 2rem;
         //cursor: pointer;
       }
   }
